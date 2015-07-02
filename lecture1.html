@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>AC Book: MongoDB/Mongoose</title>
+		<title>Node.js - Lecture 1</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
@@ -55,16 +55,16 @@
 				<section id="header" class="skel-layers-fixed">
 					<header>
 						
-						<h1 id="logo"><a href="#">MongoDB/Mongoose</a></h1>
+						<h1 id="logo"><a href="#">Node.js - Lecture 1</a></h1>
 						
 					</header>
 					<nav id="nav">
 						<ul>
 							<li><a href="#one" class="active">Introduction</a></li>
-							<li><a href="#two">Language basics</a></li>
-							<li><a href="#three">Advanced topics</a></li>
-							<li><a href="#four">Lab</a></li>
-							<li><a href="#five">Template tutorial</a></li>
+							<li><a href="#two">Javascript Recap</a></li>
+							<li><a href="#three">Hello World</a></li>
+							<li><a href="#four">Project Scaffolding</a></li>
+							<li><a href="#five">Web Server</a></li>
 						</ul>
 						<img src="http://avenuecode.com/wp-content/themes/actheme/images/white-logo.png" alt="">
 					</nav>
@@ -87,33 +87,59 @@
 							<div class="container">
 								<header class="major">
 									<h2>Introduction</h2>
-									<p>This is a subtitle for this main section</p>
 								</header>
-								<p>Faucibus sed lobortis aliquam lorem blandit. Lorem eu nunc metus col. Commodo id in arcu ante lorem ipsum sed accumsan erat praesent faucibus commodo ac mi lacus. Adipiscing mi ac commodo. Vis aliquet tortor ultricies non ante erat nunc integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer non. Adipiscing cubilia elementum.</p>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita culpa qui similique sed labore laudantium, aliquam atque odio ex rem, dicta saepe molestias veniam explicabo asperiores nisi nesciunt consectetur eligendi.</p>
 
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla quaerat autem illo tempora quia eius, earum quam a ea facere praesentium molestiae voluptatem repellat vitae commodi velit excepturi.</p>
 
-
-								<!-- HTML generated using hilite.me -->
-<div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">test</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(param)</span> <span style="color: #d0d0d0">{</span>
-  <span style="color: #d0d0d0">console.log(</span><span style="color: #ed9d13">&#39;the param is: &#39;</span> <span style="color: #d0d0d0">+</span> <span style="color: #d0d0d0">param);</span>
-<span style="color: #d0d0d0">}</span>
-</pre></div>
-								<div class="ac-caption">Code formated by http://hilite.me/</div>
+								<header>
+									<h4>What is Node ?</h4>
+								</header>
 								
-
-
-
-
-
-
-
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla quaerat autem illo tempora quia eius, earum quam a ea facere praesentium molestiae voluptatem repellat vitae commodi velit excepturi sequi? Vero.</p>
-
-								<p>Faucibus sed lobortis aliquam lorem blandit. Lorem eu nunc metus col. Commodo id in arcu ante lorem ipsum sed accumsan erat praesent faucibus commodo ac mi lacus. Adipiscing mi ac commodo. Vis aliquet tortor ultricies non ante erat nunc integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer non. Adipiscing cubilia elementum.</p>
 								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita culpa qui similique sed labore laudantium, aliquam atque odio ex rem, dicta saepe molestias veniam explicabo asperiores nisi nesciunt consectetur eligendi.</p>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla quaerat autem illo tempora quia eius, earum quam a ea facere praesentium molestiae voluptatem repellat vitae commodi velit excepturi sequi? Vero.</p>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla quaerat autem illo tempora quia eius, earum quam a ea facere praesentium molestiae voluptatem repellat vitae commodi velit excepturi.</p>
+																
+								<header>
+									<h4>What is not ?</h4>
+								</header>
+								
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita culpa qui similique sed labore laudantium, aliquam atque odio ex rem, dicta saepe molestias veniam explicabo asperiores nisi nesciunt consectetur eligendi.</p>
 
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla quaerat autem illo tempora quia eius, earum quam a ea facere praesentium molestiae voluptatem repellat vitae commodi velit excepturi.</p>
+								
+								<header>
+									<h4>Blocking I/O</h4>
+								</header>
+
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita culpa qui similique sed labore laudantium, aliquam atque odio ex rem, dicta saepe molestias veniam explicabo asperiores nisi nesciunt consectetur eligendi.</p>
+
+<!-- HTML generated using hilite.me -->
+<!-- Blocking Code -->
+<div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">fs</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;fs&#39;</span><span style="color: #d0d0d0">);</span>
+ 
+<span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">contents</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">fs.readFileSync(</span><span style="color: #ed9d13">&#39;file.txt&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&#39;utf8&#39;</span><span style="color: #d0d0d0">);</span>
+
+<span style="color: #d0d0d0">console.log(contents);</span>
+</pre></div>
+<div class="ac-caption">An example of Blocking I/O</div>
+
+
+								<header>
+									<h4>Non-Blocking I/O</h4>
+								</header>
+
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita culpa qui similique sed labore laudantium, aliquam atque odio ex rem, dicta saepe molestias veniam explicabo asperiores nisi nesciunt consectetur eligendi.</p>
+
+<!-- HTML generated using hilite.me -->
+<!-- Non-Blocking Code -->
+<div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">fs</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;fs&#39;</span><span style="color: #d0d0d0">);</span>
+ 
+<span style="color: #d0d0d0">fs.readFile(</span><span style="color: #ed9d13">&#39;file.txt&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&#39;utf8&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(err,</span> <span style="color: #d0d0d0">contents)</span> <span style="color: #d0d0d0">{</span>
+    <span style="color: #d0d0d0">console.log(contents);</span>
+<span style="color: #d0d0d0">});</span>
+ 
+<span style="color: #d0d0d0">console.log(</span><span style="color: #ed9d13">&#39;after calling readFile&#39;</span><span style="color: #d0d0d0">);</span>
+</pre></div>
+<div class="ac-caption">An example of Non-Blocking I/O</div>
 
 							</div>
 						</section>
@@ -122,18 +148,28 @@
 						<section id="two">
 							<div class="container">
 								<header class="major">
-									<h2>Language Basics</h2>
-									<p>This is a subtitle for this main section</p>
+									<h2>Javascript Recap</h2>
 								</header>
+
 								<p>Faucibus sed lobortis aliquam lorem blandit. Lorem eu nunc metus col. Commodo id in arcu ante lorem ipsum sed accumsan erat praesent faucibus commodo ac mi lacus. Adipiscing mi ac commodo. Vis aliquet tortor ultricies non ante erat nunc integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer non. Adipiscing cubilia elementum.</p>
+								
+								<header>
+									<h4>Event Loop</h4>
+								</header>
+
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita culpa qui similique sed labore laudantium, aliquam atque odio ex rem, dicta saepe molestias veniam explicabo asperiores nisi nesciunt consectetur eligendi.</p>
+								
+								<span class="image fit">
+									<img style="width: 70%; margin: 0 auto;" src="images/img1.svg" alt="Event Loop Diagram"/>
+								</span>
+								<div class="ac-caption">Event Loop Diagram</div>
+
 								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita culpa qui similique sed labore laudantium, aliquam atque odio ex rem, dicta saepe molestias veniam explicabo asperiores nisi nesciunt consectetur eligendi.</p>
 
 								<header>
-									<h4>Heading with a Subtitle</h4>
-									<p>This is a subtitle for this sub session</p>
+									<h4>Callbacks</h4>
 								</header>
 								<p>Faucibus sed lobortis aliquam lorem blandit. Lorem eu nunc metus col. Commodo id in arcu ante lorem ipsum sed accumsan erat praesent faucibus commodo ac mi lacus. Adipiscing mi ac commodo. Vis aliquet tortor ultricies non ante erat nunc integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer non. Adipiscing cubilia elementum.</p>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita culpa qui similique sed labore laudantium, aliquam atque odio ex rem, dicta saepe molestias veniam explicabo asperiores nisi nesciunt consectetur eligendi.</p>
 							</div>
 						</section>
 
@@ -141,18 +177,12 @@
 						<section id="three">
 							<div class="container">
 								<header class="major">
-									<h2>Advanced topics</h2>
-									<p>This is a subtitle for this main section</p>
+									<h2>Hello World</h2>
 								</header>
+
 								<p>Faucibus sed lobortis aliquam lorem blandit. Lorem eu nunc metus col. Commodo id in arcu ante lorem ipsum sed accumsan erat praesent faucibus commodo ac mi lacus. Adipiscing mi ac commodo. Vis aliquet tortor ultricies non ante erat nunc integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer non. Adipiscing cubilia elementum.</p>
 								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita culpa qui similique sed labore laudantium, aliquam atque odio ex rem, dicta saepe molestias veniam explicabo asperiores nisi nesciunt consectetur eligendi.</p>
 
-								<header>
-									<h4>Heading with a Subtitle</h4>
-									<p>This is a subtitle for this sub session</p>
-								</header>
-								<p>Faucibus sed lobortis aliquam lorem blandit. Lorem eu nunc metus col. Commodo id in arcu ante lorem ipsum sed accumsan erat praesent faucibus commodo ac mi lacus. Adipiscing mi ac commodo. Vis aliquet tortor ultricies non ante erat nunc integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer non. Adipiscing cubilia elementum.</p>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita culpa qui similique sed labore laudantium, aliquam atque odio ex rem, dicta saepe molestias veniam explicabo asperiores nisi nesciunt consectetur eligendi.</p>
 							</div>
 						</section>
 
@@ -160,18 +190,40 @@
 						<section id="four">
 							<div class="container">
 								<header class="major">
-									<h2>Lab</h2>
-									<p>This is a subtitle for this section</p>
+									<h2>Project Scaffolding</h2>
 								</header>
-								<p>Faucibus sed lobortis aliquam lorem blandit. Lorem eu nunc metus col. Commodo id in arcu ante lorem ipsum sed accumsan erat praesent faucibus commodo ac mi lacus. Adipiscing mi ac commodo. Vis aliquet tortor ultricies non ante erat nunc integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer non. Adipiscing cubilia elementum.</p>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita culpa qui similique sed labore laudantium, aliquam atque odio ex rem, dicta saepe molestias veniam explicabo asperiores nisi nesciunt consectetur eligendi.</p>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla quaerat autem illo tempora quia eius, earum quam a ea facere praesentium molestiae voluptatem repellat vitae commodi velit excepturi sequi? Vero.</p>
+
+<!-- HTML generated using hilite.me --><div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #d0d0d0">├── expressServer</span>
+<span style="color: #d0d0d0">│   ├── public</span>
+<span style="color: #d0d0d0">│   │   └── index.html</span>
+<span style="color: #d0d0d0">│   ├── src</span>
+<span style="color: #d0d0d0">│   │   ├── auth</span>
+<span style="color: #d0d0d0">│   │   │   └── authorization.js</span>
+<span style="color: #d0d0d0">│   │   ├── config.js</span>
+<span style="color: #d0d0d0">│   │   ├── index.js</span>
+<span style="color: #d0d0d0">│   │   ├── persistent</span>
+<span style="color: #d0d0d0">│   │   │   └── userDAO.js</span>
+<span style="color: #d0d0d0">│   │   ├── routes</span>
+<span style="color: #d0d0d0">│   │   │   ├── login</span>
+<span style="color: #d0d0d0">│   │   │   │   ├── loginController.js</span>
+<span style="color: #d0d0d0">│   │   │   │   └── loginRouting.js</span>
+<span style="color: #d0d0d0">│   │   │   └── users</span>
+<span style="color: #d0d0d0">│   │   │       ├── userController.js</span>
+<span style="color: #d0d0d0">│   │   │       └── userRouting.js</span>
+<span style="color: #d0d0d0">│   │   └── server.js</span>
+<span style="color: #d0d0d0">│   └── tests</span>
+<span style="color: #d0d0d0">│       ├── loginRoutes.js</span>
+<span style="color: #d0d0d0">│       └── userRoutes.js</span>
+<span style="color: #d0d0d0">├── Gruntfile.js</span>
+<span style="color: #d0d0d0">└── package.json</span>
+</pre></div>
+<div class="ac-caption">Project's Structure</div>
 
 								<p>Faucibus sed lobortis aliquam lorem blandit. Lorem eu nunc metus col. Commodo id in arcu ante lorem ipsum sed accumsan erat praesent faucibus commodo ac mi lacus. Adipiscing mi ac commodo. Vis aliquet tortor ultricies non ante erat nunc integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer non. Adipiscing cubilia elementum.</p>
+								
 								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita culpa qui similique sed labore laudantium, aliquam atque odio ex rem, dicta saepe molestias veniam explicabo asperiores nisi nesciunt consectetur eligendi.</p>
+								
 								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla quaerat autem illo tempora quia eius, earum quam a ea facere praesentium molestiae voluptatem repellat vitae commodi velit excepturi sequi? Vero.</p>
-
-
 							</div>
 						</section>
 
@@ -180,337 +232,12 @@
 						<section id="five">
 							<div class="container">
 								<header class="major">
-									<h2>Template tutorial</h2>
-									<p>This is a subtitle for this main section</p>
+									<h2>Web Server</h2>
 								</header>
 
-								<section>
-									<h4>Text</h4>
-									<p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i> and this is <em>emphasized</em>.
-									This is <sup>superscript</sup> text and this is <sub>subscript</sub> text.
-									This is <u>underlined</u> and this is code: <code>for (;;) { ... }</code>. Finally, <a href="#">this is a link</a>.</p>
-									<hr />
-									<header>
-										<h4>Heading with a Subtitle</h4>
-										<p>Lorem ipsum dolor sit amet nullam id egestas urna aliquam</p>
-									</header>
-									<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit tempus accumsan.</p>
-									<header>
-										<h5>Heading with a Subtitle</h5>
-										<p>Lorem ipsum dolor sit amet nullam id egestas urna aliquam</p>
-									</header>
-									<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit tempus accumsan.</p>
-									<hr />
-									<h2>Heading Level 2</h2>
-									<h3>Heading Level 3</h3>
-									<h4>Heading Level 4</h4>
-									<h5>Heading Level 5</h5>
-									<h6>Heading Level 6</h6>
-									<hr />
-									<h5>Blockquote</h5>
-									<blockquote>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan faucibus. Vestibulum ante ipsum primis in faucibus lorem ipsum dolor sit amet nullam adipiscing eu felis.</blockquote>
-									
-								</section>
-
-								<section>
-									<h4>Lists</h4>
-									<div class="row">
-										<div class="6u 12u(xsmall)">
-											<h5>Unordered</h5>
-											<ul>
-												<li>Dolor pulvinar etiam magna etiam.</li>
-												<li>Sagittis adipiscing lorem eleifend.</li>
-												<li>Felis enim feugiat dolore viverra.</li>
-											</ul>
-											<h5>Alternate</h5>
-											<ul class="alt">
-												<li>Dolor pulvinar etiam magna etiam.</li>
-												<li>Sagittis adipiscing lorem eleifend.</li>
-												<li>Felis enim feugiat dolore viverra.</li>
-											</ul>
-										</div>
-										<div class="6u 12u(xsmall)">
-											<h5>Ordered</h5>
-											<ol>
-												<li>Dolor pulvinar etiam magna etiam.</li>
-												<li>Etiam vel felis at lorem sed viverra.</li>
-												<li>Felis enim feugiat dolore viverra.</li>
-												<li>Dolor pulvinar etiam magna etiam.</li>
-												<li>Etiam vel felis at lorem sed viverra.</li>
-												<li>Felis enim feugiat dolore viverra.</li>
-											</ol>
-											<h5>Icons</h5>
-											<ul class="icons">
-												<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-												<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-												<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-												<li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
-												<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
-												<li><a href="#" class="icon fa-tumblr"><span class="label">Tumblr</span></a></li>
-											</ul>
-										</div>
-									</div>
-									<h5>Actions</h5>
-									<ul class="actions">
-										<li><a href="#" class="button special">Default</a></li>
-										<li><a href="#" class="button">Default</a></li>
-										<li><a href="#" class="button alt">Default</a></li>
-									</ul>
-									<ul class="actions small">
-										<li><a href="#" class="button special small">Small</a></li>
-										<li><a href="#" class="button small">Small</a></li>
-										<li><a href="#" class="button alt small">Small</a></li>
-									</ul>
-									<div class="row">
-										<div class="3u 6u(medium) 12u$(xsmall)">
-											<ul class="actions vertical">
-												<li><a href="#" class="button special">Default</a></li>
-												<li><a href="#" class="button">Default</a></li>
-												<li><a href="#" class="button alt">Default</a></li>
-											</ul>
-										</div>
-										<div class="3u 6u$(medium) 12u$(xsmall)">
-											<ul class="actions vertical small">
-												<li><a href="#" class="button special small">Small</a></li>
-												<li><a href="#" class="button small">Small</a></li>
-												<li><a href="#" class="button alt small">Small</a></li>
-											</ul>
-										</div>
-										<div class="3u 6u(medium) 12u$(xsmall)">
-											<ul class="actions vertical">
-												<li><a href="#" class="button special fit">Default</a></li>
-												<li><a href="#" class="button fit">Default</a></li>
-												<li><a href="#" class="button alt fit">Default</a></li>
-											</ul>
-										</div>
-										<div class="3u 6u$(medium) 12u$(xsmall)">
-											<ul class="actions vertical small">
-												<li><a href="#" class="button special small fit">Small</a></li>
-												<li><a href="#" class="button small fit">Small</a></li>
-												<li><a href="#" class="button alt small fit">Small</a></li>
-											</ul>
-										</div>
-									</div>
-								</section>
-
-								<section>
-									<h4>Table</h4>
-									<h5>Default</h5>
-									<div class="table-wrapper">
-										<table>
-											<thead>
-												<tr>
-													<th>Name</th>
-													<th>Description</th>
-													<th>Price</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>Item One</td>
-													<td>Ante turpis integer aliquet porttitor.</td>
-													<td>29.99</td>
-												</tr>
-												<tr>
-													<td>Item Two</td>
-													<td>Vis ac commodo adipiscing arcu aliquet.</td>
-													<td>19.99</td>
-												</tr>
-												<tr>
-													<td>Item Three</td>
-													<td> Morbi faucibus arcu accumsan lorem.</td>
-													<td>29.99</td>
-												</tr>
-												<tr>
-													<td>Item Four</td>
-													<td>Vitae integer tempus condimentum.</td>
-													<td>19.99</td>
-												</tr>
-												<tr>
-													<td>Item Five</td>
-													<td>Ante turpis integer aliquet porttitor.</td>
-													<td>29.99</td>
-												</tr>
-											</tbody>
-											<tfoot>
-												<tr>
-													<td colspan="2"></td>
-													<td>100.00</td>
-												</tr>
-											</tfoot>
-										</table>
-									</div>
-
-									<h5>Alternate</h5>
-									<div class="table-wrapper">
-										<table class="alt">
-											<thead>
-												<tr>
-													<th>Name</th>
-													<th>Description</th>
-													<th>Price</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>Item One</td>
-													<td>Ante turpis integer aliquet porttitor.</td>
-													<td>29.99</td>
-												</tr>
-												<tr>
-													<td>Item Two</td>
-													<td>Vis ac commodo adipiscing arcu aliquet.</td>
-													<td>19.99</td>
-												</tr>
-												<tr>
-													<td>Item Three</td>
-													<td> Morbi faucibus arcu accumsan lorem.</td>
-													<td>29.99</td>
-												</tr>
-												<tr>
-													<td>Item Four</td>
-													<td>Vitae integer tempus condimentum.</td>
-													<td>19.99</td>
-												</tr>
-												<tr>
-													<td>Item Five</td>
-													<td>Ante turpis integer aliquet porttitor.</td>
-													<td>29.99</td>
-												</tr>
-											</tbody>
-											<tfoot>
-												<tr>
-													<td colspan="2"></td>
-													<td>100.00</td>
-												</tr>
-											</tfoot>
-										</table>
-									</div>
-								</section>
-
-								<section>
-									<h4>Buttons</h4>
-									<ul class="actions">
-										<li><a href="#" class="button special">Special</a></li>
-										<li><a href="#" class="button">Default</a></li>
-										<li><a href="#" class="button alt">Alternate</a></li>
-									</ul>
-									<ul class="actions">
-										<li><a href="#" class="button special big">Big</a></li>
-										<li><a href="#" class="button">Default</a></li>
-										<li><a href="#" class="button alt small">Small</a></li>
-									</ul>
-									<ul class="actions fit">
-										<li><a href="#" class="button special fit">Fit</a></li>
-										<li><a href="#" class="button fit">Fit</a></li>
-										<li><a href="#" class="button alt fit">Fit</a></li>
-									</ul>
-									<ul class="actions fit small">
-										<li><a href="#" class="button special fit small">Fit + Small</a></li>
-										<li><a href="#" class="button fit small">Fit + Small</a></li>
-										<li><a href="#" class="button alt fit small">Fit + Small</a></li>
-									</ul>
-									<ul class="actions">
-										<li><a href="#" class="button special icon fa-download">Icon</a></li>
-										<li><a href="#" class="button icon fa-download">Icon</a></li>
-										<li><a href="#" class="button alt icon fa-check">Icon</a></li>
-									</ul>
-									<ul class="actions">
-										<li><span class="button special disabled">Special</span></li>
-										<li><span class="button disabled">Default</span></li>
-										<li><span class="button alt disabled">Alternate</span></li>
-									</ul>
-								</section>
-
-								<section>
-									<h4>Form</h4>
-									<form method="post" action="#">
-										<div class="row uniform">
-											<div class="6u 12u(xsmall)">
-												<input type="text" name="demo-name" id="demo-name" value="" placeholder="Name" />
-											</div>
-											<div class="6u 12u(xsmall)">
-												<input type="email" name="demo-email" id="demo-email" value="" placeholder="Email" />
-											</div>
-										</div>
-										<div class="row uniform">
-											<div class="12u">
-												<div class="select-wrapper">
-													<select name="demo-category" id="demo-category">
-														<option value="">- Category -</option>
-														<option value="1">Manufacturing</option>
-														<option value="1">Shipping</option>
-														<option value="1">Administration</option>
-														<option value="1">Human Resources</option>
-													</select>
-												</div>
-											</div>
-										</div>
-										<div class="row uniform">
-											<div class="4u 12u(medium)">
-												<input type="radio" id="demo-priority-low" name="demo-priority" checked>
-												<label for="demo-priority-low">Low Priority</label>
-											</div>
-											<div class="4u 12u(medium)">
-												<input type="radio" id="demo-priority-normal" name="demo-priority">
-												<label for="demo-priority-normal">Normal Priority</label>
-											</div>
-											<div class="4u 12u(medium)">
-												<input type="radio" id="demo-priority-high" name="demo-priority">
-												<label for="demo-priority-high">High Priority</label>
-											</div>
-										</div>
-										<div class="row uniform">
-											<div class="6u 12u(medium)">
-												<input type="checkbox" id="demo-copy" name="demo-copy">
-												<label for="demo-copy">Email me a copy of this message</label>
-											</div>
-											<div class="6u 12u(medium)">
-												<input type="checkbox" id="demo-human" name="demo-human" checked>
-												<label for="demo-human">I am a human and not a robot</label>
-											</div>
-										</div>
-										<div class="row uniform">
-											<div class="12u">
-												<textarea name="demo-message" id="demo-message" placeholder="Enter your message" rows="6"></textarea>
-											</div>
-										</div>
-										<div class="row uniform">
-											<div class="12u">
-												<ul class="actions">
-													<li><input type="submit" value="Send Message" /></li>
-													<li><input type="reset" value="Reset" class="alt" /></li>
-												</ul>
-											</div>
-										</div>
-									</form>
-								</section>
-
-								<section>
-									<h4>Image</h4>
-									<h5>Fit</h5>
-									<span class="image fit"><img src="images/banner.jpg" alt="" /></span>
-									<div class="box alt">
-										<div class="row 50% uniform">
-											<div class="4u"><span class="image fit"><img src="images/pic01.jpg" alt="" /></span></div>
-											<div class="4u"><span class="image fit"><img src="images/pic02.jpg" alt="" /></span></div>
-											<div class="4u"><span class="image fit"><img src="images/pic03.jpg" alt="" /></span></div>
-										</div>
-										<div class="row 50% uniform">
-											<div class="4u"><span class="image fit"><img src="images/pic02.jpg" alt="" /></span></div>
-											<div class="4u"><span class="image fit"><img src="images/pic03.jpg" alt="" /></span></div>
-											<div class="4u"><span class="image fit"><img src="images/pic01.jpg" alt="" /></span></div>
-										</div>
-										<div class="row 50% uniform">
-											<div class="4u"><span class="image fit"><img src="images/pic03.jpg" alt="" /></span></div>
-											<div class="4u"><span class="image fit"><img src="images/pic01.jpg" alt="" /></span></div>
-											<div class="4u"><span class="image fit"><img src="images/pic02.jpg" alt="" /></span></div>
-										</div>
-									</div>
-									<h5>Left &amp; Right</h5>
-									<p><span class="image left"><img src="images/avatar.jpg" alt="" /></span>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.</p>
-									<p><span class="image right"><img src="images/avatar.jpg" alt="" /></span>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.</p>
-								</section>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita culpa qui similique sed labore laudantium, aliquam atque odio ex rem, dicta saepe molestias veniam explicabo asperiores nisi nesciunt consectetur eligendi.</p>
+								
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla quaerat autem illo tempora quia eius, earum quam a ea facere praesentium molestiae voluptatem repellat vitae commodi velit excepturi sequi? Vero.</p>
 
 							</div>
 						</section>
@@ -522,7 +249,8 @@
 				<section id="footer">
 					<div class="container">
 						<ul class="copyright">
-							<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							<li>&copy; Avenue Code. All rights reserved.</li>
+							<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
 						</ul>
 					</div>
 				</section>
