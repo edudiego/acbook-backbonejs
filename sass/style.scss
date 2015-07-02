@@ -191,11 +191,11 @@ $size-header: 23em;
 		&.major {
 			h2 {
 				color: $color-accent-bg;
-				font-size: 3.5em;
+				font-size: 2em;
 				
 				& + p {
 					color: $color-fg-bold;
-					font-size: 1.75em;
+					font-size: 1.25em;
 					font-weight: $font-weight-bold;
 					margin-top: -0.75em;
 				}
