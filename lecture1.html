@@ -61,7 +61,7 @@
 					<nav id="nav">
 						<ul>
 							<li><a href="#one" class="active">Introduction</a></li>
-							<li><a href="#two">Javascript Recap</a></li>
+							<li><a href="#two">Concepts Recap</a></li>
 							<li><a href="#three">Hello World</a></li>
 							<li><a href="#four">Project Scaffolding</a></li>
 							<li><a href="#five">Web Server</a></li>
@@ -69,13 +69,6 @@
 						<img src="http://avenuecode.com/wp-content/themes/actheme/images/white-logo.png" alt="">
 					</nav>
 					<footer>
-						<!-- <ul class="icons">
-							<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-							<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-							<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-							<li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
-							<li><a href="#" class="icon fa-envelope"><span class="label">Email</span></a></li>
-						</ul> -->
 					</footer>
 				</section>
 
@@ -89,58 +82,98 @@
 									<h2>Introduction</h2>
 								</header>
 
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla quaerat autem illo tempora quia eius, earum quam a ea facere praesentium molestiae voluptatem repellat vitae commodi velit excepturi.</p>
+								<p align="justify">
+                  Node.js is a JavaScript server-side runtime environment, that allows you to build scalable network applications
+                  that is capable to deal with thousands of simultaneous connections, in just one machine. This is
+                  possible because of the power of JavaScript langague. Node.js, currently, is running on top of
+                  <a href="https://en.wikipedia.org/wiki/V8_(JavaScript_engine)">V8 JavaScript Runtime</a>.
+                </p>
+
+                <p align="justify">
+                  As V8 Engine is built using C it is fast, cross-plataform and, best of all, it is open source. You are
+                  able to contribute and see what is going on under the hood.
+                </p>
 
 								<header>
 									<h4>What is Node ?</h4>
 								</header>
 								
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita culpa qui similique sed labore laudantium, aliquam atque odio ex rem, dicta saepe molestias veniam explicabo asperiores nisi nesciunt consectetur eligendi.</p>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla quaerat autem illo tempora quia eius, earum quam a ea facere praesentium molestiae voluptatem repellat vitae commodi velit excepturi.</p>
+								<ul>
+                  <li>Awesome;</li>
+                  <li>Event Based;</li>
+                  <li>Low Level;</li>
+                  <li>Good tool to build Real-Time data apps.</li>
+                </ul>
 																
 								<header>
 									<h4>What is not ?</h4>
 								</header>
 								
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita culpa qui similique sed labore laudantium, aliquam atque odio ex rem, dicta saepe molestias veniam explicabo asperiores nisi nesciunt consectetur eligendi.</p>
-
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla quaerat autem illo tempora quia eius, earum quam a ea facere praesentium molestiae voluptatem repellat vitae commodi velit excepturi.</p>
+								<ul>
+                  <li>A Web Framework;</li>
+                  <li>Multi-Threaded;</li>
+                  <li>Slow.</li>
+                </ul>
 								
 								<header>
-									<h4>Blocking I/O</h4>
+									<h4>Blocking and Non-Blocking</h4>
 								</header>
 
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita culpa qui similique sed labore laudantium, aliquam atque odio ex rem, dicta saepe molestias veniam explicabo asperiores nisi nesciunt consectetur eligendi.</p>
+								<p align="justify">
+                  So, What is so great about this non-blocking thing? Well my friend, lets take a look in some examples:
+                  Imagine that you want to provide a file to anyone that request it to your application, what you have
+                  to do? Read the file, load it in the memory and then provide it to the requester. To illustrate it better
+                  lets take a look in the code below:
+                </p>
 
-<!-- HTML generated using hilite.me -->
-<!-- Blocking Code -->
-<div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">fs</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;fs&#39;</span><span style="color: #d0d0d0">);</span>
- 
+                <!-- HTML generated using hilite.me -->
+                <!-- Blocking Code -->
+                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">fs</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;fs&#39;</span><span style="color: #d0d0d0">);</span>
+
 <span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">contents</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">fs.readFileSync(</span><span style="color: #ed9d13">&#39;file.txt&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&#39;utf8&#39;</span><span style="color: #d0d0d0">);</span>
 
 <span style="color: #d0d0d0">console.log(contents);</span>
 </pre></div>
-<div class="ac-caption">An example of Blocking I/O</div>
 
+                <div class="ac-caption">An example of Blocking I/O</div>
 
-								<header>
-									<h4>Non-Blocking I/O</h4>
-								</header>
+								<p align="justify">
+                  As you see the code you can't find any problems with it, it gets the job done. However we block the entire
+                  application for this action. It will import the library, read and load the file's content and then print
+                  it on the console, but in a synchronous way. Meaning that the resource will be blocked throughout the
+                  whole action, becoming a bottleneck.
+                </p>
 
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita culpa qui similique sed labore laudantium, aliquam atque odio ex rem, dicta saepe molestias veniam explicabo asperiores nisi nesciunt consectetur eligendi.</p>
+                <p align="justify">
+                  JavaScript is a powerful tool to build asynchronous code. Using callbacks and the Event Emitter we can
+                  take it up a notch and refactor this code. Don't worry, we will talk about Event Emitter and Callbacks
+                  in a minute.
+                </p>
 
-<!-- HTML generated using hilite.me -->
-<!-- Non-Blocking Code -->
-<div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">fs</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;fs&#39;</span><span style="color: #d0d0d0">);</span>
- 
+                <!-- HTML generated using hilite.me -->
+                <!-- Non-Blocking Code -->
+                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">fs</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;fs&#39;</span><span style="color: #d0d0d0">);</span>
+
 <span style="color: #d0d0d0">fs.readFile(</span><span style="color: #ed9d13">&#39;file.txt&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&#39;utf8&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(err,</span> <span style="color: #d0d0d0">contents)</span> <span style="color: #d0d0d0">{</span>
     <span style="color: #d0d0d0">console.log(contents);</span>
 <span style="color: #d0d0d0">});</span>
- 
+
 <span style="color: #d0d0d0">console.log(</span><span style="color: #ed9d13">&#39;after calling readFile&#39;</span><span style="color: #d0d0d0">);</span>
 </pre></div>
-<div class="ac-caption">An example of Non-Blocking I/O</div>
+                <div class="ac-caption">An example of Non-Blocking I/O</div>
 
+                <p align="justify">
+                  What we did here? We changed the method from synchronous to asynchronous and added a new parameter.
+                  This new parameter is what we call a callback. The readFile method listen to a specific event, once
+                  this event is triggered our callback will be executed and the file's content will be printed on the
+                  console. And you know what isthe best part of it all? It does all that asynchronously! Yes sir! We do
+                  not block any application's resources, making it possible to request a bunch of files at once and still
+                  being able to execute any numbers of tasks later.
+                </p>
+
+                <p>
+                  <span style="color: red;">WARNING:</span> When we say asynchronously we didn't said it was parallel execution.
+                </p>
 							</div>
 						</section>
 
@@ -148,29 +181,83 @@
 						<section id="two">
 							<div class="container">
 								<header class="major">
-									<h2>Javascript Recap</h2>
+									<h2>Concepts Recap</h2>
 								</header>
 
-								<p>Faucibus sed lobortis aliquam lorem blandit. Lorem eu nunc metus col. Commodo id in arcu ante lorem ipsum sed accumsan erat praesent faucibus commodo ac mi lacus. Adipiscing mi ac commodo. Vis aliquet tortor ultricies non ante erat nunc integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer non. Adipiscing cubilia elementum.</p>
-								
+								<p align="justify">
+                  The reason behind choosing JavaScript as language for Node is simple:
+                </p>
+
+                <p align="justify">
+                  <i>
+                    "JavaScript has certain characteristics that make it very different than other dynamic languages,
+                    namely that it has no concept of threads. Its model of currency is completely based around events."
+                  </i>
+                  <span style="float: right;">- Ryan Dahl</span>
+                </p>
+
+                <p align="justify">
+                  What that means is that Node.js has a procedure that looks into a queue of events, every time an
+                  event is triggered, the Event Loop will get this event, execute its handler and keep looking for a new
+                  event. And JavaScript have a code structure that enables a smooth coding for this kind of problem.
+                </p>
+
 								<header>
 									<h4>Event Loop</h4>
 								</header>
 
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita culpa qui similique sed labore laudantium, aliquam atque odio ex rem, dicta saepe molestias veniam explicabo asperiores nisi nesciunt consectetur eligendi.</p>
+								<p></p>
 								
 								<span class="image fit">
 									<img style="width: 70%; margin: 0 auto;" src="images/img1.svg" alt="Event Loop Diagram"/>
 								</span>
 								<div class="ac-caption">Event Loop Diagram</div>
 
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita culpa qui similique sed labore laudantium, aliquam atque odio ex rem, dicta saepe molestias veniam explicabo asperiores nisi nesciunt consectetur eligendi.</p>
+								<p align="justify">
+                  As you can see it is a single-thread procedure that looks into a list of events. You can take a look
+                  into <a href="https://nodejs.org/api/events.html#events_class_events_eventemitter">Event Emitter API</a>
+                  to understand its core and how it works. Nevertheless, this is what you need to know:
+                </p>
+
+                <ul>
+                  <li>Event Emitter is single threaded;</li>
+                  <li>You can add multiples Event Handlers in one event;</li>
+                  <li>Event Handlers will be executed in order of addition;</li>
+                  <li>You can trigger an event anytime you want.</li>
+                </ul>
 
 								<header>
 									<h4>Callbacks</h4>
 								</header>
-								<p>Faucibus sed lobortis aliquam lorem blandit. Lorem eu nunc metus col. Commodo id in arcu ante lorem ipsum sed accumsan erat praesent faucibus commodo ac mi lacus. Adipiscing mi ac commodo. Vis aliquet tortor ultricies non ante erat nunc integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer non. Adipiscing cubilia elementum.</p>
-							</div>
+
+								<p align="justify">
+                  Callbacks are functions that have its scope encapsulated and stored in memory for later use. JavaScript
+                  give us the ability to store functions in variables and pass it as a parameter for other functions, like
+                  event handlers. Maybe you know this behavior as closure.
+                </p>
+
+                <!-- HTML generated using hilite.me -->
+                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #d0d0d0">setTimeout(</span><span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">()</span> <span style="color: #d0d0d0">{</span>
+    <span style="color: #d0d0d0">console.log(</span><span style="color: #ed9d13">&#39;Hi, I\&#39;m inside the call back!&#39;</span><span style="color: #d0d0d0">);</span>
+<span style="color: #d0d0d0">},</span> <span style="color: #3677a9">2000</span><span style="color: #d0d0d0">);</span>
+<span style="color: #d0d0d0">console.log(</span><span style="color: #ed9d13">&#39;Waiting 2 seconds...&#39;</span><span style="color: #d0d0d0">);</span>
+</pre></div>
+                <div class="ac-caption">Callback Example</div>
+
+                <!-- HTML generated using hilite.me -->
+                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">message</span> <span style="color: #d0d0d0">=</span> <span style="color: #ed9d13">&#39;Hi, I\&#39;m inside the call back!&#39;</span><span style="color: #d0d0d0">;</span>
+<span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">callback</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">()</span> <span style="color: #d0d0d0">{</span>
+    <span style="color: #d0d0d0">console.log(message);</span>
+<span style="color: #d0d0d0">};</span>
+
+<span style="color: #d0d0d0">setTimeout(callback,</span> <span style="color: #3677a9">2000</span><span style="color: #d0d0d0">);</span>
+<span style="color: #d0d0d0">console.log(</span><span style="color: #ed9d13">&#39;Waiting 2 seconds...&#39;</span><span style="color: #d0d0d0">);</span>
+</pre></div>
+                <div class="ac-caption">Callback Example With Variable</div>
+
+
+
+              </div>
 						</section>
 
 					<!-- Three -->
@@ -180,10 +267,69 @@
 									<h2>Hello World</h2>
 								</header>
 
-								<p>Faucibus sed lobortis aliquam lorem blandit. Lorem eu nunc metus col. Commodo id in arcu ante lorem ipsum sed accumsan erat praesent faucibus commodo ac mi lacus. Adipiscing mi ac commodo. Vis aliquet tortor ultricies non ante erat nunc integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer non. Adipiscing cubilia elementum.</p>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita culpa qui similique sed labore laudantium, aliquam atque odio ex rem, dicta saepe molestias veniam explicabo asperiores nisi nesciunt consectetur eligendi.</p>
+								<p align="justify">
+                  Now that we have the basic concepts explained we can start with some Node.js code. You will see that
+                  it is good old JavaScript but with benefits. We can import and export files in an organized way, with
+                  simple commands. First lets take a look into how we can import a code that we created. So, one step at
+                  a time, we need to create a code snippet to be imported. Something simple, a class:
+                </p>
 
-							</div>
+                <!-- HTML generated using hilite.me -->
+                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">Dog</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(name)</span> <span style="color: #d0d0d0">{</span>
+
+  <span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">_name</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">name;</span>
+
+  <span style="color: #6ab825; font-weight: bold">this</span><span style="color: #d0d0d0">.whoIsAGoodBoy</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">()</span> <span style="color: #d0d0d0">{</span>
+    <span style="color: #d0d0d0">console.log(_name</span> <span style="color: #d0d0d0">+</span> <span style="color: #ed9d13">&#39; is a good boy!&#39;</span><span style="color: #d0d0d0">;</span>
+  <span style="color: #d0d0d0">};</span>
+
+  <span style="color: #6ab825; font-weight: bold">this</span><span style="color: #d0d0d0">.wiggle</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">()</span> <span style="color: #d0d0d0">{</span>
+    <span style="color: #d0d0d0">console.log(_name</span> <span style="color: #d0d0d0">+</span> <span style="color: #ed9d13">&#39; is wiggling.&#39;</span><span style="color: #d0d0d0">);</span>
+  <span style="color: #d0d0d0">};</span>
+
+<span style="color: #d0d0d0">}</span>
+
+<span style="color: #d0d0d0">module.exports</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">Animal;</span>
+</pre></div>
+                <div class="ac-caption">Exporting Dog Class</div>
+
+                <p align="justify">
+                  The line <b>"module.exports = Animal;"</b> is the Node way to export something. By doing this we are adding
+                  our code to Node environment. What is important to know is that each export actually caches the code
+                  exported, this way Node avoid parsing the file every time it is required. We should be very
+                  careful for how we export our code, because this could lead to very weird bugs.
+                </p>
+
+                <p align="justify">
+                  It is time to import our code somewhere else. And how do we do it? Simple, we require this code to Node.
+                  Now that we already did the export in the file, this class of ours is available to us:
+                </p>
+
+                <!-- HTML generated using hilite.me -->
+                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">Dog</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;./dog&#39;</span><span style="color: #d0d0d0">);</span>
+
+<span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">brian</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">new</span> <span style="color: #d0d0d0">Dog(</span><span style="color: #ed9d13">&#39;Brian&#39;</span><span style="color: #d0d0d0">);</span>
+
+<span style="color: #d0d0d0">brian.whoIsAGoodDog();</span>
+<span style="color: #d0d0d0">brian.wiggle();</span>
+</pre></div>
+                <div class="ac-caption">Importing Dog Class</div>
+
+                <p align="justify">
+                  In the code snippet above you can see that we imported the Dog class using <b>"var Dog = require('./Dog')"</b>.
+                  So, we are passing a relative path to require, saying which file we want to import. You can give any
+                  kind of path that you want, relative, absolute or just the module's name (This one i will talk later).
+                  It is not required to add the file extension in the end of the path as Node is always expecting
+                  a JavaScript file.
+                </p>
+
+
+
+
+
+
+
+              </div>
 						</section>
 
 					<!-- Four -->
@@ -193,56 +339,58 @@
 									<h2>Project Scaffolding</h2>
 								</header>
 
-<!-- HTML generated using hilite.me --><div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #d0d0d0">├── expressServer</span>
-<span style="color: #d0d0d0">│   ├── public</span>
-<span style="color: #d0d0d0">│   │   └── index.html</span>
-<span style="color: #d0d0d0">│   ├── src</span>
-<span style="color: #d0d0d0">│   │   ├── auth</span>
-<span style="color: #d0d0d0">│   │   │   └── authorization.js</span>
-<span style="color: #d0d0d0">│   │   ├── config.js</span>
-<span style="color: #d0d0d0">│   │   ├── index.js</span>
-<span style="color: #d0d0d0">│   │   ├── persistent</span>
-<span style="color: #d0d0d0">│   │   │   └── userDAO.js</span>
-<span style="color: #d0d0d0">│   │   ├── routes</span>
-<span style="color: #d0d0d0">│   │   │   ├── login</span>
-<span style="color: #d0d0d0">│   │   │   │   ├── loginController.js</span>
-<span style="color: #d0d0d0">│   │   │   │   └── loginRouting.js</span>
-<span style="color: #d0d0d0">│   │   │   └── users</span>
-<span style="color: #d0d0d0">│   │   │       ├── userController.js</span>
-<span style="color: #d0d0d0">│   │   │       └── userRouting.js</span>
-<span style="color: #d0d0d0">│   │   └── server.js</span>
-<span style="color: #d0d0d0">│   └── tests</span>
-<span style="color: #d0d0d0">│       ├── loginRoutes.js</span>
-<span style="color: #d0d0d0">│       └── userRoutes.js</span>
-<span style="color: #d0d0d0">├── Gruntfile.js</span>
-<span style="color: #d0d0d0">└── package.json</span>
-</pre></div>
-<div class="ac-caption">Project's Structure</div>
+                <!-- HTML generated using hilite.me -->
+                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+                  <pre style="margin: 0; line-height: 125%">
+                    <span style="color: #d0d0d0">├── expressServer</span>
+                    <span style="color: #d0d0d0">│   ├── public</span>
+                    <span style="color: #d0d0d0">│   │   └── index.html</span>
+                    <span style="color: #d0d0d0">│   ├── src</span>
+                    <span style="color: #d0d0d0">│   │   ├── auth</span>
+                    <span style="color: #d0d0d0">│   │   │   └── authorization.js</span>
+                    <span style="color: #d0d0d0">│   │   ├── config.js</span>
+                    <span style="color: #d0d0d0">│   │   ├── index.js</span>
+                    <span style="color: #d0d0d0">│   │   ├── persistent</span>
+                    <span style="color: #d0d0d0">│   │   │   └── userDAO.js</span>
+                    <span style="color: #d0d0d0">│   │   ├── routes</span>
+                    <span style="color: #d0d0d0">│   │   │   ├── login</span>
+                    <span style="color: #d0d0d0">│   │   │   │   ├── loginController.js</span>
+                    <span style="color: #d0d0d0">│   │   │   │   └── loginRouting.js</span>
+                    <span style="color: #d0d0d0">│   │   │   └── users</span>
+                    <span style="color: #d0d0d0">│   │   │       ├── userController.js</span>
+                    <span style="color: #d0d0d0">│   │   │       └── userRouting.js</span>
+                    <span style="color: #d0d0d0">│   │   └── server.js</span>
+                    <span style="color: #d0d0d0">│   └── tests</span>
+                    <span style="color: #d0d0d0">│       ├── loginRoutes.js</span>
+                    <span style="color: #d0d0d0">│       └── userRoutes.js</span>
+                    <span style="color: #d0d0d0">├── Gruntfile.js</span>
+                    <span style="color: #d0d0d0">└── package.json</span>
+                  </pre>
+                </div>
 
-								<p>Faucibus sed lobortis aliquam lorem blandit. Lorem eu nunc metus col. Commodo id in arcu ante lorem ipsum sed accumsan erat praesent faucibus commodo ac mi lacus. Adipiscing mi ac commodo. Vis aliquet tortor ultricies non ante erat nunc integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer non. Adipiscing cubilia elementum.</p>
+                <div class="ac-caption">Project's Structure</div>
+
+								<p></p>
 								
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita culpa qui similique sed labore laudantium, aliquam atque odio ex rem, dicta saepe molestias veniam explicabo asperiores nisi nesciunt consectetur eligendi.</p>
+								<p></p>
 								
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla quaerat autem illo tempora quia eius, earum quam a ea facere praesentium molestiae voluptatem repellat vitae commodi velit excepturi sequi? Vero.</p>
+								<p></p>
 							</div>
 						</section>
 
 					<!-- Five -->
-					
 						<section id="five">
 							<div class="container">
 								<header class="major">
 									<h2>Web Server</h2>
 								</header>
 
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita culpa qui similique sed labore laudantium, aliquam atque odio ex rem, dicta saepe molestias veniam explicabo asperiores nisi nesciunt consectetur eligendi.</p>
+								<p></p>
 								
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla quaerat autem illo tempora quia eius, earum quam a ea facere praesentium molestiae voluptatem repellat vitae commodi velit excepturi sequi? Vero.</p>
+								<p></p>
 
 							</div>
 						</section>
-					
-
 				</div>
 
 			<!-- Footer -->
