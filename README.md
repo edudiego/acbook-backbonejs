@@ -8,12 +8,12 @@ Requirements: Basic JS Knowledge
 
 ### Lecture 1
 
+* Introduction
 * What is Node.Js ? What is not ?
 * Blocking and Non-Blocking Code
 * JS Recap (Event Loop and Callbacks)
 * Hello World
 * NPM (Package.json ) 
-* Node Project Scaffolding
 * HTTP - WebServer
 
 ### Lecture 2
