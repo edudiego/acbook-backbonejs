@@ -52,47 +52,75 @@
 		<div id="wrapper">
 
 			<!-- Header -->
-				<section id="header" class="skel-layers-fixed">
-					<header>
-						
-						<h1 id="logo"><a href="#">Node.js - Lecture 2</a></h1>
-						
-					</header>
-					<nav id="nav">
-<!-- 						<ul>
-							<li><a href="#one" class="active">Introduction</a></li>
-							<li><a href="#two">Concepts Recap</a></li>
-							<li><a href="#three">Lim Po Kim</a></li>
-							<li><a href="#four">Package Management</a></li>
-							<li><a href="#five">Node Server</a></li>
-							<li><a href="#six">Exercises</a></li>
-						</ul> -->
-						<img src="http://www.avenuecode.com/wp-content/themes/ac-site/images/white-logo.png" alt="">
-					</nav>
-					<footer>
-					</footer>
-				</section>
+			<section id="header" class="skel-layers-fixed">
+				<header>
+					<h1 id="logo"><a href="#">Node.js - Lecture 2</a></h1>
+				</header>
+				<nav id="nav">
+					<ul>
+						<li><a href="#one" class="active">Introduction</a></li>
+						<li><a href="#two">HTTP Urls</a></li>
+						<li><a href="#three"></a></li>
+						<li><a href="#four"></a></li>
+						<li><a href="#five"></a></li>
+						<li><a href="#six"></a></li>
+					</ul>
+					<img src="http://www.avenuecode.com/wp-content/themes/ac-site/images/white-logo.png" alt="">
+				</nav>
+				<footer>
+				</footer>
+			</section>
 
 			<!-- Main -->
-				<div id="main">
+			<div id="main">
 
-					<!-- One -->
-						<section id="one">
-							<div class="container">
-								<header class="major">
-									<h2>Coming Soon!</h2>
-								</header>
+				<!-- One -->
+				<section id="one">
+					<div class="container">
+						<header class="major">
+							<h2>Introduction</h2>
+						</header>
+						<p align="justify">Express is a web application framework for Node. It's minimal, flexible and great for building Web APIs. </p>
+					</div>
+				</section>
 
-			<!-- Footer -->
-<!-- 				<section id="footer">
+				<!-- Two -->
+				<section id="two">
+					<div class="container">
+						<header class="major">
+							<h2>HTTP Urls</h2>
+						</header>
+						<p align="justify">Each part of the HTTP url, represents an information to the server and it's important to determine which decision it will take.</p>
+						<span class="image fit">
+							<img style="width: 80%; margin: 0 auto;" src="images/http-url.jpg" alt="HTTP URL"/>
+						</span>
+						<ul>
+							<li><p><b>Protocol: </b>the protocol determines how the request will be transmitted. We will be dealing exclusively with http and https.</p>
+							</li>
+							<li><p><b>Host: </b>the host identifies the server. Servers on your computer (localhost) or a local network may be simply one word, or it may be a numeric IP address. On the internet, the host will end in a top-level domain, like .com or .net.</p>
+							</li>
+							<li><p><b>Port: </b>each server has a collection of numbered ports. Some port numbers are "special", like 80 and 443. If you omit the port, port 80 is assumed for HTTP and 443 for HTTPS. In general if aren't using one of those, you should use a port number greater than 1023.</p>
+							</li>
+							<li><p><b>Path: </b>the path is generally the first part of the URL that your app cares about. The path should be used to uniquely identify pages or other resources in your app. </p>
+							</li>
+							<li><p><b>Querystring: </b>the querystring is an optional collection of name/value pairs. The querystring starts with a question mark (?), and name/value pairs are separated by "&".</p>
+							</li>
+							<li><p><b>Fragment: </b>The fragment (or hash) is not passed to the server at all. It is strictly for use by the browser. It's becoming very commom for single-page applications to use it.</p>
+							</li>
+						</ul>
+					</div>
+				</section>
+
+				<!-- Footer -->
+				<section id="footer">
 					<div class="container">
 						<ul class="copyright">
 							<li>&copy; Avenue Code. All rights reserved.</li>
 							<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
 						</ul>
 					</div>
-				</section> -->
-
+				</section>
+			</div>
 		</div>
 	</body>
 </html>
