@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>Node.js - Lecture 1</title>
+		<title>Node.js - Lecture 2</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
@@ -59,7 +59,7 @@
 				<nav id="nav">
 					<ul>
 						<li><a href="#one" class="active">Introduction</a></li>
-						<li><a href="#two">HTTP Urls</a></li>
+						<li><a href="#two">HTTP Recap</a></li>
 						<li><a href="#three"></a></li>
 						<li><a href="#four"></a></li>
 						<li><a href="#five"></a></li>
@@ -80,7 +80,13 @@
 						<header class="major">
 							<h2>Introduction</h2>
 						</header>
-						<p align="justify">Express is a web application framework for Node. It's minimal, flexible and great for building Web APIs. </p>
+						<p align="justify">Express is a web application framework for Node.js. It's minimal, flexible and great for building Web APIs. We can install it like any other package.</p>
+
+						<!-- HTML generated using hilite.me -->
+						<div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #d0d0d0">$</span> <span style="color: #d0d0d0">npm</span> <span style="color: #d0d0d0">install</span> <span style="color: #d0d0d0">express</span>
+						</pre></div>
+
+
 					</div>
 				</section>
 
@@ -88,9 +94,9 @@
 				<section id="two">
 					<div class="container">
 						<header class="major">
-							<h2>HTTP Urls</h2>
+							<h2>HTTP Recap</h2>
 						</header>
-						<p align="justify">Each part of the HTTP url, represents an information to the server and it's important to determine which decision it will take.</p>
+						<p align="justify">Each part of the HTTP url represents an information to the server and it's important to determine which decision it will take.</p>
 						<span class="image fit">
 							<img style="width: 80%; margin: 0 auto;" src="images/http-url.jpg" alt="HTTP URL"/>
 						</span>
@@ -110,6 +116,34 @@
 						</ul>
 					</div>
 				</section>
+
+				<!-- Three -->
+				<section id="three">
+					<div class="container">
+						<header class="major">
+							<h2>Hello World with Express</h2>
+						</header>
+
+						<p>After doing a simple http server with pure Node.js on Lecture 1, we will now use Express to make the same implementation, but with a much nicer code.</p>
+
+						<!-- HTML generated using hilite.me --><div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">express</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;express&#39;</span><span style="color: #d0d0d0">);</span>
+<span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">app</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">express();</span>
+
+<span style="color: #d0d0d0">app.get(</span><span style="color: #ed9d13">&#39;/&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(request,</span> <span style="color: #d0d0d0">response)</span> <span style="color: #d0d0d0">{</span>
+  <span style="color: #d0d0d0">response.send(</span><span style="color: #ed9d13">&#39;Hello world&#39;</span><span style="color: #d0d0d0">);</span>
+<span style="color: #d0d0d0">});</span>
+
+<span style="color: #d0d0d0">app.listen(</span><span style="color: #3677a9">3000</span><span style="color: #d0d0d0">,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(){</span>
+  <span style="color: #d0d0d0">console.log(</span><span style="color: #ed9d13">&#39;Listening on port 3000&#39;</span><span style="color: #d0d0d0">);</span>
+<span style="color: #d0d0d0">});</span>
+</pre></div>
+
+					<div class="ac-caption">Simple HTTP server with Express</div>
+					</div>
+				</section>
+
+
+
 
 				<!-- Footer -->
 				<section id="footer">
