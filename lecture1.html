@@ -312,12 +312,12 @@
 
 <span style="color: #d0d0d0">}</span>
 
-<span style="color: #d0d0d0">module.exports</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">Animal;</span>
+<span style="color: #d0d0d0">module.exports</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">Dog;</span>
 </pre></div>
                 <div class="ac-caption">Exporting Dog Class</div>
 
                 <p align="justify">
-                  The line <b>"module.exports = Animal;"</b> is the Node way to export something. By doing this we are adding
+                  The line <b>"module.exports = Dog;"</b> is the Node way to export something. By doing this we are adding
                   our code to Node environment. What is important to know is that each export actually caches the code
                   exported, this way Node avoid parsing the file every time it is required. We should be very
                   careful for how we export our code, because this could lead to very weird bugs.
@@ -461,7 +461,7 @@
 
   <span style="color: #d0d0d0">}</span>
 
-  <span style="color: #d0d0d0">module.exports</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">Animal;</span>
+  <span style="color: #d0d0d0">module.exports</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">Dog;</span>
   </pre></div>
                 <div class="ac-caption">Dog Class With Winston Logger</div>
 
