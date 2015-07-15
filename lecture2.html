@@ -295,14 +295,15 @@
               we can be more fancy. What about read some query string from the request?
             </p>
 
-            <!-- HTML generated using hilite.me --><div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">express</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;express&#39;</span><span style="color: #d0d0d0">);</span>
+            <!-- HTML generated using hilite.me -->
+            <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">express</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;express&#39;</span><span style="color: #d0d0d0">);</span>
 <span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">app</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">express();</span>
 
 <span style="color: #d0d0d0">app.get(</span><span style="color: #ed9d13">&#39;/&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(request,</span> <span style="color: #d0d0d0">response)</span> <span style="color: #d0d0d0">{</span>
   <span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">msgStrings</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">[</span><span style="color: #ed9d13">&#39;First String&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&#39;Second String&#39;</span><span style="color: #d0d0d0">];</span>
   <span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">messageIndex</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">request.query.index;</span>
   <span style="color: #6ab825; font-weight: bold">if</span><span style="color: #d0d0d0">(messageIndex</span> <span style="color: #d0d0d0">&amp;&amp;</span> <span style="color: #d0d0d0">messageIndex</span> <span style="color: #d0d0d0">&lt;</span> <span style="color: #d0d0d0">msgStrings.length)</span> <span style="color: #d0d0d0">{</span>
-    <span style="color: #d0d0d0">response.send(msgString[messageIndex]);</span>
+    <span style="color: #d0d0d0">response.send(msgStrings[messageIndex]);</span>
   <span style="color: #d0d0d0">}</span> <span style="color: #6ab825; font-weight: bold">else</span> <span style="color: #d0d0d0">{</span>
     <span style="color: #d0d0d0">response.sendStatus(</span><span style="color: #3677a9">403</span><span style="color: #d0d0d0">);</span>
   <span style="color: #d0d0d0">}</span>
@@ -312,6 +313,7 @@
   <span style="color: #d0d0d0">console.log(</span><span style="color: #ed9d13">&#39;Listening on port 8080...&#39;</span><span style="color: #d0d0d0">);</span>
 <span style="color: #d0d0d0">});</span>
 </pre></div>
+
             <div class="ac-caption">Retrieving Query String Data</div>
 
             <p align="justify">
@@ -344,6 +346,14 @@
     <span style="color: #6ab825; font-weight: bold">return</span> <span style="color: #d0d0d0">_name</span> <span style="color: #d0d0d0">+</span> <span style="color: #ed9d13">&#39; is wiggling.&#39;</span><span style="color: #d0d0d0">;</span>
   <span style="color: #d0d0d0">};</span>
 
+  <span style="color: #6ab825; font-weight: bold">this</span><span style="color: #d0d0d0">.getName</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">()</span> <span style="color: #d0d0d0">{</span>
+    <span style="color: #6ab825; font-weight: bold">return</span> <span style="color: #d0d0d0">_name;</span>
+  <span style="color: #d0d0d0">};</span>
+
+  <span style="color: #6ab825; font-weight: bold">this</span><span style="color: #d0d0d0">.setName</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(newName)</span> <span style="color: #d0d0d0">{</span>
+    <span style="color: #d0d0d0">_name</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">newName;</span>
+  <span style="color: #d0d0d0">}</span>
+
 <span style="color: #d0d0d0">}</span>
 
 <span style="color: #d0d0d0">module.exports</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">Dog;</span>
@@ -361,7 +371,7 @@
 <span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">brian</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">new</span> <span style="color: #d0d0d0">Dog(</span><span style="color: #ed9d13">&#39;Brian&#39;</span><span style="color: #d0d0d0">);</span>
 
 <span style="color: #d0d0d0">app.get(</span><span style="color: #ed9d13">&#39;/goodDog&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(request,</span> <span style="color: #d0d0d0">response)</span> <span style="color: #d0d0d0">{</span>
-  <span style="color: #d0d0d0">response.send(brian.whoIsAGoodDog());</span>
+  <span style="color: #d0d0d0">response.send(brian.whoIsAGoodBoy());</span>
 <span style="color: #d0d0d0">});</span>
 
 <span style="color: #d0d0d0">app.get(</span><span style="color: #ed9d13">&#39;/wiggle&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(request,</span> <span style="color: #d0d0d0">response)</span> <span style="color: #d0d0d0">{</span>
@@ -405,7 +415,9 @@
 <span style="color: #d0d0d0">app.get(</span><span style="color: #ed9d13">&#39;/goodDog/:doggyId&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(request,</span> <span style="color: #d0d0d0">response)</span> <span style="color: #d0d0d0">{</span>
   <span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">doggyIndex</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">request.params.doggyId;</span>
   <span style="color: #6ab825; font-weight: bold">if</span><span style="color: #d0d0d0">(doggyIndex</span> <span style="color: #d0d0d0">&amp;&amp;</span> <span style="color: #d0d0d0">doggyIndex</span> <span style="color: #d0d0d0">&lt;</span> <span style="color: #d0d0d0">dogs.length)</span> <span style="color: #d0d0d0">{</span>
-    <span style="color: #d0d0d0">response.send(dogs[doggyIndex].whoIsAGoodDog());</span>
+    <span style="color: #d0d0d0">response.send(dogs[doggyIndex].whoIsAGoodBoy());</span>
+  <span style="color: #d0d0d0">}</span> <span style="color: #6ab825; font-weight: bold">else</span> <span style="color: #d0d0d0">{</span>
+    <span style="color: #d0d0d0">response.sendStatus(</span><span style="color: #3677a9">403</span><span style="color: #d0d0d0">);</span>
   <span style="color: #d0d0d0">}</span>
 <span style="color: #d0d0d0">});</span>
 
@@ -413,6 +425,8 @@
   <span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">doggyIndex</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">request.params.doggyId;</span>
   <span style="color: #6ab825; font-weight: bold">if</span><span style="color: #d0d0d0">(doggyIndex</span> <span style="color: #d0d0d0">&amp;&amp;</span> <span style="color: #d0d0d0">doggyIndex</span> <span style="color: #d0d0d0">&lt;</span> <span style="color: #d0d0d0">dogs.length)</span> <span style="color: #d0d0d0">{</span>
     <span style="color: #d0d0d0">response.send(dogs[doggyIndex].wiggle());</span>
+  <span style="color: #d0d0d0">}</span> <span style="color: #6ab825; font-weight: bold">else</span> <span style="color: #d0d0d0">{</span>
+    <span style="color: #d0d0d0">response.sendStatus(</span><span style="color: #3677a9">403</span><span style="color: #d0d0d0">);</span>
   <span style="color: #d0d0d0">}</span>
 <span style="color: #d0d0d0">});</span>
 
@@ -420,7 +434,6 @@
   <span style="color: #d0d0d0">console.log(</span><span style="color: #ed9d13">&#39;Listening on port 8080...&#39;</span><span style="color: #d0d0d0">);</span>
 <span style="color: #d0d0d0">});</span>
 </pre></div>
-
             <div class="ac-caption">Dynamic Routing</div>
 
             <p align="justify">
@@ -450,8 +463,7 @@
               Just assume that this will solve our problems.
             </p>
 
-            <!-- HTML generated using hilite.me -->
-            <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">express</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;express&#39;</span><span style="color: #d0d0d0">);</span>
+            <!-- HTML generated using hilite.me --><div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">express</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;express&#39;</span><span style="color: #d0d0d0">);</span>
 <span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">Dog</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;./Dog&#39;</span><span style="color: #d0d0d0">);</span>
 <span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">bodyParser</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;body-parser&#39;</span><span style="color: #d0d0d0">);</span>
 <span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">parseUrlencoded</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">bodyParser.urlencoded({extend:</span> <span style="color: #6ab825; font-weight: bold">false</span><span style="color: #d0d0d0">});</span>
@@ -462,11 +474,15 @@
 
 <span style="color: #d0d0d0">app.post(</span><span style="color: #ed9d13">&#39;/dog&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #d0d0d0">parseUrlencoded,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(request,</span> <span style="color: #d0d0d0">response){</span>
   <span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">data</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">request.body;</span>
-  <span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">newDog</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">new</span> <span style="color: #d0d0d0">Dog(data.name);</span>
+  <span style="color: #6ab825; font-weight: bold">if</span><span style="color: #d0d0d0">(data){</span>
+    <span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">newDog</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">new</span> <span style="color: #d0d0d0">Dog(data.name);</span>
 
-  <span style="color: #d0d0d0">dogs.push(newDog);</span>
+    <span style="color: #d0d0d0">dogs.push(newDog);</span>
 
-  <span style="color: #d0d0d0">response.status(</span><span style="color: #3677a9">201</span><span style="color: #d0d0d0">).send(</span><span style="color: #ed9d13">&#39;Dog added! Brian loved it.&#39;</span><span style="color: #d0d0d0">);</span>
+    <span style="color: #d0d0d0">response.status(</span><span style="color: #3677a9">201</span><span style="color: #d0d0d0">).send(</span><span style="color: #ed9d13">&#39;Dog added! Brian loved it.&#39;</span><span style="color: #d0d0d0">);</span>
+  <span style="color: #d0d0d0">}</span> <span style="color: #6ab825; font-weight: bold">else</span> <span style="color: #d0d0d0">{</span>
+    <span style="color: #d0d0d0">response.sendStatus(</span><span style="color: #3677a9">403</span><span style="color: #d0d0d0">);</span>
+  <span style="color: #d0d0d0">}</span>
 <span style="color: #d0d0d0">});</span>
 
 <span style="color: #d0d0d0">app.listen(</span><span style="color: #3677a9">8080</span><span style="color: #d0d0d0">,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(){</span>
@@ -509,7 +525,7 @@
 
 <span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">dogRoute</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">app.route(</span><span style="color: #ed9d13">&#39;/dog&#39;</span><span style="color: #d0d0d0">);</span>
 <span style="color: #d0d0d0">dogRoute.post(parseUrlencoded,</span><span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(request,</span> <span style="color: #d0d0d0">response){...})</span>
-<span style="color: #d0d0d0">dogRoute.put(parseUrlencoded,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(){...})</span>
+<span style="color: #d0d0d0">dogRoute.put(parseUrlencoded,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(request,</span> <span style="color: #d0d0d0">response){...})</span>
 
 <span style="color: #d0d0d0">...</span>
 </pre></div>
@@ -525,7 +541,7 @@
 
 <span style="color: #d0d0d0">app.route(</span><span style="color: #ed9d13">&#39;/dog&#39;</span><span style="color: #d0d0d0">);</span>
   <span style="color: #d0d0d0">.post(parseUrlencoded,</span><span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(request,</span> <span style="color: #d0d0d0">response){...})</span>
-  <span style="color: #d0d0d0">.put(parseUrlencoded,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(){...})</span>
+  <span style="color: #d0d0d0">.put(parseUrlencoded,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(request,</span> <span style="color: #d0d0d0">response){...})</span>
 
 <span style="color: #d0d0d0">...</span>
 </pre></div>
@@ -543,6 +559,14 @@
             <header class="major">
               <h2>Exercises</h2>
             </header>
+
+            <header class="major">
+              <h4>Instructions</h4>
+            </header>
+
+            <p align="justify">
+              To start this exercises, please clone <a href="https://github.com/andrebot/Lecture2-NodeExpressAC">this</a> repository's master branch.
+            </p>
 
             <header>
               <h4>Exercise 1:</h4>
