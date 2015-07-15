@@ -8,7 +8,7 @@ Requirements: Basic JS Knowledge
 
 ### Lecture 1
 
-* Introduction
+* Introduction to Node.js
 * What is Node.Js ? What is not ?
 * Blocking and Non-Blocking Code
 * JS Recap (Event Loop and Callbacks)
@@ -18,8 +18,11 @@ Requirements: Basic JS Knowledge
 
 ### Lecture 2
 
-* Introduction to Express - Part 1
-* Developing a Social Network - Part 1
+* Introduction to Express
+* URL Recap (HTTP and URL Structure)
+* Lifting a server
+* Express Request and Responses
+* Routing
 
 ### Lecture 3
 
