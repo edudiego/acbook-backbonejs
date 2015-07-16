@@ -26,8 +26,8 @@ Requirements: Basic JS Knowledge
 
 ### Lecture 3
 
-* Introduction to Express - Part 2
-* Developing a Social Network - Part 2
+* What Is Middleware
+* Project Scaffolding
 
 ### Lecture 4
 
