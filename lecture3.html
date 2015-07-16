@@ -127,7 +127,7 @@
 <span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">use</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">express</span><span style="color: #f8f8f2">.</span><span style="color: #66d9ef">static</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;public&#39;</span><span style="color: #f8f8f2">));</span>
 
 <span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">listen</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">8080</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(){</span>
-<span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Listening on port 8080...&#39;</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Listening on port 8080...&#39;</span><span style="color: #f8f8f2">);</span>
 <span style="color: #f8f8f2">});</span>
 </pre></div>
             <div class="ac-caption">Making a Folder Public</div>
@@ -154,7 +154,7 @@
 <span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">use</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;static&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">express</span><span style="color: #f8f8f2">.</span><span style="color: #66d9ef">static</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;public&#39;</span><span style="color: #f8f8f2">));</span>
 
 <span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">listen</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">8080</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(){</span>
-<span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Listening on port 8080...&#39;</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Listening on port 8080...&#39;</span><span style="color: #f8f8f2">);</span>
 <span style="color: #f8f8f2">});</span>
 </pre></div>
             <div class="ac-caption">Adding a Path Prefix</div>
@@ -200,7 +200,7 @@
 <span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">use</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">express</span><span style="color: #f8f8f2">.</span><span style="color: #66d9ef">static</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;files&#39;</span><span style="color: #f8f8f2">));</span>
 
 <span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">listen</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">8080</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(){</span>
-<span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Listening on port 8080...&#39;</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Listening on port 8080...&#39;</span><span style="color: #f8f8f2">);</span>
 <span style="color: #f8f8f2">});</span>
 </pre></div>
             <div class="ac-caption">Multiple Files Being Served</div>
@@ -240,21 +240,21 @@
 <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">app</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">express</span><span style="color: #f8f8f2">();</span>
 
 <span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">use</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">next</span><span style="color: #f8f8f2">){</span>
-<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">start</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">Date();</span>
-<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">url</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">url</span><span style="color: #f8f8f2">;</span>
-<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">method</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">method</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">start</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">Date();</span>
+  <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">url</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">url</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">method</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">method</span><span style="color: #f8f8f2">;</span>
 
-<span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">on</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;finish&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(){</span>
-  <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">duration</span> <span style="color: #f92672">=</span> <span style="color: #f92672">+</span><span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">Date()</span> <span style="color: #f92672">-</span> <span style="color: #a6e22e">start</span><span style="color: #f8f8f2">;</span>
-  <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">message</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">method</span> <span style="color: #f92672">+</span><span style="color: #e6db74">&#39; to &#39;</span><span style="color: #f92672">+</span> <span style="color: #a6e22e">url</span> <span style="color: #f92672">+</span><span style="color: #e6db74">&#39;\ntook &#39;</span><span style="color: #f92672">+</span> <span style="color: #a6e22e">duration</span> <span style="color: #f92672">+</span><span style="color: #e6db74">&#39; ms \n\n&#39;</span><span style="color: #f8f8f2">;</span>
-  <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">message</span><span style="color: #f8f8f2">);</span>
-<span style="color: #f8f8f2">});</span>
+  <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">on</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;finish&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(){</span>
+    <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">duration</span> <span style="color: #f92672">=</span> <span style="color: #f92672">+</span><span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">Date()</span> <span style="color: #f92672">-</span> <span style="color: #a6e22e">start</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">message</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">method</span> <span style="color: #f92672">+</span><span style="color: #e6db74">&#39; to &#39;</span><span style="color: #f92672">+</span> <span style="color: #a6e22e">url</span> <span style="color: #f92672">+</span><span style="color: #e6db74">&#39;\ntook &#39;</span><span style="color: #f92672">+</span> <span style="color: #a6e22e">duration</span> <span style="color: #f92672">+</span><span style="color: #e6db74">&#39; ms \n\n&#39;</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">message</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #f8f8f2">});</span>
 
-<span style="color: #a6e22e">next</span><span style="color: #f8f8f2">();</span>
+  <span style="color: #a6e22e">next</span><span style="color: #f8f8f2">();</span>
 <span style="color: #f8f8f2">});</span>
 
 <span style="color: #a6e22e">app</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">listen</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">8080</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(){</span>
-<span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Listening on port 8080...&#39;</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Listening on port 8080...&#39;</span><span style="color: #f8f8f2">);</span>
 <span style="color: #f8f8f2">});</span>
 </pre></div>
 
@@ -368,6 +368,7 @@
 <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">express</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;express&#39;</span><span style="color: #f8f8f2">);</span>
 <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">router</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">express</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Router</span><span style="color: #f8f8f2">();</span>
 <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">dogs</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;./dogs&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">Dog</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;./Dog&#39;</span><span style="color: #f8f8f2">);</span>
 
 <span style="color: #a6e22e">router</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">route</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/&#39;</span><span style="color: #f8f8f2">)</span>
   <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">post</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">parseUrlencoded</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">){</span>
@@ -400,6 +401,7 @@
 
 <span style="color: #a6e22e">module</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">exports</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">router</span><span style="color: #f8f8f2">;</span>
 </pre></div>
+
             <div class="ac-caption">Dog Routes</div>
 
             <p align="justify">
