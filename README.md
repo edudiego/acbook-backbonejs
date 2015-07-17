@@ -31,7 +31,6 @@ Requirements: Basic JS Knowledge
 
 ### Lecture 4
 
-* Unit Test (Mocha, Should, Supertest, Blanket)
-* Authentication (Passaport)
-* Security
-* Extras
+* Grunt
+* Testing (Mocha, Should, Supertest and Blanket)
+* Cookie Authentication
