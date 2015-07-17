@@ -62,7 +62,8 @@
 						<ul>
 							<li><a href="#one" class="active">Grunt</a></li>
 							<li><a href="#two">Test</a></li>
-							<li><a href="#three">Cookie Authentication</a></li>
+              <li><a href="#three">Cookie Authentication</a></li>
+              <li><a href="#four">Exercises</a></li>
 						</ul>
 						<img src="http://www.avenuecode.com/wp-content/themes/ac-site/images/white-logo.png" alt="">
 					</nav>
@@ -236,6 +237,7 @@
         <span style="color: #a6e22e">cwd</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;src&#39;</span>
       <span style="color: #f8f8f2">}</span>
     <span style="color: #f8f8f2">}</span>
+  <span style="color: #f8f8f2">}</span>
 <span style="color: #f8f8f2">});</span>
 
 <span style="color: #a6e22e">grunt</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">loadNpmTasks</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;grunt-nodemon&#39;</span><span style="color: #f8f8f2">);</span>
@@ -434,15 +436,15 @@
   <span style="color: #f8f8f2">});</span>
 
   <span style="color: #a6e22e">it</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;should create a dog&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">done</span><span style="color: #f8f8f2">){</span>
-    <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">get</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/dog&#39;</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">post</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/dog&#39;</span><span style="color: #f8f8f2">)</span>
       <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">send</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">dogData</span><span style="color: #f8f8f2">)</span>
-      <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">expect</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">200</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">expect</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">201</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">done</span><span style="color: #f8f8f2">);</span>
   <span style="color: #f8f8f2">});</span>
 
   <span style="color: #a6e22e">it</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;should update the test dog&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">done</span><span style="color: #f8f8f2">){</span>
     <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">put</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/dog&#39;</span><span style="color: #f8f8f2">)</span>
       <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">send</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">updateDog</span><span style="color: #f8f8f2">)</span>
-      <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">expect</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">200</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">expect</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">200</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">done</span><span style="color: #f8f8f2">);</span>
   <span style="color: #f8f8f2">});</span>
 
   <span style="color: #a6e22e">it</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;should delete the first dog&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">done</span><span style="color: #f8f8f2">){</span>
@@ -453,6 +455,8 @@
 
         <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">dog</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">body</span><span style="color: #f8f8f2">;</span>
         <span style="color: #a6e22e">dog</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">should</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">not</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">be</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">empty</span><span style="color: #f8f8f2">;</span>
+
+        <span style="color: #a6e22e">done</span><span style="color: #f8f8f2">();</span>
       <span style="color: #f8f8f2">});</span>
   <span style="color: #f8f8f2">});</span>
 
@@ -465,6 +469,7 @@
         <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">dogWiggle</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">body</span><span style="color: #f8f8f2">;</span>
         <span style="color: #a6e22e">dogWiggle</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">should</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">not</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">be</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">empty</span><span style="color: #f8f8f2">;</span>
         <span style="color: #a6e22e">dogWiggle</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">should</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">be</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">an</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">instanceOf</span><span style="color: #f8f8f2">(String);</span>
+        <span style="color: #a6e22e">done</span><span style="color: #f8f8f2">()</span>
       <span style="color: #f8f8f2">});</span>
   <span style="color: #f8f8f2">});</span>
 
@@ -477,6 +482,7 @@
         <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">goodDog</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">body</span><span style="color: #f8f8f2">;</span>
         <span style="color: #a6e22e">goodDog</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">should</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">not</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">be</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">empty</span><span style="color: #f8f8f2">;</span>
         <span style="color: #a6e22e">goodDog</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">should</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">be</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">an</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">instanceOf</span><span style="color: #f8f8f2">(String);</span>
+        <span style="color: #a6e22e">done</span><span style="color: #f8f8f2">();</span>
       <span style="color: #f8f8f2">});</span>
   <span style="color: #f8f8f2">});</span>
 <span style="color: #f8f8f2">});</span>
@@ -604,7 +610,7 @@
 
 <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">Auth</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
   <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">verifyAuth</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
-    <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">cookie</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">cookies</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">config</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">cookieName</span><span style="color: #f8f8f2">];</span>
+    <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">cookie</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">cookies</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">cookieName</span><span style="color: #f8f8f2">];</span>
     <span style="color: #66d9ef">if</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">cookie</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
       <span style="color: #66d9ef">try</span> <span style="color: #f8f8f2">{</span>
         <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">token</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">jwt</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">verify</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">cookie</span><span style="color: #f8f8f2">,</span>
@@ -664,7 +670,7 @@
 
     <span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">push</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">newDog</span><span style="color: #f8f8f2">);</span>
 
-    <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">status</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">201</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">send</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Dog added! Brian loved it.&#39;</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">status</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">201</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">json</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Dog added! Brian loved it.&#39;</span><span style="color: #f8f8f2">);</span>
   <span style="color: #f8f8f2">})</span>
   <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">put</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">){</span>
     <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">dog</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">body</span><span style="color: #f8f8f2">;</span>
@@ -699,18 +705,20 @@
 <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">router</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">express</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Router</span><span style="color: #f8f8f2">();</span>
 <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">dogs</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;./dogs&#39;</span><span style="color: #f8f8f2">);</span>
 <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">auth</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;./auth&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">bodyParser</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;body-parser&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">parseUrlencoded</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">bodyParser</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">urlencoded</span><span style="color: #f8f8f2">({</span><span style="color: #a6e22e">extended</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">false</span><span style="color: #f8f8f2">});</span>
 
 <span style="color: #a6e22e">router</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">route</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/&#39;</span><span style="color: #f8f8f2">)</span>
-  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">post</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">){</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">post</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">parseUrlencoded</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">request</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">){</span>
     <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">data</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">request</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">body</span><span style="color: #f8f8f2">;</span>
 
     <span style="color: #66d9ef">if</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">data</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #a6e22e">data</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">doggyId</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #a6e22e">data</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">doggyId</span> <span style="color: #f92672">&lt;</span> <span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
       <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">dog</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">dogs</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">data</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">doggyId</span><span style="color: #f8f8f2">];</span>
-      <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">payload</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{</span><span style="color: #a6e22e">name</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">dog</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">name</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">id</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">data</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">doggyId</span><span style="color: #f8f8f2">};</span>
+      <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">payload</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{</span><span style="color: #a6e22e">name</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">dog</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">getName</span><span style="color: #f8f8f2">(),</span> <span style="color: #a6e22e">id</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">data</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">doggyId</span><span style="color: #f8f8f2">};</span>
       <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">token</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">auth</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">signToken</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">payload</span><span style="color: #f8f8f2">);</span>
       <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">status</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">200</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">json</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">token</span><span style="color: #f8f8f2">);</span>
     <span style="color: #f8f8f2">}</span><span style="color: #66d9ef">else</span><span style="color: #f8f8f2">{</span>
-      <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">status</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">403</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #a6e22e">response</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">sendStatus</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">403</span><span style="color: #f8f8f2">);</span>
     <span style="color: #f8f8f2">}</span>
   <span style="color: #f8f8f2">});</span>
 
@@ -740,6 +748,144 @@
               <p align="justify">
                 That is all it takes. Now we can test it to see if our operations over Dog Services are working.
               </p>
+            </div>
+          </section>
+
+          <!-- Four -->
+          <section id="four">
+            <div class="container">
+              <header class="major">
+                <h2>Exercises</h2>
+              </header>
+
+              <p align="justify">
+                I've created another branch named <b>Lecture 4</b> in the <a href="https://github.com/andrebot/Lecture2-NodeExpressAC">same repository</a>
+                that we used in <a href="/acbook-nodejs/lecture3.html#three">Lecture 3: Exercises</a>. Please move all the
+                code that you did in the master branch and move it to this new branch.
+              </p>
+
+              <header>
+                <h4>Exercise 1:</h4>
+              </header>
+
+              <p align="justify">
+                Using the server created at <a href="/acbook-nodejs/lecture3.html#three">Lesson 3: Exercises</a> create
+                a <b>Grunt</b> task to use <b>nodemon</b> to bounce our server.
+              </p>
+
+              <header>
+                <h4>Exercise 2:</h4>
+              </header>
+
+              <p align="justify">
+                Using the same code from last exercise create Unit Tests for your routes (Using the same stack as the
+                example in <a href="/acbook-nodejs/lecture3.html#two">Test</a>).
+              </p>
+
+              <header>
+                <h4>Exercise 3:</h4>
+              </header>
+
+              <p align="justify">
+                Using the same code from last exercise create a task to run your test cases automatically.
+              </p>
+
+              <header>
+                <h4>Exercise 4:</h4>
+              </header>
+
+              <p align="justify">
+                Using the same code from last exercise add a coverage feature for your source code.
+              </p>
+
+              <header>
+                <h4>Exercise 5:</h4>
+              </header>
+
+              <p align="justify">
+                Using the same code from last exercise create a login feature that validates your user by email and
+                password. Your login route should be <b>localhost:3000/login</b>. You should use <b>JSON Web Token</b>
+                concepts. Your token should expire in one day. Your payload must have these info:
+
+                <ul>
+                  <li>name;</li>
+                  <li>role(admin or user);</li>
+                  <li>issuer;</li>
+                </ul>
+              </p>
+
+              <header>
+                <h4>Exercise 6:</h4>
+              </header>
+
+              <p align="justify">
+                Using the same code from last exercise create a new route that get the info form the logged user.
+                Your route should be <b>http://localhost:3000/me</b>
+              </p>
+
+              <header>
+                <h4>Exercise 7:</h4>
+              </header>
+
+              <p align="justify">
+                Using the same code from last exercise add Authorizaton and Athentication to your user routes:
+
+                <ul>
+                  <li>List all users should require authentication;</li>
+                  <li>Get logged user should require authentication;</li>
+                  <li>Get user should require authentication;</li>
+                  <li>Delete user should require authentication and the logged user should be an Admin;</li>
+                  <li>Change user's password should require authentication;</li>
+                </ul>
+              </p>
+
+              <header>
+                <h4>Exercise 8:</h4>
+              </header>
+
+              <p align="justify">
+                <b>CHALLENGE:</b> Using the same code from last exercise implement complete new set of routes for friendship.
+                You should creates all routes and the friendshipDAO (you should use the same concept applied to userDAO).
+                You should implement this routes:
+              </p>
+
+              <ul>
+                <li>http://localhost:3000/friendships/ - GET - list all friendships - Require Authentication;</li>
+                <li>http://localhost:3000/friendships/me - GET - list logged user friendships - Require Authentication;</li>
+                <li>http://localhost:3000/friendships/:friendId - GET - get friendship with a user - Require Authentication;</li>
+                <li>http://localhost:3000/friendships/:friendId - POST - send friend request to a user - Require Authentication;</li>
+                <li>http://localhost:3000/friendships/:friendId - PUT - accept friend request - Require Authentication;</li>
+                <li>http://localhost:3000/friendships/:friendId - delete - reject friend request - Require Authentication;</li>
+                <li>http://localhost:3000/friendships/:friendId/block - GET - block user - Require Authentication;</li>
+                <li>http://localhost:3000/friendships/:friendId/block - GET - unblock user - Require Authentication;</li>
+              </ul>
+
+              <p align="justify">
+                Your friendshipDao should have this methods:
+              </p>
+
+              <ul>
+                <li>getFriendship = function(id, succesCB, failCB)</li>
+                <li>getFriendshipByUserId = function(userId, friendId, successCB, failCB) </li>
+                <li>listAllFriendships = function(successCB, failCB)</li>
+                <li>listAllMyFriendships = function(userId, successCB, failCB)</li>
+                <li>createFriendship = function(userId, friendId, successCB, failCB)</li>
+                <li>updateFriendshipProperty = function(userId, friendId, property, value, successCB, failCB)</li>
+                <li>updateFriendshipPropertyById = function(id, property, value, successCB, failCB)</li>
+                <li>updateFriendshipStatus = function(id, status, successCB, failCB)</li>
+              </ul>
+
+              <p align="justify">
+                Your friendship model should have this attributes:
+              </p>
+
+              <ul>
+                <li>status: number</li>
+                <li>userRequested: id</li>
+                <li>userRequester: id</li>
+                <li>blockUserRequested: id</li>
+                <li>blockUserRequester: id</li>
+              </ul>
             </div>
           </section>
         </div>
