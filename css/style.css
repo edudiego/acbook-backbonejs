@@ -951,3 +951,11 @@ input[type="button"]:disabled,
 #footer .copyright li a {
   color: inherit;
 }
+
+.logo-big {
+  margin: 30px auto;  
+}
+
+.container img {
+  max-width: 100%;
+}

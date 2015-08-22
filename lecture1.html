@@ -5,962 +5,636 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
-	<head>
-		<title>Node.js - Lecture 1</title>
-		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-		<meta name="description" content="" />
-		<meta name="keywords" content="" />
-		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
-		<script src="js/jquery.min.js"></script>
-		<script src="js/jquery.scrollzer.min.js"></script>
-		<script src="js/jquery.scrolly.min.js"></script>
-		<script src="js/skel.min.js"></script>
-		<script src="js/skel-layers.min.js"></script>
-		<script src="js/init.js"></script>
-		
-		<noscript>
-			<link rel="stylesheet" href="css/skel.css" />
-			<link rel="stylesheet" href="css/style.css" />
-			<link rel="stylesheet" href="css/style-xlarge.css" />
-		</noscript>
+<head>
+	<title>Backbone.js - Lecture 1</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery.scrollzer.min.js"></script>
+	<script src="js/jquery.scrolly.min.js"></script>
+	<script src="js/skel.min.js"></script>
+	<script src="js/skel-layers.min.js"></script>
+	<script src="js/init.js"></script>
 
-		<style>
-			.ac-caption {
-				margin: 5px 0px 10px 0px;
-				font-size: 13px;
-  				text-align: center;
-			}
+	<noscript>
+		<link rel="stylesheet" href="css/skel.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/style-xlarge.css" />
+	</noscript>
 
-			#header > nav ul li a {
-				padding: 0px;
-				font-size: 0.8em;
-			}
+	<style>
+	.ac-caption {
+		margin: 5px 0px 10px 0px;
+		font-size: 13px;
+		text-align: center;
+	}
 
-			#one:before {
-				background-image: none;
-				height: 0em;
-			}
+	#header > nav ul li a {
+		padding: 0px;
+		font-size: 0.8em;
+	}
 
-			header.major h2 {
-				line-height: 1em;
-			}
-		</style>
+	#one:before {
+		background-image: none;
+		height: 0em;
+	}
 
-		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
-	</head>
-	<body>
-		<div id="wrapper">
+	header.major h2 {
+		line-height: 1em;
+	}
+	</style>
 
-			<!-- Header -->
-				<section id="header" class="skel-layers-fixed">
-					<header>
-						
-						<h1 id="logo"><a href="#">Node.js - Lecture 1</a></h1>
-						
+	<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+</head>
+<body>
+	<div id="wrapper">
+
+		<!-- Header -->
+		<section id="header" class="skel-layers-fixed">
+			<header>
+
+				<h1 id="logo"><a href="#">Backbone - Lecture 1</a></h1>
+
+			</header>
+			<nav id="nav">
+				<ul>
+					<li><a href="#one" class="active">Introduction</a></li>
+					<li><a href="#two">Installing this course</a></li>
+					<li><a href="#three">Backbone Overview</a></li>
+					<li><a href="#four">Views</a></li>
+					<li><a href="#five">Models</a></li>
+					<li><a href="#six">Views + Models </a></li>
+				</ul>
+				<img src="http://www.avenuecode.com/wp-content/themes/ac-site/images/white-logo.png" alt="">
+			</nav>
+			<footer>
+			</footer>
+		</section>
+
+		<!-- Main -->
+		<div id="main">
+
+			<div class="container">
+				<img class="logo-big" src="./images/backbone.png">
+			</div>
+
+			<!-- One -->
+			<section id="one">
+				<div class="container">
+
+					
+					<header class="major">
+						<h2>Introduction</h2>
 					</header>
-					<nav id="nav">
-						<ul>
-							<li><a href="#one" class="active">Introduction</a></li>
-							<li><a href="#two">Concepts Recap</a></li>
-							<li><a href="#three">Lim Po Kim</a></li>
-							<li><a href="#four">Package Management</a></li>
-							<li><a href="#five">Node Server</a></li>
-							<li><a href="#six">Exercises</a></li>
-						</ul>
-						<img src="http://www.avenuecode.com/wp-content/themes/ac-site/images/white-logo.png" alt="">
-					</nav>
-					<footer>
-					</footer>
-				</section>
 
-			<!-- Main -->
-				<div id="main">
+					<p align="justify"><b>Backbone.js</b> is a <a href="https://en.wikipedia.org/wiki/JavaScript" title="JavaScript">JavaScript</a> library with a <b>RESTful</b> <a href="https://en.wikipedia.org/wiki/JSON" title="JSON">JSON</a> interface and is based on the <b>model–view–presenter</b> (MVP) application design paradigm. Backbone is known for being lightweight, as it only depends three other JavaScripts libraries: jQuery, JSON2, and <a href="https://en.wikipedia.org/wiki/Underscore.js" title="Underscore.js">Underscore.js</a>. It is designed for developing <a href="https://en.wikipedia.org/wiki/Single-page_application" title="Single-page application">single-page web applications</a>, and for keeping various parts of web applications (e.g. multiple clients and the server) synchronized.</p>
 
-					<!-- One -->
-						<section id="one">
-							<div class="container">
-								<header class="major">
-									<h2>Introduction</h2>
-								</header>
+					<p align="justify">
+						It is used on world famous web-applications such as Airbnb, Groupon, Hulu, Digg, Trello, Pinterest, Flixter and Foursquare.
+					</p>
 
-								<p align="justify">
-                  Node.js is a JavaScript runtime environment, that allows you to build scalable network applications
-                  that is capable to deal with thousands of simultaneous connections, in just one machine. This is
-                  possible because of the power of JavaScript langague. Node.js, currently, is running on top of
-                  <a href="https://en.wikipedia.org/wiki/V8_(JavaScript_engine)">V8 JavaScript Runtime</a>.
-                </p>
+					<header>
+						<h4>From <a href="http://backbonejs.org/">backbonejs.org</a>:</h4>
+					</header>
 
-                <p align="justify">
-                  As Node.js is built using mostly C, it is fast, cross-plataform and, best of all, it is open source. You are
-                  able to contribute and see what is going on under the hood.
-                </p>
+					<p align="justify">
+						Backbone.js gives structure to web applications
+						by providing <b>models</b> with key-value binding and custom events,
+						<b>collections</b> with a rich API of enumerable functions,
+						<b>views</b> with declarative event handling, and connects it all to your
+						existing API over a RESTful JSON interface.
+					</p>
 
-								<header>
-									<h4>What is Node ?</h4>
-								</header>
-								
-								<ul>
-                  <li>Awesome;</li>
-                  <li>Event Based;</li>
-                  <li>Low Level;</li>
-                  <li>Good tool to build Real-Time data apps.</li>
-                </ul>
-																
-								<header>
-									<h4>What is not ?</h4>
-								</header>
-								
-								<ul>
-                  <li>A Web Framework;</li>
-                  <li>Multi-Threaded;</li>
-                  <li>Slow.</li>
-                </ul>
-								
-								<header>
-									<h4>Blocking and Non-Blocking</h4>
-								</header>
+			</div>
+		</section>		
 
-								<p align="justify">
-                  So, What is so great about this non-blocking thing? Well my friend, lets take a look in some examples:
-                  Imagine that you want to provide a file to anyone that request it to your application, what you have
-                  to do? Read the file, load it in the memory and then provide it to the requester. To illustrate it better
-                  lets take a look in the code below:
-                </p>
+		<section id="two">
+				<div class="container">
 
-                <!-- HTML generated using hilite.me -->
-                <!-- Blocking Code -->
-                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">fs</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;fs&#39;</span><span style="color: #d0d0d0">);</span>
+					<header class="major">
+						<h2>Installing this course</h2>
+					</header>
 
-<span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">contents</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">fs.readFileSync(</span><span style="color: #ed9d13">&#39;file.txt&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&#39;utf8&#39;</span><span style="color: #d0d0d0">);</span>
+					<p align="justify">
+						Backbone.js can be just copied to your assets folder and run offline, but in order interact with this course's backend API, which is based on <b>Node.js</b> and <b>MongoDB</b>, we will install a GitHub repository and run its <b>Node.js</b> server.
+					</p>
 
-<span style="color: #d0d0d0">console.log(contents);</span>
+					<p align="justify">
+						In order to do so, just run:
+					</p>
+
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">git</span> <span style="color: #a6e22e">clone</span> <span style="color: #a6e22e">git</span><span style="color: #960050; background-color: #1e0010">@</span><span style="color: #a6e22e">github</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">com</span><span style="color: #f92672">:</span><span style="color: #a6e22e">edudiego</span><span style="color: #f92672">/</span><span style="color: #a6e22e">AC</span><span style="color: #f92672">-</span><span style="color: #a6e22e">socialApi</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">git</span>
+</pre></div>
+<div class="ac-caption">This will clone the git repository into the current folder.</div>
+
+					<p align="justify">
+						After doing that, run the node package manager to install this project dependencies:
+					</p>
+
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">npm</span> <span style="color: #a6e22e">install</span>
+</pre></div>
+<div class="ac-caption">This will install all the project local dependencies.</div>
+					
+					<header>
+						<h4>Installing Bower</h4>
+					</header>
+
+					<p align="justify">
+						<b>Bower</b> is a package manager system similar to npm, the Node package manager, but  focused on front-end libraries. We are going to use it to install Backbone.js and its dependencies:
+					</p>
+
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">npm</span> <span style="color: #a6e22e">install</span> <span style="color: #a6e22e">bower</span> <span style="color: #f92672">-</span><span style="color: #a6e22e">g</span>
 </pre></div>
 
-                <div class="ac-caption">An example of Blocking I/O</div>
+<div class="ac-caption">Unlike other project dependencies Bower should be installed globally (-g).</div>
 
-								<p align="justify">
-                  As you see the code you can't find any problems with it, it gets the job done. However we block the entire
-                  application for this action. It will import the library, read and load the file's content and then print
-                  it on the console, but in a synchronous way. Meaning that the resource will be blocked throughout the
-                  whole action, becoming a bottleneck.
-                </p>
+					<p align="justify">
+						 Bower could be listed together with the project dependencies and had been installed on the npm install you run before, but its installation was left separated for didatic reasons.
+					</p>
 
-                <p align="justify">
-                  JavaScript is a powerful tool to build asynchronous code. Using callbacks and the Event Emitter we can
-                  take it up a notch and refactor this code. Don't worry, we will talk about Event Emitter and Callbacks
-                  in a minute.
-                </p>
+					<header>
+						<h4>Installing Backbone.js (and its dependencies)</h4>
+					</header>
 
-                <!-- HTML generated using hilite.me -->
-                <!-- Non-Blocking Code -->
-                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">fs</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;fs&#39;</span><span style="color: #d0d0d0">);</span>
+					<p align="justify">
+						When you use Bower to install any front-end library, it will download and store all the library's files and sources on a folder called <b>bower_components</b>. Then the best way to move those files to their desired location would be creating a <b>grunt task</b> to copy only the distribution files to those locations when you run <b>grunt &lt;name of that task&gt;</b>. 
+					</p>
 
-<span style="color: #d0d0d0">fs.readFile(</span><span style="color: #ed9d13">&#39;file.txt&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&#39;utf8&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(err,</span> <span style="color: #d0d0d0">contents)</span> <span style="color: #d0d0d0">{</span>
-    <span style="color: #d0d0d0">console.log(contents);</span>
-<span style="color: #d0d0d0">});</span>
+					<p align="justify">
+						As <b>grunt tasks</b> configuration is out of this course's scope, we are going to work around that by using a bower configuration file, called <b>.bowerrc</b> (note the dot at the beginning of the name).
+						Just copy the contents below to your <b>.bowerrc</b> file:
+					</p>
 
-<span style="color: #d0d0d0">console.log(</span><span style="color: #ed9d13">&#39;after calling readFile&#39;</span><span style="color: #d0d0d0">);</span>
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">{</span>
+  <span style="color: #e6db74">&quot;directory&quot;</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;expressServer/public/lib/js&quot;</span>
+<span style="color: #f8f8f2">}</span>
 </pre></div>
-                <div class="ac-caption">An example of Non-Blocking I/O</div>
+<div class="ac-caption">Now when you run bower it will save the libraries' files on that directory.</div>
 
-                <p align="justify">
-                  What we did here? We changed the method from synchronous to asynchronous and added a new parameter.
-                  This new parameter is what we call a callback. The readFile method listen to a specific event, once
-                  this event is triggered our callback will be executed and the file's content will be printed on the
-                  console. And you know what is the best part of it all? It does all that asynchronously! Yes sir! We do
-                  not block any application's resources, making it possible to request a bunch of files at once and still
-                  being able to execute any numbers of tasks later.
-                </p>
+					<p align="justify">
+						To install Backbone.js and its dependencies, run:
+					</p>
 
-                <p>
-                  <span style="color: red;">WARNING:</span> When we say asynchronously we didn't said it was parallel execution.
-                </p>
-							</div>
-						</section>
-
-					<!-- Two -->
-						<section id="two">
-							<div class="container">
-								<header class="major">
-									<h2>Concepts Recap</h2>
-								</header>
-
-								<p align="justify">
-                  The reason behind choosing JavaScript as language for Node is simple:
-                </p>
-
-                <p align="justify">
-                  <i>
-                    "JavaScript has certain characteristics that make it very different than other dynamic languages,
-                    namely that it has no concept of threads. Its model of currency is completely based around events."
-                  </i>
-                  <span style="float: right;">- Ryan Dahl</span>
-                </p>
-
-                <p align="justify">
-                  What that means is that Node.js has a procedure that looks into a queue of events, every time an
-                  event is triggered, the Event Loop will get this event, execute its handler and keep looking for a new
-                  event. And JavaScript have a code structure that enables a smooth coding for this kind of problem.
-                </p>
-
-								<header>
-									<h4>Event Loop</h4>
-								</header>
-
-								<p></p>
-								
-								<span class="image fit">
-									<img style="width: 70%; margin: 0 auto;" src="images/img1.svg" alt="Event Loop Diagram"/>
-								</span>
-								<div class="ac-caption">Event Loop Diagram</div>
-
-								<p align="justify">
-                  As you can see it is a single-thread procedure that looks into a list of events. You can take a look
-                  into <a href="https://nodejs.org/api/events.html#events_class_events_eventemitter">Event Emitter API</a>
-                  to understand its core and how it works. Nevertheless, this is what you need to know:
-                </p>
-
-                <ul>
-                  <li>Event Emitter is single threaded;</li>
-                  <li>You can add multiples Event Handlers in one event;</li>
-                  <li>Event Handlers will be executed in order of addition;</li>
-                  <li>You can trigger an event anytime you want.</li>
-                </ul>
-
-                <p align="justify">
-                  It is possible to create our own EventEmitter and trigger this events. Lets do a simple log event emitter.
-                </p>
-
-                <!-- HTML generated using hilite.me -->
-                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">EventEmitter</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;events&#39;</span><span style="color: #d0d0d0">).EventEmitter;</span>
-
-<span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">logger</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">new</span> <span style="color: #d0d0d0">EventEmitter();</span>
-
-<span style="color: #d0d0d0">logger.on(</span><span style="color: #ed9d13">&#39;error&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(message){</span>
-  <span style="color: #d0d0d0">console.log(</span><span style="color: #ed9d13">&#39;Error: &#39;</span> <span style="color: #d0d0d0">+</span> <span style="color: #d0d0d0">message);</span>
-<span style="color: #d0d0d0">});</span>
-
-<span style="color: #d0d0d0">logger.emit(</span><span style="color: #ed9d13">&#39;error&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&#39;All your base are belong to us.&#39;</span><span style="color: #d0d0d0">);</span>
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">bower</span> <span style="color: #a6e22e">install</span> <span style="color: #a6e22e">backbone</span> <span style="color: #f92672">--</span><span style="color: #a6e22e">save</span>
 </pre></div>
-                <div class="ac-caption">Our First Event Emitter</div>
+<div class="ac-caption">Backbone.js and its dependencies (jQuery, JSON2 and underscore) should be installed.</div>
 
+					<p align="justify">
+						We are also going to need the <b>md5</b> javascript library, so let's take advantage of bower and install it too:
+					</p>
 
-                <header>
-									<h4>Callbacks</h4>
-								</header>
-
-								<p align="justify">
-                  Callbacks are functions that have its scope encapsulated and stored in memory for later use. JavaScript
-                  give us the ability to store functions in variables and pass it as a parameter for other functions, like
-                  event handlers. Maybe you know this behavior as closure.
-                </p>
-
-                <!-- HTML generated using hilite.me -->
-                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #d0d0d0">setTimeout(</span><span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">()</span> <span style="color: #d0d0d0">{</span>
-    <span style="color: #d0d0d0">console.log(</span><span style="color: #ed9d13">&#39;Hi, I\&#39;m inside the call back!&#39;</span><span style="color: #d0d0d0">);</span>
-<span style="color: #d0d0d0">},</span> <span style="color: #3677a9">2000</span><span style="color: #d0d0d0">);</span>
-<span style="color: #d0d0d0">console.log(</span><span style="color: #ed9d13">&#39;Waiting 2 seconds...&#39;</span><span style="color: #d0d0d0">);</span>
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">bower</span> <span style="color: #a6e22e">install</span> <span style="color: #a6e22e">md5</span> <span style="color: #f92672">--</span><span style="color: #a6e22e">save</span>
 </pre></div>
-                <div class="ac-caption">Callback Example</div>
+<div class="ac-caption">The md5 library will be used with Gravatar to render our social network profile pics.</div>
 
-                <!-- HTML generated using hilite.me -->
-                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">message</span> <span style="color: #d0d0d0">=</span> <span style="color: #ed9d13">&#39;Hi, I\&#39;m inside the call back!&#39;</span><span style="color: #d0d0d0">;</span>
-<span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">callback</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">()</span> <span style="color: #d0d0d0">{</span>
-    <span style="color: #d0d0d0">console.log(message);</span>
-<span style="color: #d0d0d0">};</span>
+					<p align="justify">
+						The <b>--save</b> option is used to store the name of the installed package on your <b>bower.json</b> file, so you can install all your packages in another project instance just running <b>bower install</b>.
+					</p>
 
-<span style="color: #d0d0d0">setTimeout(callback,</span> <span style="color: #3677a9">2000</span><span style="color: #d0d0d0">);</span>
-<span style="color: #d0d0d0">console.log(</span><span style="color: #ed9d13">&#39;Waiting 2 seconds...&#39;</span><span style="color: #d0d0d0">);</span>
+			</div>
+		</section>		
+
+		<section id="three">
+				<div class="container">
+
+					<header class="major">
+						<h2>Backbone Overview</h2>
+					</header>					
+					
+					<img src="./images/backbone_mvc.png">
+
+					<header>
+						<h4>Backbone.Router</h4>
+					</header>
+
+					<p align="justify">
+						Web applications often provide linkable, bookmarkable, shareable URLs for
+						important locations in the app. Until recently, hash fragments
+						(<tt>#page</tt>) were used to provide these permalinks, but with the
+						arrival of the History API, it's now possible to use standard URLs (<tt>/page</tt>).
+						<b>Backbone.Router</b> provides methods for routing client-side pages, and
+						connecting them to actions and events. For browsers which don't yet support
+						the History API, the Router handles graceful fallback and transparent
+						translation to the fragment version of the URL.
+					</p>
+
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">Workspace</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Router</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
+  <span style="color: #a6e22e">routes</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #e6db74">&quot;help&quot;</span><span style="color: #f92672">:</span>                 <span style="color: #e6db74">&quot;help&quot;</span><span style="color: #f8f8f2">,</span>    <span style="color: #75715e">// #help</span>
+    <span style="color: #e6db74">&quot;search/:query&quot;</span><span style="color: #f92672">:</span>        <span style="color: #e6db74">&quot;search&quot;</span><span style="color: #f8f8f2">,</span>  <span style="color: #75715e">// #search/kiwis</span>
+    <span style="color: #e6db74">&quot;search/:query/p:page&quot;</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;search&quot;</span>   <span style="color: #75715e">// #search/kiwis/p7</span>
+  <span style="color: #f8f8f2">},</span>
+  <span style="color: #a6e22e">help</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #f8f8f2">...</span>
+  <span style="color: #f8f8f2">},</span>
+  <span style="color: #a6e22e">search</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">query</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">page</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #f8f8f2">...</span>
+  <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">});</span>
 </pre></div>
-                <div class="ac-caption">Callback Example With Variable</div>
 
+			
+<div class="ac-caption">An example of a Router with 3 pre-defined routes.</div>
+					<header>
+						<h4>Backbone.View</h4>
+					</header>
 
+					<p align="justify">
+						Backbone views are almost more convention than they are code — they
+						don't determine anything about your HTML or CSS for you, and can be used
+						with any JavaScript templating library.
+						The general idea is to organize your interface into logical views,
+						backed by models, each of which can be updated independently when the
+						model changes, without having to redraw the page. Instead of digging into
+						a JSON object, looking up an element in the DOM, and updating the HTML by hand,
+						you can bind your view's <tt>render</tt> function to the model's <tt>"change"</tt>
+						event — and now everywhere that
+						model data is displayed in the UI, it is always immediately up to date.
+					</p>
 
-              </div>
-						</section>
-
-					<!-- Three -->
-						<section id="three">
-							<div class="container">
-								<header class="major">
-									<h2>Lim Po Kim</h2>
-								</header>
-
-                <header>
-                  <h4>Code Import, Using Require</h4>
-                </header>
-
-								<p align="justify">
-                  Now that we have the basic concepts explained we can start with some Node.js code. You will see that
-                  it is good old JavaScript but with benefits. We can import and export files in an organized way, with
-                  simple commands. First lets take a look into how we can import a code that we created. So, one step at
-                  a time, we need to create a code snippet to be imported. Something simple, a class:
-                </p>
-
-                <!-- HTML generated using hilite.me -->
-                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">Dog</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(name)</span> <span style="color: #d0d0d0">{</span>
-
-  <span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">_name</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">name;</span>
-
-  <span style="color: #6ab825; font-weight: bold">this</span><span style="color: #d0d0d0">.whoIsAGoodBoy</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">()</span> <span style="color: #d0d0d0">{</span>
-    <span style="color: #d0d0d0">console.log(_name</span> <span style="color: #d0d0d0">+</span> <span style="color: #ed9d13">&#39; is a good boy!&#39;</span><span style="color: #d0d0d0">);</span>
-  <span style="color: #d0d0d0">};</span>
-
-  <span style="color: #6ab825; font-weight: bold">this</span><span style="color: #d0d0d0">.wiggle</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">()</span> <span style="color: #d0d0d0">{</span>
-    <span style="color: #d0d0d0">console.log(_name</span> <span style="color: #d0d0d0">+</span> <span style="color: #ed9d13">&#39; is wiggling.&#39;</span><span style="color: #d0d0d0">);</span>
-  <span style="color: #d0d0d0">};</span>
-
-<span style="color: #d0d0d0">}</span>
-
-<span style="color: #d0d0d0">module.exports</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">Dog;</span>
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">DocumentRow</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">View</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
+  <span style="color: #a6e22e">events</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #f8f8f2">...</span>
+  <span style="color: #f8f8f2">},</span>
+  <span style="color: #a6e22e">initialize</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">listenTo</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">model</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;change&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">render</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #f8f8f2">},</span>
+  <span style="color: #a6e22e">render</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #f8f8f2">...</span>
+  <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">});</span>
 </pre></div>
-                <div class="ac-caption">Exporting Dog Class</div>
 
-                <p align="justify">
-                  The line <b>"module.exports = Dog;"</b> is the Node way to export something. By doing this we are adding
-                  our code to Node environment. What is important to know is that each export actually caches the code
-                  exported, this way Node avoid parsing the file every time it is required. We should be very
-                  careful for how we export our code, because this could lead to very weird bugs.
-                </p>
+					
+<div class="ac-caption">An example of a View that automatically updates the DOM upon model data change.</div>
+					<header>
+						<h4>Backbone.Model</h4>
+					</header>
 
-                <p align="justify">
-                  It is time to import our code somewhere else. And how do we do it? Simple, we require this code to Node.
-                  Now that we already did the export in the file, this class of ours is available to us:
-                </p>
+					<p align="justify">
+      <b>Models</b> are the heart of any JavaScript application, containing
+      the interactive data as well as a large part of the logic surrounding it:
+      conversions, validations, computed properties, and access control. You
+      extend <b>Backbone.Model</b> with your domain-specific methods, and
+      <b>Model</b> provides a basic set of functionality for managing changes.
+    </p>
 
-                <!-- HTML generated using hilite.me -->
-                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">Dog</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;./dog&#39;</span><span style="color: #d0d0d0">);</span>
-
-<span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">brian</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">new</span> <span style="color: #d0d0d0">Dog(</span><span style="color: #ed9d13">&#39;Brian&#39;</span><span style="color: #d0d0d0">);</span>
-
-<span style="color: #d0d0d0">brian.whoIsAGoodDog();</span>
-<span style="color: #d0d0d0">brian.wiggle();</span>
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">Sidebar</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Model</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
+  <span style="color: #a6e22e">promptColor</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">cssColor</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">prompt</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Please enter a CSS color:&quot;</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">set</span><span style="color: #f8f8f2">({</span><span style="color: #a6e22e">color</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">cssColor</span><span style="color: #f8f8f2">});</span>
+  <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">});</span>
 </pre></div>
-                <div class="ac-caption">Importing Dog Class</div>
-
-                <p align="justify">
-                  In the code snippet above you can see that we imported the Dog class using <b>"var Dog = require('./Dog')"</b>.
-                  So, we are passing a relative path to require, saying which file we want to import. You can give any
-                  kind of path that you want, relative, absolute or just the module's name (This one I will talk later).
-                  It is not required to add the file extension in the end of the path as Node is always expecting
-                  a JavaScript file. Even though after the first require the code is cached, we still need to execute the
-                  require in every file that we want to import our code.
-                </p>
-
-                <p align="justify">
-                  So, imagine that we have a different folder structure for our code, where index.js is not where our Dog
-                  import snippet is:
-                </p>
-
-                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
-                  <pre style="margin: 0; line-height: 125%">
-                    <span style="color: #d0d0d0">└── nodeCode</span>
-                    <span style="color: #d0d0d0">    ├── lib</span>
-                    <span style="color: #d0d0d0">    │   └── Dog.js</span>
-                    <span style="color: #d0d0d0">    └── src</span>
-                    <span style="color: #d0d0d0">        └── index.js</span>
-                  </pre>
-                </div>
-                <div class="ac-caption">Importing Dog Class</div>
-
-                <p align="justify">
-                  We could change the import to <b>var Dog = require('../lib/Dog')</b>, a relative path to the file that
-                  we want to import. Node is smart enough for this same relative path work on Unix or Windows machines.
-                </p>
-              </div>
-						</section>
-
-          <!-- Four -->
-            <section id="four">
-              <div class="container">
-                <header class="major">
-                  <h2>Package Management</h2>
-                </header>
-
-                <header>
-                  <h4>Node Package Manager</h4>
-                </header>
-
-                <p align="justify">
-                  Remember that I said that it is possible to import a module just by using its name to the require
-                  method? Well, this is possible because of one of Node's package manager, a.k.a <a href="https://www.npmjs.com/">NPM</a>.
-                  NPM has a huge amount of libraries that you can use. If you want, you can create your own package and
-                  publish it there, you can also contribute with your ideas on others libraries too.
-                </p>
-
-                <p align="justify">
-                  To install a new package you have to open you terminal and execute this code:
-                </p>
-
-                <!-- HTML generated using hilite.me -->
-                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #d0d0d0">$</span> <span style="color: #d0d0d0">npm</span> <span style="color: #d0d0d0">install</span> <span style="color: #d0d0d0">&lt;package_name&gt;</span>
-  </pre></div>
-                <div class="ac-caption">Installing a NPM Package</div>
-
-                <p align="justify">
-                  That is all it takes, seriously. No environment setup, no path settings, no bash_profile configuration.
-                  Cool isn't it? Ok, but this instruction will only add this package into your current project. So, after
-                  executing this command NPM will add a new folder into your application's root folder named <i>node_modules</i>.
-                  It will be something like this:
-                </p>
-
-                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
-                    <pre style="margin: 0; line-height: 125%">
-                      <span style="color: #d0d0d0">└── nodeCode</span>
-                      <span style="color: #d0d0d0">    ├── lib</span>
-                      <span style="color: #d0d0d0">    │   └── Dog.js</span>
-                      <span style="color: #d0d0d0">    ├── node_modules</span>
-                      <span style="color: #d0d0d0">    │   └── ...</span>
-                      <span style="color: #d0d0d0">    └── src</span>
-                      <span style="color: #d0d0d0">        └── index.js</span>
-                    </pre>
-                </div>
-                <div class="ac-caption">Project Folder with node_modules</div>
-
-                <p align="justify">
-                  Now, every package that you installed locally will be available to be required in your code. For instance,
-                  lets say that we decided that <i>console.log</i> is no more suitable to our Dog class. And our super cool
-                  work colleague said that he worked with this super duper package named <a href="https://www.npmjs.com/package/winston">winston</a>
-                  and it has all that cool colored alerts. We will give it a try. First we need to install it:
-                </p>
-
-                <!-- HTML generated using hilite.me -->
-                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #d0d0d0">$</span> <span style="color: #d0d0d0">npm</span> <span style="color: #d0d0d0">install</span> <span style="color: #d0d0d0">winston</span>
-  </pre></div>
-                <div class="ac-caption">Installing winston by NPM Package</div>
-
-                <p align="justify">
-                  Now we require it in our Dog class:
-                </p>
-
-                <!-- HTML generated using hilite.me -->
-                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">winston</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;winston&#39;</span><span style="color: #d0d0d0">);</span>
-  <span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">coolLogger</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">new</span> <span style="color: #d0d0d0">(winston.Logger)({</span>
-        <span style="color: #d0d0d0">transports:</span> <span style="color: #d0d0d0">[</span>
-          <span style="color: #6ab825; font-weight: bold">new</span> <span style="color: #d0d0d0">(winston.transports.Console)({</span>
-            <span style="color: #d0d0d0">level:</span> <span style="color: #ed9d13">&#39;silly&#39;</span><span style="color: #d0d0d0">,</span>
-            <span style="color: #d0d0d0">colorize:</span> <span style="color: #6ab825; font-weight: bold">true</span><span style="color: #d0d0d0">,</span>
-            <span style="color: #d0d0d0">timestamp:</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">()</span> <span style="color: #d0d0d0">{</span>
-              <span style="color: #6ab825; font-weight: bold">return</span> <span style="color: #d0d0d0">(</span><span style="color: #6ab825; font-weight: bold">new</span> <span style="color: #24909d">Date</span><span style="color: #d0d0d0">()).toISOString();</span>
-            <span style="color: #d0d0d0">}</span>
-          <span style="color: #d0d0d0">})</span>
-        <span style="color: #d0d0d0">]</span>
-      <span style="color: #d0d0d0">});</span>
-
-  <span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">Dog</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(name)</span> <span style="color: #d0d0d0">{</span>
-
-    <span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">_name</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">name;</span>
-
-    <span style="color: #6ab825; font-weight: bold">this</span><span style="color: #d0d0d0">.whoIsAGoodBoy</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">()</span> <span style="color: #d0d0d0">{</span>
-      <span style="color: #d0d0d0">coolLogger.info(_name</span> <span style="color: #d0d0d0">+</span> <span style="color: #ed9d13">&#39; is a good boy!&#39;</span><span style="color: #d0d0d0">);</span>
-    <span style="color: #d0d0d0">};</span>
-
-    <span style="color: #6ab825; font-weight: bold">this</span><span style="color: #d0d0d0">.wiggle</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">()</span> <span style="color: #d0d0d0">{</span>
-      <span style="color: #d0d0d0">coolLogger.info(_name</span> <span style="color: #d0d0d0">+</span> <span style="color: #ed9d13">&#39; is wiggling.&#39;</span><span style="color: #d0d0d0">);</span>
-    <span style="color: #d0d0d0">};</span>
-
-  <span style="color: #d0d0d0">}</span>
-
-  <span style="color: #d0d0d0">module.exports</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">Dog;</span>
-  </pre></div>
-                <div class="ac-caption">Dog Class With Winston Logger</div>
-
-                <p align="justify">
-                  Voilà! Now we can use winston in our code! Every time we call any method from <b>brian</b> we will display
-                  in the console with bright colors and with a timestamp.
-                </p>
-
-                <p align="justify">
-                  If I want to use this package without installing in every project? Calm dowm my friend, we have the
-                  answer for you. You can install any package globally by executing this command in you terminal:
-                </p>
-
-                <!-- HTML generated using hilite.me -->
-                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #d0d0d0">$</span> <span style="color: #d0d0d0">npm</span> <span style="color: #d0d0d0">install</span> <span style="color: #d0d0d0">&lt;package_name&gt;</span> <span style="color: #d0d0d0">-g</span>
-  </pre></div>
-                <div class="ac-caption">Installing a Global Package</div>
-
-                <p align="justify">
-                  This will install the package in the <i>node_modules</i> global folder for Node. This will ensure
-                  that this installed package will be available to any project that you may have. In my humble opinion I do
-                  not like to install global packages, even though I will use them in other projects. Installing packages
-                  locally will encapsulate your project and will avoid version conflicts with other projects that you
-                  might have. And this can keep your project's workspace clean. Lets keep it clean when possible!
-                </p>
-
-                <p align="justify">
-                  You may be asking yourself: "Okay, but how can I keep track of all packages installed in a project?".
-                  Node have suggested a standard file that NPM can read and know which packages with what version
-                  was installed in each project. This file is called <i>package.json</i>
-                </p>
-
-                <header>
-                  <h4>Package.json</h4>
-                </header>
 
 
-                <p align="justify">
-                  This file called <i>package.json</i> lives in your application's root folder. It will act as your
-                  application's description.
-                </p>
+					<div class="ac-caption">A Backbone.js Model with a custom method.</div>
 
-                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
-                    <pre style="margin: 0; line-height: 125%">
-                      <span style="color: #d0d0d0">└── nodeCode</span>
-                      <span style="color: #d0d0d0">    ├── lib</span>
-                      <span style="color: #d0d0d0">    │   └── Dog.js</span>
-                      <span style="color: #d0d0d0">    ├── node_modules</span>
-                      <span style="color: #d0d0d0">    │   └── ...</span>
-                      <span style="color: #d0d0d0">    ├── src</span>
-                      <span style="color: #d0d0d0">    │   └── index.js</span>
-                      <span style="color: #d0d0d0">    └── package.json</span>
-                    </pre>
-                </div>
-                <div class="ac-caption">Project Folder with package.json</div>
+			</div>
+		</section>		
 
-                <p align="justify">
-                  It is written using JSON annotation. It have all kind of your application's info, from the application's
-                  name, its version, quick description to the dependencies. A standard file would look like this:
-                </p>
+		<section id="four">
+			<div class="container">
 
-                <!-- HTML generated using hilite.me -->
-                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #d0d0d0">{</span>
-    <span style="color: #6ab825; font-weight: bold">&quot;name&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;AC-socialAPI&quot;</span><span style="color: #d0d0d0">,</span>
-    <span style="color: #6ab825; font-weight: bold">&quot;version&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;0.0.0&quot;</span><span style="color: #d0d0d0">,</span>
-    <span style="color: #6ab825; font-weight: bold">&quot;description&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;Avenue Code Training Code&quot;</span><span style="color: #d0d0d0">,</span>
-    <span style="color: #6ab825; font-weight: bold">&quot;main&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;index.js&quot;</span><span style="color: #d0d0d0">,</span>
-    <span style="color: #6ab825; font-weight: bold">&quot;scripts&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #d0d0d0">{</span>
-      <span style="color: #6ab825; font-weight: bold">&quot;preinstall&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;npm install grunt-cli -g&quot;</span>
-    <span style="color: #d0d0d0">},</span>
-    <span style="color: #6ab825; font-weight: bold">&quot;repository&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #d0d0d0">{</span>
-      <span style="color: #6ab825; font-weight: bold">&quot;type&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;git&quot;</span><span style="color: #d0d0d0">,</span>
-      <span style="color: #6ab825; font-weight: bold">&quot;url&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;https://github.com/andrebot/AC-socialApi.git&quot;</span>
-    <span style="color: #d0d0d0">},</span>
-    <span style="color: #6ab825; font-weight: bold">&quot;keywords&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #d0d0d0">[</span>
-      <span style="color: #ed9d13">&quot;Node&quot;</span><span style="color: #d0d0d0">,</span>
-      <span style="color: #ed9d13">&quot;Express&quot;</span>
-    <span style="color: #d0d0d0">],</span>
-    <span style="color: #6ab825; font-weight: bold">&quot;author&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;Andre Botelho, Henrique Elias&quot;</span><span style="color: #d0d0d0">,</span>
-    <span style="color: #6ab825; font-weight: bold">&quot;license&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;ISC&quot;</span><span style="color: #d0d0d0">,</span>
-    <span style="color: #6ab825; font-weight: bold">&quot;bugs&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #d0d0d0">{</span>
-      <span style="color: #6ab825; font-weight: bold">&quot;url&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;https://github.com/andrebot/AC-socialApi/issues&quot;</span>
-    <span style="color: #d0d0d0">},</span>
-    <span style="color: #6ab825; font-weight: bold">&quot;homepage&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;https://github.com/andrebot/AC-socialApi&quot;</span><span style="color: #d0d0d0">,</span>
-    <span style="color: #6ab825; font-weight: bold">&quot;dependencies&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #d0d0d0">{</span>
-      <span style="color: #6ab825; font-weight: bold">&quot;body-parser&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;^1.13.1&quot;</span><span style="color: #d0d0d0">,</span>
-      <span style="color: #6ab825; font-weight: bold">&quot;cookie-parser&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;^1.3.5&quot;</span><span style="color: #d0d0d0">,</span>
-      <span style="color: #6ab825; font-weight: bold">&quot;express&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;^4.13.0&quot;</span><span style="color: #d0d0d0">,</span>
-      <span style="color: #6ab825; font-weight: bold">&quot;jsonwebtoken&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;^5.0.2&quot;</span><span style="color: #d0d0d0">,</span>
-      <span style="color: #6ab825; font-weight: bold">&quot;mongoose&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;^4.0.6&quot;</span><span style="color: #d0d0d0">,</span>
-      <span style="color: #6ab825; font-weight: bold">&quot;mpromise&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;^0.5.5&quot;</span>
-    <span style="color: #d0d0d0">},</span>
-    <span style="color: #6ab825; font-weight: bold">&quot;devDependencies&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #d0d0d0">{</span>
-      <span style="color: #6ab825; font-weight: bold">&quot;blanket&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;^1.1.7&quot;</span><span style="color: #d0d0d0">,</span>
-      <span style="color: #6ab825; font-weight: bold">&quot;bootstrap&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;^3.3.5&quot;</span><span style="color: #d0d0d0">,</span>
-      <span style="color: #6ab825; font-weight: bold">&quot;grunt&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;^0.4.5&quot;</span><span style="color: #d0d0d0">,</span>
-      <span style="color: #6ab825; font-weight: bold">&quot;grunt-contrib-copy&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;^0.8.0&quot;</span><span style="color: #d0d0d0">,</span>
-      <span style="color: #6ab825; font-weight: bold">&quot;grunt-mocha-test&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;^0.12.7&quot;</span><span style="color: #d0d0d0">,</span>
-      <span style="color: #6ab825; font-weight: bold">&quot;grunt-nodemon&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;^0.4.0&quot;</span><span style="color: #d0d0d0">,</span>
-      <span style="color: #6ab825; font-weight: bold">&quot;jquery&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;^2.1.4&quot;</span><span style="color: #d0d0d0">,</span>
-      <span style="color: #6ab825; font-weight: bold">&quot;jquery.cookie&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;^1.4.1&quot;</span><span style="color: #d0d0d0">,</span>
-      <span style="color: #6ab825; font-weight: bold">&quot;mocha&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;^2.2.5&quot;</span><span style="color: #d0d0d0">,</span>
-      <span style="color: #6ab825; font-weight: bold">&quot;mongodb&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;^2.0.36&quot;</span><span style="color: #d0d0d0">,</span>
-      <span style="color: #6ab825; font-weight: bold">&quot;should&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;^7.0.1&quot;</span><span style="color: #d0d0d0">,</span>
-      <span style="color: #6ab825; font-weight: bold">&quot;supertest&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;^1.0.1&quot;</span>
-    <span style="color: #d0d0d0">}</span>
-  <span style="color: #d0d0d0">}</span>
-  </pre></div>
-                <div class="ac-caption">Standard package.json file</div>
+				<header class="major">
+					<h2>Views</h2>
+				</header>	
+				<p align="justify">
+				Backbone views are used to reflect what your applications' data models look like. They are also used to listen to events and react accordingly.
+				</p>
 
-                <p align="justify">
-                  You can find the whole package.json documentation <a href="https://docs.npmjs.com/files/package.json">here</a>.
-                  It explains all the possible attributes and what you can do with each one of them.
-                </p>
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">MyProfileView</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">View</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
+  <span style="color: #a6e22e">initialize</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(){</span>
+    <span style="color: #a6e22e">alert</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;My profile view has started.&quot;</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">});</span>
 
-                <p align="justify">
-                  The only thing that will concern us right now is the last two attribute <b>dependencies</b> and
-                  <b>devDependencies</b>. As I said, we can control which version to install in the current project.
-                  Lets take the dependency "body-parse". It says that it is a dependency (duh!), however, it says
-                  <b>"^1.1.7"</b>. Obviously this is the version that we want to use in our beloved app. But what is
-                  this symbol that comes after the version number? That is another type of annotation. We can actually
-                  define if we want an exact version, any version above and etc. Here is a list about what we can do:
-                </p>
-
-                <ul>
-                  <li>">"</li>
-                  <li>">="</li>
-                  <li>"<"</li>
-                  <li>"<="</li>
-                  <li>"~"</li>
-                  <li>...</li>
-                </ul>
-
-                <p align="justify">
-                  The list goes on! We can see the full list and its meaning in the same link for the package.json
-                  documentation. So you can pretty much control every aspect of you packages. Therefore, to add any new
-                  package to you project you can just edit this file and add anything that you'd like and add any version
-                  that works for you.
-                </p>
-
-                <p align="justify">
-                  If you prefer you can add packages and save them using your terminal. It is as simple as to add a new
-                  parameter in the command that we already know and love:
-                </p>
-
-                <!-- HTML generated using hilite.me -->
-                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #d0d0d0">$</span> <span style="color: #d0d0d0">npm</span> <span style="color: #d0d0d0">install</span> <span style="color: #d0d0d0">&lt;package_name&gt;</span> <span style="color: #d0d0d0">--save</span>
-  </pre></div>
-                <div class="ac-caption">Saving package at your package.json</div>
-
-                <p align="justify">
-                  Executing this, NPM will add a new line at <b>dependecies</b> with the latest version. You can change it
-                  editing the file itself or requesting a version that you would like:
-                </p>
-
-                <!-- HTML generated using hilite.me -->
-                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #d0d0d0">$</span> <span style="color: #d0d0d0">npm</span> <span style="color: #d0d0d0">install</span> <span style="color: #d0d0d0">&lt;package_name&gt;</span><span style="color: #d0d0d0;">@</span><span style="color: #d0d0d0">&lt;version&gt;</span> <span style="color: #d0d0d0">--save</span>
-  </pre></div>
-                <div class="ac-caption">Saving package at your package.json defining version</div>
-
-                <p align="justify">
-                  The whole documentation can be found <a href="https://docs.npmjs.com/cli/install">here</a>.
-                </p>
-
-                <p align="justify">
-                  You have noticed that we have two places to add dependencies. We've just talked about where we add
-                  the packages that the application needs to run. However we have a bunch of other libraries and tools
-                  that we can add to our project that can help us out. This packages are solely for development purpose,
-                  thus we have the <b>devDependencies</b> attribute in our package.json. This is the place where we add
-                  automated tasks runner, tests frameworks and etc. This keep it simple for developers to know what he needs
-                  to install to do what he wants to do. For instance, if I just want to build the application I can install
-                  only the packages under <b>dependencies</b>. This is valid for deployment environments, that I don't need
-                  any fancy package because I just want to deploy the app. To install packages and save them at
-                  <b>devDependencies</b> we do:
-                </p>
-
-                <!-- HTML generated using hilite.me -->
-                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #d0d0d0">$</span> <span style="color: #d0d0d0">npm</span> <span style="color: #d0d0d0">install</span> <span style="color: #d0d0d0">&lt;package_name&gt;</span> <span style="color: #d0d0d0">--save-dev</span>
-  </pre></div>
-                <div class="ac-caption">Saving package at your package.json devDependencies</div>
-
-                <p align="justify">
-                  Now that we have your application's package.json rocking, we can easily install all the packages on
-                  new environments any time we want. We just need to execute the install command:
-                </p>
-
-                <!-- HTML generated using hilite.me -->
-                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #d0d0d0">$</span> <span style="color: #d0d0d0">npm</span> <span style="color: #d0d0d0">install</span>
-  </pre></div>
-                <div class="ac-caption">Installing All Packages By package.json</div>
-
-                <p align="justify">
-                  If we want to install just the packages required to run the project, as in a production environment,
-                  we do:
-                </p>
-
-                <!-- HTML generated using hilite.me -->
-                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #d0d0d0">$</span> <span style="color: #d0d0d0">npm</span> <span style="color: #d0d0d0">install</span> <span style="color: #d0d0d0">--production</span>
-  </pre></div>
-                <div class="ac-caption">Excluding Development Packages</div>
-
-                <p align="justify">
-                  And we can easily keep things up to date:
-                </p>
-
-                <!-- HTML generated using hilite.me --><div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #d0d0d0">$</span> <span style="color: #d0d0d0">npm</span> <span style="color: #d0d0d0">update</span>
-  </pre></div>
-                <div class="ac-caption">Updating Application's Packages</div>
-
-                <p align="justify">
-                  This command will update all packages, local and global, to the latest version. We can also define only
-                  one package to update, or just the global packages, and all of that is described <a href="https://docs.npmjs.com/cli/update">here</a>.
-                </p>
-
-                <p align="justify">
-                  Of course, we can't forget how to uninstall a package. We can always be fooled by some poorly written
-                  description or we can discover a better package at some point in time. So to uninstall any package
-                  we can do:
-                </p>
-
-                <!-- HTML generated using hilite.me -->
-                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #d0d0d0">$</span> <span style="color: #d0d0d0">npm</span> <span style="color: #d0d0d0">uninstall</span> <span style="color: #d0d0d0">&lt;package_name&gt;</span>
+<span style="color: #75715e">// The initialize function is always called when instantiating a Backbone View.</span>
+<span style="color: #75715e">// Consider it the constructor of the class.</span>
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">myProfileView</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">MyProfileView</span><span style="color: #f8f8f2">();</span>
 </pre></div>
-                <div class="ac-caption">Uninstalling a Package</div>
+<div class="ac-caption">A Backbone.js View with a custom initialize method.</div>
 
-                <p align="justify">
-                  To save this action in your package.json we still have to add <i>--save</i> or <i>--save-dev</i>.
-                </p>
+				<header>
+					<h4>The View's el, "$el", tagName and className properties</h4>
+				</header>
 
+				<p align="justify">
+					The <b>"el"</b> property references a DOM object created by the View in the browser. Every Backbone.js view has an "el" property, and if it is not defined, Backbone.js will construct its own, which is, <i>by default</i>, an empty div element. The $el property is just a cached jQuery object selecting the el element.
+				</p>				
 
+				<p align="justify">This element will not be attached to the body DOM until it is done in our code, usually on the <b>render()</b> method.</p>
 
-              </div>
-            </section>
+				<p align="justify">
+					It is possible to change the default "el" by passing either a jQuery selector on the View definition or as a parameter to the constructor. In this case, if the element already exists on the DOM, it will be used instead.
+				</p>
 
-					<!-- Five -->
-						<section id="five">
-							<div class="container">
-								<header class="major">
-									<h2>Node Server</h2>
-								</header>
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">MyView</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">View</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span> 
+	<span style="color: #a6e22e">el</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;#myDefaultViewContainer&#39;</span> <span style="color: #75715e">// sets the default &quot;el&quot;</span>
+<span style="color: #f8f8f2">});</span> 
 
-								<p align="justify">
-                  Now that we know what is an EventEmitter, that we know what a callback is, that we understand how the
-                  event loop works and how to import and export code we can start doing our first server!!!!!!!11!1!1!!one!
-                  Lets keep it simple. Now we will build just a server that says something useless.
-                </p>
-
-                <!-- HTML generated using hilite.me -->
-                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">http</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;http&#39;</span><span style="color: #d0d0d0">);</span>
-
-<span style="color: #d0d0d0">http.createServer(</span><span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(request,</span> <span style="color: #d0d0d0">response){</span>
-  <span style="color: #d0d0d0">response.writeHead(</span><span style="color: #3677a9">200</span><span style="color: #d0d0d0">);</span>
-  <span style="color: #d0d0d0">response.write(</span><span style="color: #ed9d13">&#39;I\&#39;m alive!&#39;</span><span style="color: #d0d0d0">);</span>
-  <span style="color: #d0d0d0">response.end();</span>
-<span style="color: #d0d0d0">}).listen(</span><span style="color: #3677a9">8080</span><span style="color: #d0d0d0">,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(){</span>
-  <span style="color: #d0d0d0">console.log(</span><span style="color: #ed9d13">&#39;Listening on port 8080...&#39;</span><span style="color: #d0d0d0">);</span>
-<span style="color: #d0d0d0">});</span>
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">myView</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">MyView</span><span style="color: #f8f8f2">({</span> 
+	<span style="color: #a6e22e">el</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;#notTheDefaultViewEl&#39;</span> <span style="color: #75715e">// overwrites it</span>
+<span style="color: #f8f8f2">});</span> 
 </pre></div>
-                <div class="ac-caption">First server</div>
+<div class="ac-caption">When this is done the "el" becomes whatever element those selectors point to.</div>
 
-                <p align="justify">
-                  Basically this server replies <i>"I'm alive!"</i> to the requester. Cool! But useless. However we just
-                  used almost everything that we talked about. We imported a module, use it, listen to an event, triggered
-                  an event and executed an event handler! Awesome! What else we can demonstrate about all the yada yada
-                  written above? Oh, I know! Non-blocking execution:
-                </p>
+				<p align="justify">
+					One could also change the View default DOM node (a DIV) to another of any kind and class by setting these View properties. <b>Note that this will not work if you pointed your view to a pre-existing element using the "el" property as above.</b>
+				</p>
 
-                <!-- HTML generated using hilite.me -->
-                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">http</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;http&#39;</span><span style="color: #d0d0d0">);</span>
-
-<span style="color: #d0d0d0">http.createServer(</span><span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(request,</span> <span style="color: #d0d0d0">response){</span>
-  <span style="color: #d0d0d0">response.writeHead(</span><span style="color: #3677a9">200</span><span style="color: #d0d0d0">);</span>
-  <span style="color: #d0d0d0">response.write(</span><span style="color: #ed9d13">&#39;I\&#39;m alive, wait and see...&#39;</span><span style="color: #d0d0d0">);</span>
-  <span style="color: #d0d0d0">setTimeout(</span><span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(){</span>
-    <span style="color: #d0d0d0">response.write(</span><span style="color: #ed9d13">&#39;Took me 5 seconds to finish.&#39;</span><span style="color: #d0d0d0">);</span>
-    <span style="color: #d0d0d0">response.end();</span>
-  <span style="color: #d0d0d0">},</span> <span style="color: #3677a9">5000</span><span style="color: #d0d0d0">);</span>
-  <span style="color: #d0d0d0">response.write(</span><span style="color: #ed9d13">&#39;Not yet done.&#39;</span><span style="color: #d0d0d0">);</span>
-<span style="color: #d0d0d0">}).listen(</span><span style="color: #3677a9">8080</span><span style="color: #d0d0d0">,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(){</span>
-  <span style="color: #d0d0d0">console.log(</span><span style="color: #ed9d13">&#39;Listening on port 8080...&#39;</span><span style="color: #d0d0d0">);</span>
-<span style="color: #d0d0d0">});</span>
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">myView</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">MyView</span><span style="color: #f8f8f2">(</span> <span style="color: #f8f8f2">{</span> 
+	<span style="color: #a6e22e">tagName</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;span&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #75715e">// not a div anymore</span>
+	<span style="color: #a6e22e">className</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;inviteFriend&quot;</span> <span style="color: #75715e">// with a custom class name property</span>
+<span style="color: #f8f8f2">});</span>
 </pre></div>
-                <div class="ac-caption">Non-Blocking Server</div>
+<div class="ac-caption">This view would render a <b>&lt;span class="inviteFriend"&gt;&lt;/span&gt;</b>.</div>
 
-                <p align="justify">
-                  Pretty neat, hun? We kept sending data to the requester and just only ended the request after 5 seconds,
-                  however we still could execute other functions while it was processing the other action. With the power
-                  of JavaScript syntax it was easy to code something like this, it didn't hurt, and it is readable.
-                </p>
+				<header>
+					<h4>The View render() method</h4>
+				</header>
 
-                <p align="justify">
-                  Hold on! I didn't explained much about what was going on. When we passed the function to the <b>createServer</b>
-                  method, we defined two parameters <i>request</i> and <i>response</i>. Those are the readable and writable streams.
-                  We can write and read data from those variables. Now lets print data coming from the requester:
-                </p>
+				<p align="justify">
+					They key features of the Views are displaying the data and handling user interaction. For displaying data we usually use the <b>render()</b> method.
+				</p>
 
-                <!-- HTML generated using hilite.me -->
-                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">http</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;http&#39;</span><span style="color: #d0d0d0">);</span>
+				<p align="justify">
+					The render method is only defined on Backbone.js as an empty method that returns the <b>this</b> pointer (for chaining calls). So all render-related actions must be defined by our code, and we should not forget to return the <b>this</b> pointer, too.
+				</p>
 
-<span style="color: #d0d0d0">http.createServer(</span><span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(request,</span> <span style="color: #d0d0d0">response){</span>
-  <span style="color: #d0d0d0">response.writeHead(</span><span style="color: #3677a9">200</span><span style="color: #d0d0d0">);</span>
-  <span style="color: #d0d0d0">request.on(</span><span style="color: #ed9d13">&#39;readable&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(){</span>
-    <span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">data</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">null</span><span style="color: #d0d0d0">;</span>
-    <span style="color: #6ab825; font-weight: bold">while</span><span style="color: #d0d0d0">(</span><span style="color: #6ab825; font-weight: bold">null</span> <span style="color: #d0d0d0">!==</span> <span style="color: #d0d0d0">(data</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">request.read())){</span>
-      <span style="color: #d0d0d0">console.log(data.toString());</span>
-    <span style="color: #d0d0d0">}</span>
-  <span style="color: #d0d0d0">});</span>
-  <span style="color: #d0d0d0">request.on(</span><span style="color: #ed9d13">&#39;end&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(){</span>
-    <span style="color: #d0d0d0">response.end();</span>
-  <span style="color: #d0d0d0">});</span>
-<span style="color: #d0d0d0">}).listen(</span><span style="color: #3677a9">8080</span><span style="color: #d0d0d0">,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(){</span>
-  <span style="color: #d0d0d0">console.log(</span><span style="color: #ed9d13">&#39;Listening on port 8080...&#39;</span><span style="color: #d0d0d0">);</span>
-<span style="color: #d0d0d0">});</span>
+				<header>
+					<h4>Exercise 1</h4>
+				</header>
+
+				<p align="justify">
+					Open the <b>exercise1.html</b> file on the main project folder. At the bottom of the body, open a new script tag and <b>create</b>, <b>instance</b> and <b>render</b> the following views:
+				</p>
+
+				<ol>
+					<li>A View with no "el" defined. The render() method should append the element to the body.</li>
+					<li>A View with a default "el" selector defined on the View body ("#myViewContainer").</li>
+					<li>Create another instance from the previous View, but render it on another DOM element ("#anotherContainer").</li>
+					<li>Create another instance from the first View, but this time changing the className and tagName attributes.</li>
+				</ol>
+
+				<header>
+					<h4>Templating</h4>
+				</header>
+
+				<p align="justify">
+					Templates in Backbone.js are just functions that generate HTML content to be set on the View container. Backbone.js can take advantage of the <b>underscore</b> template method to do so, as it is part of its dependencies.
+				</p>
+
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">App</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">ItemView</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">View</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
+    <span style="color: #a6e22e">initialize</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">template</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">_</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">template</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">$</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;#ItemTemplate&quot;</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">html</span><span style="color: #f8f8f2">());</span>
+    <span style="color: #f8f8f2">},</span>
+    <span style="color: #a6e22e">render</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">$el</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">html</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">template</span><span style="color: #f8f8f2">({</span><span style="color: #a6e22e">data</span><span style="color: #f92672">:</span><span style="color: #e6db74">&#39;value&#39;</span><span style="color: #f8f8f2">}));</span>
+        <span style="color: #66d9ef">return</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">});</span>	
 </pre></div>
-                <div class="ac-caption">Reading Data From Requester</div>
+<div class="ac-caption">Template compiling on the initalize method.</div>
 
-                <p align="justify">
-                  Now that do something that is not that useless. With this code we can even upload files! As long as the
-                  <i>request</i> stream has data to provide, the event <b>end</b> will not be triggered, and we can keep
-                  getting data and writing it where we want.
-                </p>
+				<p align="justify">
+					What is wrong with the code above?
+				</p>
 
-                <header>
-                  <h4>Make Request</h4>
-                </header>
+				<p align="justify">
+					Template compiling can be a heavy-processing operation. On the example above, this operation will run each time an instance of the view is created.
+				</p>
 
-                <p align="justify">
-                  Not only we can receive requests, but we can make requests to a server.
-                </p>
+				<p align="justify">
+					A better way of doing this is removing the compiling from the initializer. One could also have a separated modules only for templates that could be shared between different Views.
+				</p>
 
-                <!-- HTML generated using hilite.me -->
-                <div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">http</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">require(</span><span style="color: #ed9d13">&#39;http&#39;</span><span style="color: #d0d0d0">);</span>
+				<p align="justify">
+					An even more optimized approach is to pre-compile the templates and add them as a minified jasvascript module.
+				</p>
 
-<span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">options</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">{</span>
-  <span style="color: #d0d0d0">host:</span> <span style="color: #ed9d13">&#39;localhost&#39;</span><span style="color: #d0d0d0">,</span>
-  <span style="color: #d0d0d0">port:</span> <span style="color: #3677a9">8080</span><span style="color: #d0d0d0">.</span>
-  <span style="color: #d0d0d0">path:</span> <span style="color: #ed9d13">&#39;/&#39;</span><span style="color: #d0d0d0">,</span>
-  <span style="color: #d0d0d0">method:</span> <span style="color: #ed9d13">&#39;POST&#39;</span>
-<span style="color: #d0d0d0">};</span>
-
-<span style="color: #6ab825; font-weight: bold">var</span> <span style="color: #d0d0d0">request</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">http.request(options,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(response){</span>
-  <span style="color: #d0d0d0">response.on(</span><span style="color: #ed9d13">&#39;data&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #6ab825; font-weight: bold">function</span><span style="color: #d0d0d0">(){</span>
-    <span style="color: #d0d0d0">console.log(data);</span>
-  <span style="color: #d0d0d0">});</span>
-<span style="color: #d0d0d0">});</span>
-
-<span style="color: #d0d0d0">request.write(</span><span style="color: #ed9d13">&#39;Are you alive?&#39;</span><span style="color: #d0d0d0">);</span>
-<span style="color: #d0d0d0">request.end();</span>
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">App</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">ItemView</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">View</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
+    <span style="color: #a6e22e">template</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">_</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">template</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">$</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;#ItemTemplate&quot;</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">html</span><span style="color: #f8f8f2">()),</span>
+    <span style="color: #a6e22e">initialize</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span> <span style="color: #f8f8f2">...</span> <span style="color: #f8f8f2">},</span>
+    <span style="color: #a6e22e">render</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span> <span style="color: #f8f8f2">...</span> <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">});</span>	
 </pre></div>
-                <div class="ac-caption">Sending Data To The Server</div>
-              </div>
-						</section>
+<div class="ac-caption">Now the template is compiled only once for all instances of that View.</div>
 
-          <!-- Six -->
-            <section id="six">
-              <div class="container">
-                <header class="major">
-                  <h2>Exercises</h2>
-                </header>
+				<p align="justify">
+					It is a common practice to store micro-templates on the page source code, hidden inside special script tags. These tags contain DOM that will not be rendered by the browser but are readily available for the template compilers.
+				</p>
 
-                <header>
-                  <h4>Exercise 1:</h4>
-                </header>
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">	<span style="color: #f92672">&lt;script </span><span style="color: #a6e22e">type=</span><span style="color: #e6db74">&quot;text/template&quot;</span> <span style="color: #a6e22e">id=</span><span style="color: #e6db74">&quot;myMicroTemplate&quot;</span><span style="color: #f92672">&gt;</span>
+	<span style="color: #f92672">&lt;</span><span style="color: #a6e22e">div</span> <span style="color: #66d9ef">class</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;panel panel-default&quot;</span><span style="color: #f92672">&gt;</span>
+		<span style="color: #f92672">&lt;</span><span style="color: #a6e22e">div</span> <span style="color: #66d9ef">class</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;panel-heading&quot;</span><span style="color: #f92672">&gt;</span>
+			<span style="color: #f92672">&lt;</span><span style="color: #a6e22e">h4</span><span style="color: #f92672">&gt;</span><span style="color: #a6e22e">What</span> <span style="color: #a6e22e">is</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">js</span><span style="color: #f92672">?&lt;</span><span style="color: #960050; background-color: #1e0010">/h4&gt;</span>
+		<span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/div&gt;</span>
+		<span style="color: #f92672">&lt;</span><span style="color: #a6e22e">div</span> <span style="color: #66d9ef">class</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;panel-body&quot;</span><span style="color: #f92672">&gt;</span>
+			<span style="color: #a6e22e">Are</span> <span style="color: #a6e22e">we</span> <span style="color: #a6e22e">finding</span> <span style="color: #a6e22e">out</span><span style="color: #f92672">?</span>
+		<span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/div&gt;</span>
+	<span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/div&gt;	</span>
+	<span style="color: #f92672">&lt;/script&gt;</span>
+</pre></div>
+<div class="ac-caption">Micro-templating hidden on a script tag.</div>
 
-                <p align="justify">
-                  Create a program that prints into the console any string that you like.
-                </p>
+				<p align="justify">
+					Each templating library has its own specific syntax for using variables inside it. The underscore library uses the <b>&lt;%= data %&gt;</b> symbols as data wrappers, while the Handlebars libray uses double handlers as in <b>{{ data }}</b>.
+				</p>
 
-                <header>
-                  <h4>Exercise 2:</h4>
-                </header>
+				<p align="justify">
+					Inside the scope of a pre-compiled template, the fields of the data passed as parameter is accessible as if they were declared JS variables.
+				</p>
 
-                <p align="justify">
-                  Create a program that reads a content from a file and print it into the console.
-                </p>
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"> <span style="color: #a6e22e">render</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">$el</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">html</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">template</span><span style="color: #f8f8f2">({</span><span style="color: #a6e22e">data</span><span style="color: #f92672">:</span><span style="color: #e6db74">&#39;value&#39;</span><span style="color: #f8f8f2">}));</span>
+        <span style="color: #66d9ef">return</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">;</span>
+<span style="color: #f8f8f2">}</span>
+</pre></div>
+<div class="ac-caption">Passing data to the template function.</div>
 
-                <header>
-                  <h4>Exercise 3:</h4>
-                </header>
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">&lt;</span><span style="color: #a6e22e">div</span> <span style="color: #a6e22e">class</span><span style="color: #f8f8f2">=</span><span style="color: #e6db74">&quot;panel-body&quot;</span><span style="color: #f8f8f2">&gt;</span>
+	<span style="color: #f8f8f2">&lt;</span><span style="color: #f92672">%=</span> <span style="color: #a6e22e">data</span> <span style="color: #f92672">%</span><span style="color: #f8f8f2">&gt;</span>
+<span style="color: #f8f8f2">&lt;</span><span style="color: #f92672">/</span><span style="color: #a6e22e">div</span><span style="color: #f8f8f2">&gt;</span>
+</pre></div>
+<div class="ac-caption">Underscore syntax for data reading.</div>
 
-                <p align="justify">
-                  Create a program that reads a content from a file and write it in another file.
-                </p>
+				<header>
+					<h4>Exercise 2</h4>
+				</header>
 
-                <header>
-                  <h4>Exercise 4:</h4>
-                </header>
+				<p align="justify">
+					Open the <b>exercise2.html</b> file on the main project folder. At the bottom of the body, open a new script tag and <b>create</b>, <b>instance</b> and <b>render</b> the following views:
+				</p>
 
-                <p align="justify">
-                  Create a class that its constructor receives a string and, inside this class, create a method to
-                  print this string into the console. Export this class to Node.
-                  Create a program that imports the class that you've just created. Create a new class with your
-                  name an print it into the console.
-                </p>
+				<ol>
+					<li>
+						Copy the micro-template shown above and use it as the input for your template. User the <b>myContainer</b> element as the container for your View.
+					</li>
+					<li>
+						Create a View as the one from the previous exercise. This time, use a jQuery selector on the <b>this.$el</b> to change the contents of the <b>'.panel-body'</b> element.
+					</li>
+					<li>
+						Create a View as the one from the previous exercise. This time, duplicate the template script, give it another ID, and edit it to use the <b>underscore</b> syntax (&lt;%= %&gt;) to change the contents of the <b>'.panel-body'</b> element.
+					</li>
+				</ol>
 
-                <header>
-                  <h4>Exercise 5:</h4>
-                </header>
+				<header>
+					<h4>Events</h4>
+				</header>
 
-                <p align="justify">
-                  Create a class that its constructor receives a string and, inside this class, create a method to
-                  print this string into the console using a new Event Emitter, calling the event 'log'. Export this class
-                  to Node.
-                  Create a program that imports the class that you've just created. Create a new class with your
-                  name an print it into the console.
-                </p>
+				<p align="justify">
+					Events are the way the views react to user actions. The events are defined inside a special field on the View declaration and <b>ALL EVENT LISTENERS ARE SCOPED INSIDE THE VIEW ELEMENT CONTEXT</b>.
+				</p>
 
-                <header>
-                  <h4>Exercise 6:</h4>
-                </header>
+				<ul class="feature-icons">
+					<li class="fa-bolt" style="width: inherit"><b>ALL EVENT LISTENERS ARE SCOPED INSIDE THE VIEW ELEMENT CONTEXT</b></li>
+					<li class="fa-bolt" style="width: inherit"><b>ALL EVENT LISTENERS ARE SCOPED INSIDE THE VIEW ELEMENT CONTEXT</b></li>
+					<li class="fa-bolt" style="width: inherit"><b>ALL EVENT LISTENERS ARE SCOPED INSIDE THE VIEW ELEMENT CONTEXT</b></li>
+				</ul>
 
-                <p align="justify">
-                  Create a class that its constructor receives a string and, inside this class, create a method to
-                  print this string into the console using winston package. Export this class to Node.
-                  Create a program that imports the class that you've just created. Create a new class with your
-                  name an print it into the console.
-                </p>
 
-                <header>
-                  <h4>Exercise 7:</h4>
-                </header>
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">EventView</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">View</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">(</span> <span style="color: #f8f8f2">{</span> 
+	<span style="color: #a6e22e">events</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">{</span>
+		<span style="color: #e6db74">&#39;click .panel-body&#39;</span> <span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;alertPanelBody&#39;</span>
+	<span style="color: #f8f8f2">},</span>
+	<span style="color: #a6e22e">alertPanelBody</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">event</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+		<span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">event</span><span style="color: #f8f8f2">);</span>
+		<span style="color: #a6e22e">alert</span><span style="color: #f8f8f2">(</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">$el</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">find</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;.panel-body&#39;</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">text</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">);</span>
+	<span style="color: #f8f8f2">},</span>
+	<span style="color: #a6e22e">render</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span> <span style="color: #f8f8f2">...</span> <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">});</span>
+</pre></div>
+<div class="ac-caption">Backbone.js View events example.</div>
 
-                <p align="justify">
-                  Create a simple package.json file with all the dependencies and info required to describe all of what
-                  you did at exercise 6.
-                </p>
+				<p align="justify">
+					It is a common practice to always declare the <b>events</b> field as the <b>first field</b> of the View. The event queries use the jQuery syntax for event handling.
+				</p>
 
-                <header>
-                  <h4>Exercise 8:</h4>
-                </header>
+				<header>
+					<h4>Exercise 3</h4>
+				</header>
 
-                <p align="justify">
-                  Create a simple server that, when requested, returns the string <b>"Hello World"</b>.
-                </p>
+				<p align="justify">
+					Open the <b>exercise3.html</b> file on the main project folder. At the bottom of the body, open a new script tag and:
+				</p>
 
-                <header>
-                  <h4>Exercise 9:</h4>
-                </header>
+				<ol>
+					<li>
+						Create a View that uses the '#myMicroTemplate' template and alert the contents of the element clicked (panel-heading or panel-body).
+					</li>
+				</ol>
 
-                <p align="justify">
-                  Create a program that make a request to the local server.
-                </p>
+			</div>
+		</section>		
 
-                <header>
-                  <h4>Exercise 10:</h4>
-                </header>
+		<section id="five">
+			<div class="container">
+				<header class="major">
+					<h2>Models</h2>
+				</header>
 
-                <p align="justify">
-                  Create a server that echoes to the requester the same data that he sent.
-                </p>
+				<p align="justify">
+					<b>Models</b> are the data structures of Backbone.js. They not just store data but are also coded for connecting to any server side <b>REST API</b>, with read, write, create and delete methods.
+				</p>		
 
-                <header>
-                  <h4>Exercise 11:</h4>
-                </header>
+				<header>
+					<h4>Model Methods</h4>
+				</header>	
+	
+				<p align="justify">
+					Models can can handle data validation, default values, parsing data received from the remote  server and conforming data back to the server required pattern before sending it. The most used Models methods are:
+				</p>
 
-                <p align="justify">
-                  Create a server that print into the console the data that the requester sent.
-                </p>
+				<ul>
+					<li>get:attr</li>
+					<li>set</li>
+					<li>set:attr</li>
+					<li>fetch</li>
+					<li>save</li>
+					<li>destroy</li>
+					<li>validate</li>
+					<li>parse</li>
+				</ul>
 
-                <header>
-                  <h4>Exercise 12:</h4>
-                </header>
+				<header>
+					<h4>Model Events</h4>
+				</header>
 
-                <p align="justify">
-                  Create a server that prints into a file the data that the requester sent.
-                </p>
+				<p align="justify">
+					The other key feature of the Models are their event triggering capabilities. This way a View can <b>listenTo</b> a Model data <b>change</b> and re-render itself, or wait for the Model to <b>sync</b> with the server to re-render itself. The Model can also listen to its own events.
+				</p>
 
-                <header>
-                  <h4>Exercise 13:</h4>
-                </header>
+				<p align="justify">
+					The list of the built-in Model events are:
+				</p>
 
-                <p align="justify">
-                  Create a server that prints into a file the data that the requester sent using the method <b>pipe</b>
-                  from the stream <i>request</i>.
-                </p>
+				<ul>
+					<li>change</li>
+					<li>change:attr</li>
+					<li>destroy</li>
+					<li>sync</li>
+					<li>invalid</li>
+					<li>error</li>
+					<li>all</li>
+				</ul>
 
-                <header>
-                  <h4>Exercise 14:</h4>
-                </header>
+				<header>
+					<h4>Model Defaults</h4>
+				</header>
 
-                <p align="justify">
-                  Create a upload server that receives a file, save it into the disk and returns to the requester the
-                  upload progress in real time.
-                </p>
+				<p align="justify">
+					The Model defaults are the data that the are going to be automatically filled in when you create a model:
+				</p>
 
-              </div>
-            </section>
-        </div>
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">UserModel</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Model</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>	
+	<span style="color: #a6e22e">defaults</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">{</span>
+		<span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;Default Name&quot;</span><span style="color: #f8f8f2">,</span>
+		<span style="color: #e6db74">&quot;email&quot;</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;default@email.com&quot;</span>
+	<span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">});</span>
+</pre></div>
+<div class="ac-caption">A Model example with default data definition.</div>
 
-			<!-- Footer -->
-				<section id="footer">
-					<div class="container">
-						<ul class="copyright">
-							<li>&copy; Avenue Code. All rights reserved.</li>
-							<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-						</ul>
-					</div>
-				</section>
+				<header>
+					<h4>Model Validation</h4>
+				</header>
 
+				<p align="justify">
+					The Model <b>validate</b> method is not defined until we create it to fit our needs. By default <b>save</b> checks validate before setting any attributes but you may also tell <b>set</b> to validate the new attributes by passing <b>{validate: true}</b> as an option. 
+				</p>
+
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">UserModel</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Model</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
+  <span style="color: #a6e22e">validate</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">attrs</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">options</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span> <span style="color: #a6e22e">isValidEmail</span><span style="color: #f8f8f2">(</span> <span style="color: #a6e22e">attrs</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">email</span> <span style="color: #f8f8f2">)</span> <span style="color: #f92672">===</span> <span style="color: #66d9ef">false</span> <span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #66d9ef">return</span> <span style="color: #e6db74">&quot;Invalid email value.&quot;</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #f8f8f2">}</span>
+  <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">});</span>
+</pre></div>
+<div class="ac-caption">A Model validation example.</div>
+			
+				<p align="justify">
+					If the model validation returns anything, the <b>invalid</b> event is fired and the return of the validate method is stored on the <b>validationError</b> Model property.
+				</p>
+
+			</div>
+		</section>	
+		
+	</div>
+
+	<!-- Footer -->
+	<section id="footer">
+		<div class="container">
+			<ul class="copyright">
+				<li>&copy; Avenue Code. All rights reserved.</li>
+				<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+			</ul>
 		</div>
-	</body>
+	</section>
+
+</div>
+</body>
 </html>
