@@ -62,7 +62,8 @@
 				<ul>
 					<li><a href="#one" class="active">Models, part 2</a></li>
 					<li><a href="#two">Views + Models</a></li>
-					<li><a href="#three">Router</a></li>					
+					<li><a href="#three">The Router</a></li>
+					<li><a href="#four">The History</a></li>
 				</ul>
 				<img src="http://www.avenuecode.com/wp-content/themes/ac-site/images/white-logo.png" alt="">
 			</nav>
@@ -206,6 +207,35 @@
 					</p>
 
 					<header>
+						<h4>The Model idAttribute</h4>
+					</header>
+
+					<p align="justify">
+						As we are learning soon, for some RESTful actions (actually for most of them) the model have to provide its <b>idAttribute</b>. It may be in order to <b>read</b> or <b>update</b> a specific object from the server.
+					</p>
+
+					<p align="justify">
+						The server, however, not always send objects with an <b>id</b> attribute. The <b>mongoDB</b>, for example, identify its objects by a <b>_id</b> label. So we have two options: 
+					</p>
+
+					<ul>
+						<li><b>parse</b> the server response deleting the <b>_id</b> attribute and setting it as <b>id</b> on the returned object.</li>
+						<li>change your Model's default <b>idAttribute</b> to be <b>_id</b> instead of <b>id</b>.</li>
+					</ul>
+
+					<p align="justify">
+						Which one is the best way to go? Oh life, so full of choices that we may or may not regret forever.
+					</p>
+
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">UserModel</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Model</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
+    <span style="color: #a6e22e">url</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;/users/me&#39;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">idAttribute</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;_id&#39;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #f8f8f2">...</span>
+<span style="color: #f8f8f2">}</span>
+</pre></div>
+<div class="ac-caption">Changing the default Model's <b>idAttribute</b>.</div>
+
+					<header>
 						<h4>The Model sync() method</h4>
 					</header>
 
@@ -233,7 +263,7 @@
 						Let's assume our server breaks the REST API on the route it defined to create a new instance on the database, so that we need to add a <b>/create</b> trail to the create object url. One way of doing that would be by customizing the <b>Backbone.sync</b> method as in the code below:
 					</p>
 
-<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">sync</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">method</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">model</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">options</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>  
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">sync</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">method</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">model</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">options</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>  
     <span style="color: #a6e22e">options</span> <span style="color: #f92672">||</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">options</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{});</span>
     <span style="color: #66d9ef">switch</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">method</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
         <span style="color: #66d9ef">case</span> <span style="color: #e6db74">&#39;create&#39;</span><span style="color: #f92672">:</span>
@@ -250,10 +280,50 @@
         <span style="color: #66d9ef">break</span><span style="color: #f8f8f2">;</span>
     <span style="color: #f8f8f2">}</span>
     <span style="color: #66d9ef">return</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">sync</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">method</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">model</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">options</span><span style="color: #f8f8f2">);</span>
-<span style="color: #f8f8f2">};</span>
+<span style="color: #f8f8f2">}</span>
 </pre></div>
 <div class="ac-caption">Remember this for the next exercises.</div>
 
+					<header>
+					<h4>The Model toJSON() method</h4>
+					</header>
+
+					<p align="justify">
+						Besides the RESTful API, our server may also differ from our application on the way it expects the data to be sent back. Remember when we changed the model on the <b>parse()</b> method? It may be necessary to change it back before sending it to the server. 
+					</p>
+
+					<p align="justify">
+						For accomplishing that all we have to do is overwrite our Model's <b>toJSON()</b> method. When the Model data is going to be <b>serialized</b> to be sent back to the server on a <b>save()</b> call, for example, the data sent back will not be just the <b>model.attributes</b>, but the result of the <b>model.toJSON()</b>.
+					</p>
+
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">TodoItem</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Model</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
+    <span style="color: #a6e22e">toJSON</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(){</span>
+        <span style="color: #66d9ef">return</span> <span style="color: #a6e22e">_</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">clone</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">attributes</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">});</span>
+</pre></div>
+<div class="ac-caption">Default Model <b>toJSON</b> behavior.</div>					
+
+					<p align="justify">
+						It is common to see the <b>toJSON</b> method be called to pass the model data to the <b>templating</b> function. This is done because while <b>toJSON</b> returns a <b>shallow copy</b> of the model's <b>attributes</b> value, passing <b>model.attributes</b> passes the real attributes forward.
+					</p>
+
+					<p align="justify">
+						But as long as our template is not changing the attributes we pass, we are free to send them as <b>model.attributes</b> to the template method and use the <b>toJSON</b> as it is really intended, Which is for the model data <b>serialization</b>.
+					</p>	
+
+
+					<header>
+						<h4>Exercise 6-b</h4>
+					</header>
+
+					<p align="justify">
+						For this exercise, use the same <b>exercise6.html</b> file.
+					</p>
+
+					<ol>
+						<li>Override your model <b>toJSON</b> method to revert your model attributes back to what the server sent you (undo the <b>firstname</b> and <b>lastname</b> changes.</li>
+					</ol>
 
 				</div>
 			</section>		
@@ -394,7 +464,7 @@
 				<div class="container">
 
 					<header class="major">
-						<h2>Router</h2>
+						<h2>The Router</h2>
 					</header>					
 					
 					<p align="justify">
@@ -447,6 +517,55 @@
 					<p align="justify">
 						The <b>Router</b> is commonly used as the <b>Backbone.js</b> central <b>App</b> object, but this configuration is not mandatory. In fact, a Backbone application can have multiple routers, as well as sub-routers that handle sub-paths.
 					</p>
+
+					<header>
+						<h4>The Router navigate() method</h4>
+					</header>
+
+					<p align="justify">
+						Whenever you reach a point in your application that you'd like to save as a URL, call <b>navigate</b> in order to update the URL. If you also wish to call the <b>route</b> function, set the <b>trigger</b> option to true. To update the URL without creating an entry in the browser's history, set the <b>replace</b> option to true.
+					</p>
+
+				</div>
+			</section>		
+
+			<section id="four">
+				<div class="container">
+
+					<header class="major">
+						<h2>The History</h2>
+					</header>
+
+					<p align="justify">
+						The <b>History</b> serves as a global <b>router</b> (per frame) to handle <b>hashchange</b> events or <b>pushState</b>, match the appropriate route, and trigger callbacks. You shouldn't ever have to create one of these yourself since <b>Backbone.history</b> already contains one.
+					</p>
+
+					<header>
+						<h4>The History start() method</h4>
+					</header>
+
+					<p align="justify">
+						When all of your <b>Routers</b> have been created, and all of the routes are set up properly, call <b>Backbone.history.start()</b> to begin monitoring hashchange events, and dispatching routes. 
+					</p>
+					<p align="justify">
+						Subsequent calls to Backbone.history.start() will throw an error, and <b>Backbone.History.started</b> is a boolean value indicating whether it has already been called.
+					</p>
+
+					<header>
+						<h4>History pushState</h4>
+					</header>
+
+					<p align="justify">
+						<b>pushState</b> support exists on a purely opt-in basis in Backbone. Older browsers that don't support pushState will continue to use hash-based URL fragments, and if a hash URL is visited by a pushState-capable browser, it will be transparently upgraded to the true URL. 
+					</p>
+					<p align="justify">
+						Note that using real URLs requires your web server to be able to correctly render those pages, so back-end changes are required as well. For example, if you have a route of /documents/100, your web server must be able to serve that page, if the browser visits that URL directly. 
+					</p>
+					<p align="justify">
+						For full search-engine crawlability, it's best to have the server generate the complete HTML for the page ... but if it's a web application, just rendering the same content you would have for the root URL, and filling in the rest with Backbone Views and JavaScript works fine.
+					</p>
+					
+
 
 					<header>
 						<h4>Exercise 8</h4>
