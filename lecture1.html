@@ -64,7 +64,7 @@
 					<li><a href="#two">Installing this course</a></li>
 					<li><a href="#three">Backbone Overview</a></li>
 					<li><a href="#four">Views</a></li>
-					<li><a href="#five">Models</a></li>
+					<li><a href="#five">Models, part 1</a></li>
 				</ul>
 				<img src="http://www.avenuecode.com/wp-content/themes/ac-site/images/white-logo.png" alt="">
 			</nav>
@@ -324,7 +324,7 @@
 					The <b>"el"</b> property references a DOM object created by the View in the browser. Every Backbone.js view has an "el" property, and if it is not defined, Backbone.js will construct its own, which is, <i>by default</i>, an empty div element. The $el property is just a cached jQuery object selecting the el element.
 				</p>				
 
-				<p align="justify">This element will not be attached to the body DOM until it is done in our code, usually on the <b>render()</b> method.</p>
+				<p align="justify">This element will not be attached to the body DOM until it is done in our code.</p>
 
 				<p align="justify">
 					It is possible to change the default "el" by passing either a jQuery selector on the View definition or as a parameter to the constructor. In this case, if the element already exists on the DOM, it will be used instead.
@@ -571,13 +571,12 @@
 		<section id="five">
 			<div class="container">
 				<header class="major">
-					<h2>Models</h2>
+					<h2>Models, part 1</h2>
 				</header>
 
 				<p align="justify">
 					<b>Models</b> are the data structures of Backbone.js. They not just store data but are also coded for connecting to any server side <b>REST API</b>, with read, write, create and delete methods, and built-in event firing.
 				</p>
-
 				<p align="justify">
 					The model's <b>&lt;key,value&gt;</b> pairs are stored on its <b>attributes</b> field.
 				</p>	
@@ -599,7 +598,7 @@
 					<li>destroy</li>
 					<li>validate</li>
 					<li>parse</li>
-				</ul>
+				</ul>				
 
 				<p align="justify">
 					Every time you call a Model's <b>fetch</b> or <b>save</b> methods, it will create a call to the <b>sync</b> method. So the <b>sync</b> method is the one to overwrite if you need to customize your model to match your server's API.
@@ -638,6 +637,9 @@
 					<li>all</li>
 				</ul>
 
+				<p align="justify">
+					You can check all the Backbone.js built-in events here: <b><a target="_blank" href="http://backbonejs.org/#Events-catalog">http://backbonejs.org/#Events-catalog</a></b>. Each built-in event callback can receive different numbers and types of parameters.
+				</p>
 
 				<p align="justify">
 					If we want to change a Model's attribute but not fire the <b>change</b> event, we can pass the option <b>{silence: true}</b> to the <b>set</b> method. Models can also listen to and fire <b>custom events</b>.
@@ -770,13 +772,12 @@
 				</ul>
 
 				<p align="justify">
-					With your server running, go to the <b>/login.html</b> url. Create a login for you using an email that you have previously registered with an avatar picture on the site <b><a href="http://gravatar.com" target="_blank">gravatar.com</a></b>.
+					With your server running, go to the <b>/login.html</b> url. Create a login for you using your <b>FULL NAME</b> and an email that you have previously registered for an avatar picture on the site <b><a href="http://gravatar.com" target="_blank">gravatar.com</a></b>.
 				</p>
 
 				<p align="justify">
-					Login with your chosen email and password, then open <b>excercise5.html</b>. Open a new script tag at the end of the document and create a model there that will retrieve you user data using <b>/users/me</b> as <b>urlRoot</b>. Your model should listen to its own <b>sync</b> event. Do a model fetch() and debug the model attributes on your sync listener.
+					Login with your chosen email and password, then open <b>excercise5.html</b>. Open a new script tag at the end of the document and create a model there that will retrieve you user data using <b>/users/me</b> as <b>urlRoot</b>. Your model should listen to its own <b>sync</b> event. Do a model fetch() and use the console to log the model attributes on your model initialize method and on your sync listener.
 				</p>
-
 
 			</div>
 		</section>	

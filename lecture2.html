@@ -6,7 +6,7 @@
 -->
 <html>
 <head>
-	<title>Backbone.js - Lecture 1</title>
+	<title>Backbone.js - Lecture 2</title>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
@@ -55,16 +55,14 @@
 		<section id="header" class="skel-layers-fixed">
 			<header>
 
-				<h1 id="logo"><a href="#">Backbone - Lecture 1</a></h1>
+				<h1 id="logo"><a href="#">Backbone - Lecture 2</a></h1>
 
 			</header>
 			<nav id="nav">
 				<ul>
-					<li><a href="#one" class="active">Introduction</a></li>
-					<li><a href="#two">Installing this course</a></li>
-					<li><a href="#three">Backbone Overview</a></li>
-					<li><a href="#four">Views</a></li>
-					<li><a href="#five">Models, part 1</a></li>
+					<li><a href="#one" class="active">Models, part 2</a></li>
+					<li><a href="#two">Views + Models</a></li>
+					<li><a href="#three">Router</a></li>					
 				</ul>
 				<img src="http://www.avenuecode.com/wp-content/themes/ac-site/images/white-logo.png" alt="">
 			</nav>
@@ -82,114 +80,240 @@
 			<!-- One -->
 			<section id="one">
 				<div class="container">
-
 					
 					<header class="major">
-						<h2>Introduction</h2>
+						<h2>Models, part 2</h2>
 					</header>
 
-					<p align="justify"><b>Backbone.js</b> is a <a href="https://en.wikipedia.org/wiki/JavaScript" title="JavaScript">JavaScript</a> library with a <b>RESTful</b> <a href="https://en.wikipedia.org/wiki/JSON" title="JSON">JSON</a> interface and is based on the <b>model–view–presenter</b> (MVP) application design paradigm. Backbone is known for being lightweight, as it only depends three other JavaScripts libraries: jQuery, JSON2, and <a href="https://en.wikipedia.org/wiki/Underscore.js" title="Underscore.js">Underscore.js</a>. It is designed for developing <a href="https://en.wikipedia.org/wiki/Single-page_application" title="Single-page application">single-page web applications</a>, and for keeping various parts of web applications (e.g. multiple clients and the server) synchronized.</p>
+					<p align="justify">
+						So far we have created Models with <b>default attributes</b>, with <b>data validation</b>, with  <b>event listeners</b> and <b>data fetching</b> from the server. Before continuing, we are going to learn how to work this data received from the server.
+					</p>				
+
+					<header>
+						<h4>The Model parse() method</h4>
+					</header>
 
 					<p align="justify">
-						It is used on world famous web-applications such as Airbnb, Groupon, Hulu, Digg, Trello, Pinterest, Flixter and Foursquare.
+						Sometimes your application needs data in a format that differs from the one your server is ready to send and/or you don't have the access or the knowledge to make the changes you need on the server. Other times processing that data on the server to generate a proper response would increase your hosting costs.
+					</p>
+
+					<p align="justify">
+						In either case, the <b>parse()</b> method comes to the rescue! The parse method is called everytime your model makes a sucessful <b>fetch()</b> call, <b>AND CAN BE OPTIONALLY CALLED WHEN YOU DO A SET CALL AS WELL</b>.
+					</p>
+
+					<ul class="feature-icons">
+						<li class="fa-bolt" style="width: inherit">You can parse the model attributes every time you do a <b>set</b> by passing <b>{parse: true}</b> as an optional parameter to the <b>set</b> call.</li>
+					</ul>
+
+					<p align="justify">
+						The <b>parse</b> method receives the response data and returns the parsed response that will be set as the new model attributes. The default Model parse only passes the data forward, and we have to overwrite it when defining our Model class to make it fit our needs.
+					</p>
+
+
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">parse</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">resp</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">options</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">return</span> <span style="color: #a6e22e">resp</span><span style="color: #f8f8f2">;</span>
+<span style="color: #f8f8f2">}</span>
+</pre></div>
+<div class="ac-caption">The default <b>parse</b> just returns the response unchanged.</div>
+
+					<header>
+						<h4>Exercise 6</h4>
+					</header>
+
+					<p align="justify">
+						Follow the same procedures as in Exercise 5 to login into your local server.
+					</p>
+
+					<ol>
+						<li>Add a <b>parse</b> method on your model that breaks your name and create two new model attributes: <b>firstname</b> and <b>lastname</b>.</li>
+						<li>If you did not follow the instructions from Exercise 5 correctly and created your user with just a single name, have you <b>parse</b> method duplicate it into the model's <b>firstname</b> and <b>lastname</b> attributes.</li>
+						<li>Change the method used as the callback to you <b>sync</b> listener to receive three parameters: <b>model</b>, <b>response</b> and <b>options</b>. Log the three parameters on the console and identify each one's fields.</li>					
+					</ol>
+
+					<p align="justify">
+						You should notice the callback to your <b>sync</b> event only fires after the model data was already parsed.
 					</p>
 
 					<header>
-						<h4>From <a href="http://backbonejs.org/">backbonejs.org</a>:</h4>
+						<h4>The Model sync() method</h4>
 					</header>
 
 					<p align="justify">
-						Backbone.js gives structure to web applications
-						by providing <b>models</b> with key-value binding and custom events,
-						<b>collections</b> with a rich API of enumerable functions,
-						<b>views</b> with declarative event handling, and connects it all to your
-						existing API over a RESTful JSON interface.
+						Sometimes your server is not so <b>RESTful</b> after all. Sometimes it would just not make sense. In either case, the <b>sync()</b> method can be customized to better suit your data persistence needs.
 					</p>
 
-			</div>
-		</section>		
+					<p align="justify">
+						The <b>sync</b> function may be overridden globally as <b>Backbone.sync</b>, or at a finer-grained level, by adding a <b>sync</b> function to a Backbone <b>collection</b> or to an individual <b>model</b>.
+					</p>
 
-		<section id="two">
+					<p align="justify">The default sync handler maps <b>CRUD</b> to <b>REST</b> like so:</p>
+
+					<ul>
+						<li><b>create → POST &nbsp; </b><tt>/urlRoot</tt></li>
+						<li><b>read → GET &nbsp; </b><tt>/urlRoot[/id]</tt></li>
+						<li><b>update → PUT &nbsp; </b><tt>/urlRoot/id</tt></li>
+						<li><b>patch → PATCH &nbsp; </b><tt>/urlRoot/id</tt></li>
+						<li><b>delete → DELETE &nbsp; </b><tt>/urlRoot/id</tt></li>
+					</ul>
+
+					<p align="justify">The <b>PATCH</b> request is just like the <b>PUT</b> request, but it only sends the changed data to the server. You can send a PATCH by passing <b>{patch:true}</b> as optional parameter when making a <b>model.save</b> call. It was added on <b>Backbone.js</b> version 0.9.9.</p>
+
+					<p align="justify">
+						Let's assume our server breaks the REST API on the route it defined to create a new instance on the database, so that we need to add a <b>/create</b> trail to the create object url. One way of doing that would be by customizing the <b>Backbone.sync</b> method as in the code below:
+					</p>
+
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">sync</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">method</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">model</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">options</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>  
+    <span style="color: #a6e22e">options</span> <span style="color: #f92672">||</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">options</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{});</span>
+    <span style="color: #66d9ef">switch</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">method</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #66d9ef">case</span> <span style="color: #e6db74">&#39;create&#39;</span><span style="color: #f92672">:</span>
+        	<span style="color: #a6e22e">options</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">url</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">urlRoot</span> <span style="color: #f92672">+</span> <span style="color: #e6db74">&#39;/create&#39;</span><span style="color: #f8f8f2">;</span>
+        <span style="color: #66d9ef">break</span><span style="color: #f8f8f2">;</span>
+
+        <span style="color: #66d9ef">case</span> <span style="color: #e6db74">&#39;update&#39;</span><span style="color: #f92672">:</span>
+        <span style="color: #66d9ef">break</span><span style="color: #f8f8f2">;</span>
+
+        <span style="color: #66d9ef">case</span> <span style="color: #e6db74">&#39;delete&#39;</span><span style="color: #f92672">:</span>
+        <span style="color: #66d9ef">break</span><span style="color: #f8f8f2">;</span>
+
+        <span style="color: #66d9ef">case</span> <span style="color: #e6db74">&#39;read&#39;</span><span style="color: #f92672">:</span>
+        <span style="color: #66d9ef">break</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #f8f8f2">}</span>
+    <span style="color: #66d9ef">return</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">sync</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">method</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">model</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">options</span><span style="color: #f8f8f2">);</span>
+<span style="color: #f8f8f2">};</span>
+</pre></div>
+<div class="ac-caption">Remember this for the next exercises.</div>
+
+
+				</div>
+			</section>		
+
+			<section id="two">
 				<div class="container">
 
 					<header class="major">
-						<h2>Installing this course</h2>
+						<h2>Views + Models</h2>
 					</header>
 
-					<p align="justify">
-						Backbone.js can be just copied to your assets folder and run offline, but in order interact with this course's backend API, which is based on <b>Node.js</b> and <b>MongoDB</b>, we will install a GitHub repository and run its <b>Node.js</b> server.
+					<p align="justify">So far we only worked with <b>Views</b> and <b>Models</b> separately. It is time to join them to create our first <b>Backbone.js</b> application.
 					</p>
 
-					<p align="justify">
-						In order to do so, just run:
+					<p align="justify">We are goint to create a <b>ProfileView</b>, in order to display and edit our user data on the page DOM. This View will use a micro-template for rendering. On the next section we will prepare our <b>exercise7.html</b> to render our profile contents.
 					</p>
 
-<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">git</span> <span style="color: #a6e22e">clone</span> <span style="color: #a6e22e">git</span><span style="color: #960050; background-color: #1e0010">@</span><span style="color: #a6e22e">github</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">com</span><span style="color: #f92672">:</span><span style="color: #a6e22e">edudiego</span><span style="color: #f92672">/</span><span style="color: #a6e22e">AC</span><span style="color: #f92672">-</span><span style="color: #a6e22e">socialApi</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">git</span>
+					<p align="justify">First, copy the line below into your source code:
+					</p>
+
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f92672">&lt;</span><span style="color: #a6e22e">script</span> <span style="color: #a6e22e">type</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;text/template&quot;</span> <span style="color: #a6e22e">id</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;profileTemplate&quot;</span><span style="color: #f92672">&gt;&lt;</span><span style="color: #960050; background-color: #1e0010">/script&gt;</span>
 </pre></div>
-<div class="ac-caption">This will clone the git repository into the current folder.</div>
+<div class="ac-caption">This is our micro-templating tag.</div>
 
-					<p align="justify">
-						After doing that, run the node package manager to install this project dependencies:
-					</p>
+<p align="justify">Netx, fill that tag up with the following contents:</p>
 
-<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">npm</span> <span style="color: #a6e22e">install</span>
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f92672">&lt;</span><span style="color: #a6e22e">div</span> <span style="color: #66d9ef">class</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;column col-xs-12&quot;</span> <span style="color: #a6e22e">id</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;main&quot;</span><span style="color: #f92672">&gt;</span>
+  <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">div</span> <span style="color: #66d9ef">class</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;col-sm-2&quot;</span><span style="color: #f92672">&gt;</span>
+    <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">div</span> <span style="color: #a6e22e">id</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;myProfile&quot;</span> <span style="color: #66d9ef">class</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;panel panel-default&quot;</span><span style="color: #f92672">&gt;</span>
+      <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">div</span> <span style="color: #66d9ef">class</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;panel-thumbnail&quot;</span><span style="color: #f92672">&gt;</span>
+        <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">img</span> <span style="color: #a6e22e">id</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;profilePicture&quot;</span> <span style="color: #66d9ef">class</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;img-responsive&quot;</span>
+        <span style="color: #a6e22e">src</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;http://www.gravatar.com/avatar/.jpg?s=200&quot;</span><span style="color: #f92672">&gt;</span>
+      <span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/div&gt;</span>
+      <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">div</span> <span style="color: #66d9ef">class</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;panel-body&quot;</span><span style="color: #f92672">&gt;</span>
+        <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">p</span> <span style="color: #66d9ef">class</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;lead&quot;</span><span style="color: #f92672">&gt;&lt;</span><span style="color: #960050; background-color: #1e0010">/p&gt;</span>
+      <span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/div&gt;</span>
+    <span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/div&gt;</span>
+  <span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/div&gt;</span>
+  <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">div</span> <span style="color: #66d9ef">class</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;col-sm-6&quot;</span><span style="color: #f92672">&gt;</span>
+    <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">div</span> <span style="color: #66d9ef">class</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;panel panel-default&quot;</span><span style="color: #f92672">&gt;</span>
+      <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">div</span> <span style="color: #66d9ef">class</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;panel-body&quot;</span><span style="color: #f92672">&gt;</span>
+        <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">form</span><span style="color: #f92672">&gt;</span>
+          <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">div</span> <span style="color: #66d9ef">class</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;form-group&quot;</span><span style="color: #f92672">&gt;</span>
+            <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">label</span> <span style="color: #66d9ef">for</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f92672">&gt;</span><span style="color: #a6e22e">Nome</span><span style="color: #f92672">:&lt;</span><span style="color: #960050; background-color: #1e0010">/label&gt;</span>
+            <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">input</span> <span style="color: #a6e22e">id</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;name&quot;</span> <span style="color: #a6e22e">type</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;text&quot;</span> <span style="color: #66d9ef">class</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;form-control&quot;</span> <span style="color: #a6e22e">value</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;&quot;</span><span style="color: #f92672">&gt;</span>
+          <span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/div&gt;</span>
+          <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">div</span> <span style="color: #66d9ef">class</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;form-group&quot;</span><span style="color: #f92672">&gt;</span>
+            <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">label</span> <span style="color: #66d9ef">for</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;email&quot;</span><span style="color: #f92672">&gt;</span><span style="color: #a6e22e">Email</span><span style="color: #f92672">:&lt;</span><span style="color: #960050; background-color: #1e0010">/label&gt;</span>
+            <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">input</span> <span style="color: #a6e22e">id</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;email&quot;</span> <span style="color: #a6e22e">type</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;email&quot;</span> <span style="color: #66d9ef">class</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;form-control&quot;</span> <span style="color: #a6e22e">value</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;&quot;</span><span style="color: #f92672">&gt;</span>
+          <span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/div&gt;</span>
+          <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">button</span> <span style="color: #a6e22e">type</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;button&quot;</span> <span style="color: #66d9ef">class</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;btn btn-default&quot;</span><span style="color: #f92672">&gt;</span><span style="color: #a6e22e">Submit</span><span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/button&gt;</span>
+        <span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/form&gt;</span>
+      <span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/div&gt;</span>
+    <span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/div&gt;</span>
+  <span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/div&gt;</span>
+<span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/div&gt;</span>
 </pre></div>
-<div class="ac-caption">This will install all the project local dependencies.</div>
-					
+<div class="ac-caption">Actual template contents.</div>
+
 					<header>
-						<h4>Installing Bower</h4>
+						<h4>Exercise 7-a</h4>
 					</header>
 
 					<p align="justify">
-						<b>Bower</b> is a package manager system similar to npm, the Node package manager, but  focused on front-end libraries. We are going to use it to install Backbone.js and its dependencies:
+						Continue working on <b>exercise7.html</b> to create your profile View. Follow the below steps:
 					</p>
 
-<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">npm</span> <span style="color: #a6e22e">install</span> <span style="color: #a6e22e">bower</span> <span style="color: #f92672">-</span><span style="color: #a6e22e">g</span>
-</pre></div>
-
-<div class="ac-caption">Unlike other project dependencies Bower should be installed globally (-g).</div>
+					<ol>
+						<li>Create a model with <b>urlRoot</b> = <b>'/users/me'</b>. Customize its <b>initialize</b> method so that it fetches its contents upon initialize.</li>
+						<li>Have the model <b>parse</b> its fetched contents to create artificial <b>firstname</b> and <b>lastname</b> attributes.</li>
+						<li>Create a View that uses the <b>undesrcore</b> templating engine to render its contents. The View should load the script tag you copied as the template source.</li>
+						<li>The view should append its template generated contents to the <b>#mainViewContainer</b> DOM element.</li>
+						<li>Create an <b>instance</b> of the View, and pass an <b>instance</b> of the Model on its constructor as the <b>model</b> parameter.</li>
+					</ol>
 
 					<p align="justify">
-						 Bower could be listed together with the project dependencies and had been installed on the npm install you run before, but its installation was left separated for didatic reasons.
+						If you did everything right you endeed up with a View that shows this:
+					</p>
+
+					<img src="./images/exercise7-a.png">
+					<div class="ac-caption">This is what you should have by now.</div>
+
+					<p align="justify">
+						Our View is rendering but we still need to connect the <b>Model data</b> to the template. For doing so, identify on the template DOM where it should be appropriate to display the model attributes and add <b>underscore tags (&lt;%= %&gt;)</b> to the DOM.
+					</p>
+
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f92672">&lt;</span><span style="color: #a6e22e">p</span> <span style="color: #66d9ef">class</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;lead&quot;</span><span style="color: #f92672">&gt;&lt;%=</span> <span style="color: #a6e22e">firstname</span> <span style="color: #f92672">%&gt;&lt;</span><span style="color: #960050; background-color: #1e0010">/p&gt;</span>
+</pre></div>
+<div class="ac-caption">Example: display the firstname attribute on the p.class="lead".</div>					
+
+					<p align="justify">
+						To display the profile picture, use the <b>md5</b> method by adding <b>&lt;%= md5( email ) %&gt;</b> right before the <b>.jpg</b> on the profile picture.						
+					</p>
+
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f92672">&lt;</span><span style="color: #a6e22e">img</span> <span style="color: #a6e22e">id</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;profilePicture&quot;</span> <span style="color: #66d9ef">class</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;img-responsive&quot;</span> 
+<span style="color: #a6e22e">src</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;http://www.gravatar.com/avatar/&lt;%= md5(email) %&gt;.jpg?s=200&quot;</span><span style="color: #f92672">&gt;</span>
+</pre></div>
+<div class="ac-caption">Gravatar picture rendering.</div>						
+
+					<header>
+						<h4>Exercise 7-b</h4>
+					</header>
+
+					<p align="justify">
+						Finish adding the model data to the template and test its rendering.
 					</p>
 
 					<header>
-						<h4>Installing Backbone.js (and its dependencies)</h4>
+						<h4>Model save() + View render()</h4>
 					</header>
 
 					<p align="justify">
-						When you use Bower to install any front-end library, it will download and store all the library's files and sources on a folder called <b>bower_components</b>. Then the best way to move those files to their desired location would be creating a <b>grunt task</b> to copy only the distribution files to those locations when you run <b>grunt &lt;name of that task&gt;</b>. 
+						Our previous exercise rendered our model into the DOM. Now we are going to use the View <b>events</b> capabilities to edit the model and send it back to the server.
 					</p>
 
-					<p align="justify">
-						As <b>grunt tasks</b> configuration is out of this course's scope, we are going to work around that by using a bower configuration file, called <b>.bowerrc</b> (note the dot at the beginning of the name).
-						Just copy the contents below to your <b>.bowerrc</b> file:
-					</p>
+					<header>
+						<h4>Exercise 7-c</h4>
+					</header>
 
-<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">{</span>
-  <span style="color: #e6db74">&quot;directory&quot;</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;expressServer/public/lib/js&quot;</span>
-<span style="color: #f8f8f2">}</span>
-</pre></div>
-<div class="ac-caption">Now when you run bower it will save the libraries' files on that directory.</div>
-
-					<p align="justify">
-						To install Backbone.js and its dependencies, run:
-					</p>
-
-<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">bower</span> <span style="color: #a6e22e">install</span> <span style="color: #a6e22e">backbone</span> <span style="color: #f92672">--</span><span style="color: #a6e22e">save</span>
-</pre></div>
-<div class="ac-caption">Backbone.js and its dependencies (jQuery, JSON2 and underscore) should be installed.</div>
+					<ol>
+						<li>Add an event filter on the View <b>events</b> property to catch the form <b>submit</b> event.</li>
+						<li>On the callback function, get the <b>event</b> as the first parameter and call <b>event.prevendDefault</b>.</li>
+						<li>Update your model by using <b>set</b> with the form data.</li>
+						<li>Make sure the Model class has a <b>validate</b> method to check for the <b>name</b> and <b>email</b> attributes.</li>
+						<li>Display an error alert in case the validation fails.</li>
+						<li>After updating the model, call its <b>save</b> method.</li>	
+						<li>Make the View <b>listen to</b> the model <b>sync</b> event and use its <b>render</b> method as the listener callback. For this, use the View's <b>listenTo</b> method.</li>
+					</ol>
 
 					<p align="justify">
-						We are also going to need the <b>md5</b> javascript library, so let's take advantage of bower and install it too:
-					</p>
-
-<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">bower</span> <span style="color: #a6e22e">install</span> <span style="color: #a6e22e">md5</span> <span style="color: #f92672">--</span><span style="color: #a6e22e">save</span>
-</pre></div>
-<div class="ac-caption">The md5 library will be used with Gravatar to render our social network profile pics.</div>
-
-					<p align="justify">
-						The <b>--save</b> option is used to store the name of the installed package on your <b>bower.json</b> file, so you can install all your packages in another project instance just running <b>bower install</b>.
+						The View display should update the name on the left panel when the model is saved. On the next section we will separate our View into one View for <b>displaying</b> and other for <b>editing</b> the profile.
 					</p>
 
 			</div>
@@ -199,588 +323,77 @@
 				<div class="container">
 
 					<header class="major">
-						<h2>Backbone Overview</h2>
+						<h2>Router</h2>
 					</header>					
 					
-					<img src="./images/backbone_mvc.png">
+					<p align="justify">
+						So far we have worked with a single View application. With the <b>Router</b>, it is possible to select which flow from our application to display based on the broser's url. This way we can separate the profile <b>displaying</b> from the profile <b>editing</b> functionalities.
+					</p>
+
+					<p align="justify">
+						The <b>Router</b> is also connected with the <b>Backbone.History</b> module for back/forward browser page history navigation.
+					</p>
 
 					<header>
-						<h4>Backbone.Router</h4>
+						<h4>Routes</h4>
 					</header>
 
 					<p align="justify">
-						Web applications often provide linkable, bookmarkable, shareable URLs for
-						important locations in the app. Until recently, hash fragments
-						(<tt>#page</tt>) were used to provide these permalinks, but with the
-						arrival of the History API, it's now possible to use standard URLs (<tt>/page</tt>).
-						<b>Backbone.Router</b> provides methods for routing client-side pages, and
-						connecting them to actions and events. For browsers which don't yet support
-						the History API, the Router handles graceful fallback and transparent
-						translation to the fragment version of the URL.
+						The way the <b>Router</b> set its <b>routes</b> is very similar to the <b>Node.js</b> path configuring. The key difference is: while a Node.js path does not have to care about the others, when we switch routes on <b>Backbone.js</b> we have to care about <b>removing</b> the current displayed View from sight before showing the newly selected one.
 					</p>
 
-<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">Workspace</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Router</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
+					<p align="justify">
+						The routes use <b>regular expressions</b> to filter the paths. In order to create a <b>catch-all</b> route, the <b>*</b> symbol can be used, but with some trailing characters like in <b>*splat</b>. Using a <b>*</b> alone will generate a parsing error.
+					</p>
+
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">Router</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Router</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
   <span style="color: #a6e22e">routes</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">{</span>
-    <span style="color: #e6db74">&quot;help&quot;</span><span style="color: #f92672">:</span>                 <span style="color: #e6db74">&quot;help&quot;</span><span style="color: #f8f8f2">,</span>    <span style="color: #75715e">// #help</span>
-    <span style="color: #e6db74">&quot;search/:query&quot;</span><span style="color: #f92672">:</span>        <span style="color: #e6db74">&quot;search&quot;</span><span style="color: #f8f8f2">,</span>  <span style="color: #75715e">// #search/kiwis</span>
-    <span style="color: #e6db74">&quot;search/:query/p:page&quot;</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;search&quot;</span>   <span style="color: #75715e">// #search/kiwis/p7</span>
+    <span style="color: #e6db74">&quot;&quot;</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;viewProfile&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;edit&quot;</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;editProfile&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;*splat&quot;</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;notFound&quot;</span>
   <span style="color: #f8f8f2">},</span>
-  <span style="color: #a6e22e">help</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #a6e22e">viewProfile</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">userModel</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">UserModel</span><span style="color: #f8f8f2">(),</span>
+        <span style="color: #a6e22e">profileView</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">ProfileView</span><span style="color: #f8f8f2">({</span> <span style="color: #a6e22e">model</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">userModel</span> <span style="color: #f8f8f2">});</span>    
+    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">setView</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">profileView</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #f8f8f2">},</span>
+  <span style="color: #a6e22e">editProfile</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">userId</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">userModel</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">UserModel</span><span style="color: #f8f8f2">(),</span>
+        <span style="color: #a6e22e">editProfileView</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">EditProfileView</span><span style="color: #f8f8f2">({</span> <span style="color: #a6e22e">model</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">userModel</span> <span style="color: #f8f8f2">});</span>
+    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">setView</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">editProfileView</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #f8f8f2">},</span>
+  <span style="color: #a6e22e">notFound</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
     <span style="color: #f8f8f2">...</span>
   <span style="color: #f8f8f2">},</span>
-  <span style="color: #a6e22e">search</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">query</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">page</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #a6e22e">setView</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span> <span style="color: #a6e22e">view</span> <span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
     <span style="color: #f8f8f2">...</span>
   <span style="color: #f8f8f2">}</span>
 <span style="color: #f8f8f2">});</span>
 </pre></div>
 
-			
-<div class="ac-caption">An example of a Router with 3 pre-defined routes.</div>
-					<header>
-						<h4>Backbone.View</h4>
-					</header>
+<div class="ac-caption">A Backbone.js Router sample configuration.</div>	
 
 					<p align="justify">
-						Backbone views are almost more convention than they are code — they
-						don't determine anything about your HTML or CSS for you, and can be used
-						with any JavaScript templating library.
-						The general idea is to organize your interface into logical views,
-						backed by models, each of which can be updated independently when the
-						model changes, without having to redraw the page. Instead of digging into
-						a JSON object, looking up an element in the DOM, and updating the HTML by hand,
-						you can bind your view's <tt>render</tt> function to the model's <tt>"change"</tt>
-						event — and now everywhere that
-						model data is displayed in the UI, it is always immediately up to date.
+						The <b>Router</b> is commonly used as the <b>Backbone.js</b> central <b>App</b> object, but this configuration is not mandatory. In fact, a Backbone application can have multiple routers, as well as sub-routers that handle sub-paths.
 					</p>
 
-<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">DocumentRow</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">View</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
-  <span style="color: #a6e22e">events</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">{</span>
-    <span style="color: #f8f8f2">...</span>
-  <span style="color: #f8f8f2">},</span>
-  <span style="color: #a6e22e">initialize</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
-    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">listenTo</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">model</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;change&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">render</span><span style="color: #f8f8f2">);</span>
-  <span style="color: #f8f8f2">},</span>
-  <span style="color: #a6e22e">render</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
-    <span style="color: #f8f8f2">...</span>
-  <span style="color: #f8f8f2">}</span>
-<span style="color: #f8f8f2">});</span>
-</pre></div>
-
-					
-<div class="ac-caption">An example of a View that automatically updates the DOM upon model data change.</div>
 					<header>
-						<h4>Backbone.Model</h4>
+						<h4>Exercise 8</h4>
 					</header>
 
 					<p align="justify">
-      <b>Models</b> are the heart of any JavaScript application, containing
-      the interactive data as well as a large part of the logic surrounding it:
-      conversions, validations, computed properties, and access control. You
-      extend <b>Backbone.Model</b> with your domain-specific methods, and
-      <b>Model</b> provides a basic set of functionality for managing changes.
-    </p>
+						Open the <b>exercise8.html</b> file on the main project folder. At the bottom of the body, open a new script tag and:
+					</p>
 
-<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">Sidebar</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Model</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
-  <span style="color: #a6e22e">promptColor</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
-    <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">cssColor</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">prompt</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Please enter a CSS color:&quot;</span><span style="color: #f8f8f2">);</span>
-    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">set</span><span style="color: #f8f8f2">({</span><span style="color: #a6e22e">color</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">cssColor</span><span style="color: #f8f8f2">});</span>
-  <span style="color: #f8f8f2">}</span>
-<span style="color: #f8f8f2">});</span>
-</pre></div>
-
-
-					<div class="ac-caption">A Backbone.js Model with a custom method.</div>
-
+					<ol>
+						<li>Create two views similar to the one from Exercise 7, this time creating a <b>ProfileView</b> and a <b>EditProfileView</b>. The file <b>exercise8.html</b> provides one template for each View.</li>
+						<li>Use the code provided above to create a router.</li>
+						<li>Remove the <b>this.$el.appendTo('#mainViewContainer')</b> from the Views, and implement the switching of the Views on the <b>setView</b> method.</li>	
+						<li>Add a <b>initialize</b> method to the Router, and call <b>Backbone.history.start()</b> inside it.</li>
+						<li>Instance your router and test the back/foward browser actions.</li>
+					</ol>
 			</div>
 		</section>		
-
-		<section id="four">
-			<div class="container">
-
-				<header class="major">
-					<h2>Views</h2>
-				</header>	
-				<p align="justify">
-				Backbone views are used to reflect what your applications' data models look like. They are also used to listen to events and react accordingly.
-				</p>
-
-<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">MyProfileView</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">View</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
-  <span style="color: #a6e22e">initialize</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(){</span>
-    <span style="color: #a6e22e">alert</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;My profile view has started.&quot;</span><span style="color: #f8f8f2">);</span>
-  <span style="color: #f8f8f2">}</span>
-<span style="color: #f8f8f2">});</span>
-
-<span style="color: #75715e">// The initialize function is always called when instantiating a Backbone View.</span>
-<span style="color: #75715e">// Consider it the constructor of the class.</span>
-<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">myProfileView</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">MyProfileView</span><span style="color: #f8f8f2">();</span>
-</pre></div>
-<div class="ac-caption">A Backbone.js View with a custom initialize method.</div>
-
-				<header>
-					<h4>The View's el, "$el", tagName and className properties</h4>
-				</header>
-
-				<p align="justify">
-					The <b>"el"</b> property references a DOM object created by the View in the browser. Every Backbone.js view has an "el" property, and if it is not defined, Backbone.js will construct its own, which is, <i>by default</i>, an empty div element. The $el property is just a cached jQuery object selecting the el element.
-				</p>				
-
-				<p align="justify">This element will not be attached to the body DOM until it is done in our code, usually on the <b>render()</b> method.</p>
-
-				<p align="justify">
-					It is possible to change the default "el" by passing either a jQuery selector on the View definition or as a parameter to the constructor. In this case, if the element already exists on the DOM, it will be used instead.
-				</p>
-
-<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">MyView</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">View</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span> 
-	<span style="color: #a6e22e">el</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;#myDefaultViewContainer&#39;</span> <span style="color: #75715e">// sets the default &quot;el&quot;</span>
-<span style="color: #f8f8f2">});</span> 
-
-<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">myView</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">MyView</span><span style="color: #f8f8f2">({</span> 
-	<span style="color: #a6e22e">el</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;#notTheDefaultViewEl&#39;</span> <span style="color: #75715e">// overwrites it</span>
-<span style="color: #f8f8f2">});</span> 
-</pre></div>
-<div class="ac-caption">When this is done the "el" becomes whatever element those selectors point to.</div>
-
-				<p align="justify">
-					One could also change the View default DOM node (a DIV) to another of any kind and class by setting these View properties.
-				</p>
-
-<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">myView</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">View</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span> 
-	<span style="color: #a6e22e">tagName</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;span&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #75715e">// not a div anymore</span>
-	<span style="color: #a6e22e">className</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;inviteFriend&quot;</span> <span style="color: #75715e">// with a custom class name property</span>
-<span style="color: #f8f8f2">});</span>
-</pre></div>
-
-<div class="ac-caption">This view would render a <b>&lt;span class="inviteFriend"&gt;&lt;/span&gt;</b>.</div>
-
-
-				<header>
-					<h4>The View render() method</h4>
-				</header>
-
-				<p align="justify">
-					They key features of the Views are displaying the data and handling user interaction. For displaying data we usually use the <b>render()</b> method.
-				</p>
-
-				<p align="justify">
-					The render method is only defined on Backbone.js as an empty method that returns the <b>this</b> pointer (for chaining calls). So all render-related actions must be defined by our code, and we should not forget to return the <b>this</b> pointer, too.
-				</p>
-
-
-<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">MyView</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">View</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span> 
-	<span style="color: #a6e22e">render</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
-		<span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">$el</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">text</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Hello World!&#39;</span><span style="color: #f8f8f2">);</span>
-		<span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">$el</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">appendTo</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;body&#39;</span><span style="color: #f8f8f2">);</span>
-		<span style="color: #66d9ef">return</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">;</span>
-	<span style="color: #f8f8f2">}</span>
-<span style="color: #f8f8f2">});</span>
-</pre></div>
-<div class="ac-caption">Hello World!</b>.</div>
-
-				<header>
-					<h4>Exercise 1</h4>
-				</header>
-
-				<p align="justify">
-					Open the <b>exercise1.html</b> file on the main project folder. At the bottom of the body, open a new script tag and <b>create</b>, <b>instance</b> and <b>render</b> the following views:
-				</p>
-
-				<ol>
-					<li>A View with no "el" defined. The render() method should append the element to the body.</li>
-					<li>A View with a default "el" selector defined on the View body ("#myViewContainer").</li>
-					<li>Create another instance from the previous View, but render it on another DOM element ("#anotherContainer").</li>
-					<li>Create another instance from the first View, but this time changing the className and tagName attributes.</li>
-					<li>Discover what happens when you point a view to an existing element and set its tagName and className values to differ from that element.</li>
-					<li>Discover what happens when you call a view's destroy() method.</li>
-				</ol>
-
-				<header>
-					<h4>Templating</h4>
-				</header>
-
-				<p align="justify">
-					Templates in Backbone.js are just functions that generate HTML content to be set on the View container. We could use the jQuery <b>html()</b> method to get a simple template running:
-				</p>
-
-<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">App</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">ItemView</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">View</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
-    <span style="color: #a6e22e">render</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
-        <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">$el</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">html</span><span style="color: #f8f8f2">(</span> <span style="color: #a6e22e">$</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;#myTemplate&#39;</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">html</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">);</span>
-        <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">$el</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">find</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;.name&#39;</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">text</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;My name&#39;</span><span style="color: #f8f8f2">);</span>
-        <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">$el</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">appendTo</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;body&#39;</span><span style="color: #f8f8f2">);</span>
-        <span style="color: #66d9ef">return</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">;</span>
-    <span style="color: #f8f8f2">}</span>
-<span style="color: #f8f8f2">});</span>
-</pre></div>
-		<div class="ac-caption">jQuery "templating".</div>	
-
-				<p align="justify">
-					The problem with this approach is that it leaves too much logic inside the render method. Besides, we would have to manually set the values of our model on the template, one by one. While this seem ok for small templates, it could get really messy as our application evolve to have each time bigger and more complex templates.
-				</p>
-
-
-				<p align="justify">
-					 More standard templating methods just pass the model as a parameter to the template html generation method and have its values read by that method. Backbone.js can take advantage of the <b>underscore</b> template method to do so, as it is part of its dependencies. 
-				</p>
-
-				<p align="justify">
-					 The templating methods in general use a source HTML to compile the template function, and then just use passed data attributes into that pre-compiled template:
-				</p>
-
-<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">App</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">ItemView</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">View</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
-    <span style="color: #a6e22e">initialize</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
-        <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">template</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">_</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">template</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">$</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;#ItemTemplate&quot;</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">html</span><span style="color: #f8f8f2">());</span>
-    <span style="color: #f8f8f2">},</span>
-    <span style="color: #a6e22e">render</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
-        <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">$el</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">html</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">template</span><span style="color: #f8f8f2">({</span><span style="color: #a6e22e">data</span><span style="color: #f92672">:</span><span style="color: #e6db74">&#39;value&#39;</span><span style="color: #f8f8f2">}));</span>
-        <span style="color: #66d9ef">return</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">;</span>
-    <span style="color: #f8f8f2">}</span>
-<span style="color: #f8f8f2">});</span>	
-</pre></div>
-<div class="ac-caption">Template compiling on the initalize method.</div>
-
-				<p align="justify">
-					What is wrong with the code above?
-				</p>
-
-				<p align="justify">
-					Template compiling can be a heavy-processing operation. On the example above, this operation will run each time an instance of the view is created.
-				</p>
-
-				<p align="justify">
-					A better way of doing this is removing the compiling from the initializer. One could also have a separated modules only for templates that could be shared between different Views.
-				</p>				
-
-<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">App</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">ItemView</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">View</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
-    <span style="color: #a6e22e">template</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">_</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">template</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">$</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;#ItemTemplate&quot;</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">html</span><span style="color: #f8f8f2">()),</span>
-    <span style="color: #a6e22e">initialize</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span> <span style="color: #f8f8f2">...</span> <span style="color: #f8f8f2">},</span>
-    <span style="color: #a6e22e">render</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span> <span style="color: #f8f8f2">...</span> <span style="color: #f8f8f2">}</span>
-<span style="color: #f8f8f2">});</span>	
-</pre></div>
-<div class="ac-caption">Now the template is compiled only once for all instances of that View.</div>
-
-				<p align="justify">
-					It is a common practice to store micro-templates on the page source code, hidden inside special script tags. These tags contain DOM that will not be rendered by the browser but are readily available for the template compilers.
-				</p>
-
-				<p align="justify">
-					An even more optimized, real world approach is to pre-compile the templates and add them as a minified jasvascript module.
-				</p>
-
-<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">	<span style="color: #f92672">&lt;script </span><span style="color: #a6e22e">type=</span><span style="color: #e6db74">&quot;text/template&quot;</span> <span style="color: #a6e22e">id=</span><span style="color: #e6db74">&quot;myMicroTemplate&quot;</span><span style="color: #f92672">&gt;</span>
-	<span style="color: #f92672">&lt;</span><span style="color: #a6e22e">div</span> <span style="color: #66d9ef">class</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;panel panel-default&quot;</span><span style="color: #f92672">&gt;</span>
-		<span style="color: #f92672">&lt;</span><span style="color: #a6e22e">div</span> <span style="color: #66d9ef">class</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;panel-heading&quot;</span><span style="color: #f92672">&gt;</span>
-			<span style="color: #f92672">&lt;</span><span style="color: #a6e22e">h4</span><span style="color: #f92672">&gt;</span><span style="color: #a6e22e">What</span> <span style="color: #a6e22e">is</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">js</span><span style="color: #f92672">?&lt;</span><span style="color: #960050; background-color: #1e0010">/h4&gt;</span>
-		<span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/div&gt;</span>
-		<span style="color: #f92672">&lt;</span><span style="color: #a6e22e">div</span> <span style="color: #66d9ef">class</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;panel-body&quot;</span><span style="color: #f92672">&gt;</span>
-			<span style="color: #a6e22e">Are</span> <span style="color: #a6e22e">we</span> <span style="color: #a6e22e">finding</span> <span style="color: #a6e22e">out</span><span style="color: #f92672">?</span>
-		<span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/div&gt;</span>
-	<span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/div&gt;	</span>
-	<span style="color: #f92672">&lt;/script&gt;</span>
-</pre></div>
-<div class="ac-caption">Micro-templating hidden on a script tag.</div>
-
-				<p align="justify">
-					Each templating library has its own specific syntax for using variables inside it. The underscore library uses the <b>&lt;%= data %&gt;</b> symbols as data wrappers, while the Handlebars libray uses double handlers as in <b>{{ data }}</b>.
-				</p>
-
-				<p align="justify">
-					Inside the scope of a pre-compiled template, the fields of the data passed as parameter is accessible as if they were declared JS variables.
-				</p>
-
-<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"> <span style="color: #a6e22e">render</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
-        <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">$el</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">html</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">template</span><span style="color: #f8f8f2">({</span><span style="color: #a6e22e">data</span><span style="color: #f92672">:</span><span style="color: #e6db74">&#39;value&#39;</span><span style="color: #f8f8f2">}));</span>
-        <span style="color: #66d9ef">return</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">;</span>
-<span style="color: #f8f8f2">}</span>
-</pre></div>
-<div class="ac-caption">Passing data to the template function.</div>
-
-<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">&lt;</span><span style="color: #a6e22e">div</span> <span style="color: #a6e22e">class</span><span style="color: #f8f8f2">=</span><span style="color: #e6db74">&quot;panel-body&quot;</span><span style="color: #f8f8f2">&gt;</span>
-	<span style="color: #f8f8f2">&lt;</span><span style="color: #f92672">%=</span> <span style="color: #a6e22e">data</span> <span style="color: #f92672">%</span><span style="color: #f8f8f2">&gt;</span>
-<span style="color: #f8f8f2">&lt;</span><span style="color: #f92672">/</span><span style="color: #a6e22e">div</span><span style="color: #f8f8f2">&gt;</span>
-</pre></div>
-<div class="ac-caption">Underscore syntax for data reading.</div>
-
-				<header>
-					<h4>Exercise 2</h4>
-				</header>
-
-				<p align="justify">
-					Open the <b>exercise2.html</b> file on the main project folder. At the bottom of the body, open a new script tag and <b>create</b>, <b>instance</b> and <b>render</b> the following views:
-				</p>
-
-				<ol>
-					<li>
-						Copy the micro-template shown above and use it as the input for your template. User the <b>myContainer</b> element as the container for your View.
-					</li>
-					<li>
-						Create a View as the one from the previous exercise. This time, use a jQuery selector on the <b>this.$el</b> to change the contents of the <b>'.panel-body'</b> element.
-					</li>
-					<li>
-						Create a View as the one from the previous exercise. This time, duplicate the template script, give it another ID, and edit it to use the <b>underscore</b> syntax (&lt;%= %&gt;) to change the contents of the <b>'.panel-body'</b> element.
-					</li>
-				</ol>
-
-				<header>
-					<h4>Events</h4>
-				</header>
-
-				<p align="justify">
-					Events are the way the views react to user actions. The events are defined inside a special field on the View declaration and <b>ALL EVENT LISTENERS ARE SCOPED INSIDE THE VIEW ELEMENT CONTEXT</b>.
-				</p>
-
-				<ul class="feature-icons">
-					<li class="fa-bolt" style="width: inherit"><b>ALL EVENT LISTENERS ARE SCOPED INSIDE THE VIEW ELEMENT CONTEXT</b></li>
-					<li class="fa-bolt" style="width: inherit"><b>ALL EVENT LISTENERS ARE SCOPED INSIDE THE VIEW ELEMENT CONTEXT</b></li>
-					<li class="fa-bolt" style="width: inherit"><b>ALL EVENT LISTENERS ARE SCOPED INSIDE THE VIEW ELEMENT CONTEXT</b></li>
-				</ul>
-
-
-<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">EventView</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">View</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">(</span> <span style="color: #f8f8f2">{</span> 
-	<span style="color: #a6e22e">events</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">{</span>
-		<span style="color: #e6db74">&#39;click .panel-body&#39;</span> <span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;alertPanelBody&#39;</span>
-	<span style="color: #f8f8f2">},</span>
-	<span style="color: #a6e22e">alertPanelBody</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">event</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
-		<span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">event</span><span style="color: #f8f8f2">);</span>
-		<span style="color: #a6e22e">alert</span><span style="color: #f8f8f2">(</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">$el</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">find</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;.panel-body&#39;</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">text</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">);</span>
-	<span style="color: #f8f8f2">},</span>
-	<span style="color: #a6e22e">render</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span> <span style="color: #f8f8f2">...</span> <span style="color: #f8f8f2">}</span>
-<span style="color: #f8f8f2">});</span>
-</pre></div>
-<div class="ac-caption">Backbone.js View events example.</div>
-
-				<p align="justify">
-					It is a common practice to always declare the <b>events</b> field as the <b>first field</b> of the View. The event queries use the jQuery syntax for event handling.
-				</p>
-
-				<header>
-					<h4>Exercise 3</h4>
-				</header>
-
-				<p align="justify">
-					Open the <b>exercise3.html</b> file on the main project folder. At the bottom of the body, open a new script tag and:
-				</p>
-
-				<ol>
-					<li>
-						Create a View that uses the '#myMicroTemplate' template and alert the contents of the element clicked (panel-heading or panel-body).
-					</li>
-				</ol>
-
-			</div>
-		</section>		
-
-		<section id="five">
-			<div class="container">
-				<header class="major">
-					<h2>Models, part 1</h2>
-				</header>
-
-				<p align="justify">
-					<b>Models</b> are the data structures of Backbone.js. They not just store data but are also coded for connecting to any server side <b>REST API</b>, with read, write, create and delete methods, and built-in event firing.
-				</p>
-
-				<p align="justify">
-					The model's <b>&lt;key,value&gt;</b> pairs are stored on its <b>attributes</b> field.
-				</p>	
-
-				<header>
-					<h4>Model Methods</h4>
-				</header>	
-	
-				<p align="justify">
-					Models can can handle data validation, default values, parsing data received from the remote  server and conforming data back to the server required pattern before sending it. The most used Models methods are:
-				</p>
-
-				<ul>
-					<li>get:attr</li>
-					<li>set</li>
-					<li>set:attr</li>
-					<li>fetch</li>
-					<li>save</li>
-					<li>destroy</li>
-					<li>validate</li>
-					<li>parse</li>
-				</ul>
-
-				<p align="justify">
-					Every time you call a Model's <b>fetch</b> or <b>save</b> methods, it will create a call to the <b>sync</b> method. So the <b>sync</b> method is the one to overwrite if you need to customize your model to match your server's API.
-				</p>
-
-				<header>
-					<h4>Model Events</h4>
-				</header>
-
-				<p align="justify">
-					The other key feature of the Models are their event triggering capabilities. This way a View can <b>listenTo</b> a Model data <b>change</b> and re-render itself, or wait for the Model to <b>sync</b> with the server to re-render itself. The Model can also listen to its own events.
-				</p>
-
-<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">MyModel</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Model</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
-    <span style="color: #a6e22e">initialize</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(){</span>
-        <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">on</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;change&#39;</span><span style="color: #f8f8f2">,</span>  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">logChange</span> <span style="color: #f8f8f2">);</span>
-    <span style="color: #f8f8f2">},</span>
-    <span style="color: #a6e22e">logChange</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">model</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">options</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
-        <span style="color: #f8f8f2">...</span>
-    <span style="color: #f8f8f2">}</span>
-<span style="color: #f8f8f2">});</span>
-</pre></div>
-<div class="ac-caption">A Model listens to its own change event.</div>
-
-				<p align="justify">
-					The list of the built-in Model events are:
-				</p>
-
-				<ul>
-					<li>change</li>
-					<li>change:attr</li>
-					<li>destroy</li>
-					<li>sync</li>
-					<li>invalid</li>
-					<li>error</li>
-					<li>all</li>
-				</ul>
-
-
-				<p align="justify">
-					If we want to change a Model's attribute but not fire the <b>change</b> event, we can pass the option <b>{silence: true}</b> to the <b>set</b> method. Models can also listen to and fire <b>custom events</b>.
-				</p>
-
-				<header>
-					<h4>Model Defaults</h4>
-				</header>
-
-				<p align="justify">
-					The Model defaults are the data that the are going to be automatically filled in when you create a model:
-				</p>
-
-<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">UserModel</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Model</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
-    <span style="color: #a6e22e">defaults</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">{</span>
-        <span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;Default Name&quot;</span><span style="color: #f8f8f2">,</span>
-        <span style="color: #e6db74">&quot;email&quot;</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;default@email.com&quot;</span>
-    <span style="color: #f8f8f2">}</span>
-<span style="color: #f8f8f2">});</span>
-</pre></div>
-<div class="ac-caption">A Model example with default data definition.</div>				
-
-				<header>
-					<h4>Model Validation</h4>
-				</header>
-
-				<p align="justify">
-					The Model <b>validate</b> method is not defined until we create it to fit our needs. By default <b>save</b> checks validate before setting any attributes but you may also tell <b>set</b> to validate the new attributes by passing <b>{validate: true}</b> as an option. 
-				</p>
-
-<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">UserModel</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Model</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
-    <span style="color: #a6e22e">validate</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">attrs</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">options</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
-        <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span> <span style="color: #a6e22e">attrs</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">name</span> <span style="color: #f92672">===</span> <span style="color: #e6db74">&#39;&#39;</span> <span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
-            <span style="color: #66d9ef">return</span> <span style="color: #e6db74">&quot;The name cannot be empty.&quot;</span><span style="color: #f8f8f2">;</span>
-        <span style="color: #f8f8f2">}</span>
-        <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span> <span style="color: #a6e22e">validateEmail</span><span style="color: #f8f8f2">(</span> <span style="color: #a6e22e">attrs</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">email</span> <span style="color: #f8f8f2">)</span> <span style="color: #f92672">===</span> <span style="color: #66d9ef">false</span> <span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
-            <span style="color: #66d9ef">return</span> <span style="color: #e6db74">&quot;Invalid email value.&quot;</span><span style="color: #f8f8f2">;</span>
-        <span style="color: #f8f8f2">}</span>
-    <span style="color: #f8f8f2">}</span>
-<span style="color: #f8f8f2">});</span> 
-</pre></div>
-<div class="ac-caption">A Model validation example.</div>
-			
-				<p align="justify">
-					If the model validation returns anything, the <b>invalid</b> event is fired and the return of the validate method is stored on the <b>validationError</b> Model property.
-				</p>
-
-				<p align="justify">
-					In the above example we are returning a simple string as an error, but we could be creating an array to store all erros found on the model validation and returning at the end.
-				</p>
-
-				<header>
-					<h4>Excercise 4</h4>
-				</header>
-
-				<p align="justify">
-					Open the <b>exercise4.html</b> file on the main project folder. At the bottom of the body, inside a new script tag, do the following:
-				</p>
-
-				<ol>
-					<li>Create a Model class with default attribute values such as <b>name</b> and <b>email</b>. Instance a model from that class, setting different values for one of the attributes. Use the debugger console to log your model instance's <b>attributes</b> property.</li>
-					<li>Make the model listen to its <b>change:name</b> event and log which value was changed. Use the model <b>changedAttributes</b> for checking that.</li>
-					<li>Inside your change listener, use the model <b>previous</b> method to get the old attribute and log both old and new values.</li>
-					<li>Create a validate function for your model that returns an error message. Try to <b>set</b> an invalid value for one of your model attributes and log the model attributes.</li>
-					<li>Make the Model listen to its <b>'invalid'</b> event. Create a method that will log an error message every time the validation fails.</li>
-					<li>Make this error message be the <b>validationError</b> attribute.</li>
-				</ol>	
-
-
-				<header>
-					<h4>Remote Model Syncing</h4>
-				</header>
-
-				<p align="justify">
-					The Backbone.js Models are compatible with the RESTful API pattern. That means it communicates with the server following these guidelines:
-				</p>
-
-				<ul>
-					<li>GET requests when reading data from the server;</li>
-					<li>POST requests when submiting new data to the server;</li>
-					<li>PUT requests when updating data on the server;</li>
-					<li>DELETE requests when submitting a delete command to the server.</li>
-				</ul>
-
-				<p align="justify">
-					That means Backbone.js applications are fully compatible with a Node.js <b>Express</b> server routing system. The Model analogous to the Node.js <b>paths</b> resides on the Model <b>urlRoot</b> attribute. 
-				</p>
-
-				<header>
-					<h4>The Model fetch() method</h4>
-				</header>
-
-				<p align="justify">
-					Asynchronously fetching data from the server is a key feature to complex web applications. In order to do that on Backbone.js all we have to do is setting the appropriate <b>urlRoot</b> property on the model and make <b>fetch()</b> method call.
-				</p>
-
-				<p align="justify">
-					Then we can <b>listen to</b> its results, <b>parse</b> the retrieved data for making it fit our needs, and also <b>handle response errors</b>.
-				</p>
-
-
-<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">UserModel</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Model</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
-    <span style="color: #a6e22e">urlRoot</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;/users/me&#39;</span>
-<span style="color: #f8f8f2">});</span>
-
-<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">model</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">UserModel</span><span style="color: #f8f8f2">();</span>
-
-<span style="color: #a6e22e">model</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">fetch</span><span style="color: #f8f8f2">();</span>
-</pre></div>
-<div class="ac-caption">A Model fetching a user profile information from the server.</div>
-
-				<header>
-					<h4>Exercise 5</h4>
-				</header>
-
-				<p align="justify">
-					In order to accomplish the next exercise, you will nedd your <b>node</b> server running. To start your server, open a console prompt, navigate to the server root directory and type:
-				</p>
-
-<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">grunt</span> <span style="color: #a6e22e">serverExpress</span>
-</pre></div>
-<div class="ac-caption">Start your node server.</div>
-
-				<p align="justify">
-					Your node server will connect to a remote <b>mongoDB</b> database. For it to work properly you should not be behind a VPN.
-				</p>
-
-				<ul class="feature-icons">
-					<li class="fa-bolt" style="width: inherit">If you use Windows and your server crashes upon running, you may have to delete the <b>node_modules</b> dir and run <b>npm install</b> again.
-				</ul>
-
-				<p align="justify">
-					With your server running, go to the <b>/login.html</b> url. Create a login for you using an email that you have previously registered with an avatar picture on the site <b><a href="http://gravatar.com" target="_blank">gravatar.com</a></b>.
-				</p>
-
-				<p align="justify">
-					Login with your chosen email and password, then open <b>excercise5.html</b>. Open a new script tag at the end of the document and create a model there that will retrieve you user data using <b>/users/me</b> as <b>urlRoot</b>. Your model should listen to its own <b>sync</b> event. Do a model fetch() and debug the model attributes on your sync listener.
-				</p>
-
-
-			</div>
-		</section>	
-		
 	</div>
 
 	<!-- Footer -->
