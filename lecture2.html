@@ -85,6 +85,77 @@
 						<h2>Models, part 2</h2>
 					</header>
 
+					<header>
+					<h4>Remote Model Syncing</h4>
+					</header>
+
+				<p align="justify">
+					The Backbone.js Models are compatible with the RESTful API pattern. That means it communicates with the server following these guidelines:
+				</p>
+
+				<ul>
+					<li>GET requests when reading data from the server;</li>
+					<li>POST requests when submiting new data to the server;</li>
+					<li>PUT requests when updating data on the server;</li>
+					<li>DELETE requests when submitting a delete command to the server.</li>
+				</ul>
+
+				<p align="justify">
+					That means Backbone.js applications are fully compatible with a Node.js <b>Express</b> server routing system. The Model analogous to the Node.js <b>paths</b> resides on the Model <b>urlRoot</b> attribute. 
+				</p>
+
+				<header>
+					<h4>The Model fetch() method</h4>
+				</header>
+
+				<p align="justify">
+					Asynchronously fetching data from the server is a key feature to complex web applications. In order to do that on Backbone.js all we have to do is setting the appropriate <b>urlRoot</b> property on the model and make <b>fetch()</b> method call.
+				</p>
+
+				<p align="justify">
+					Then we can <b>listen to</b> its results, <b>parse</b> the retrieved data for making it fit our needs, and also <b>handle response errors</b>.
+				</p>
+
+
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">UserModel</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Model</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
+    <span style="color: #a6e22e">urlRoot</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;/users/me&#39;</span>
+<span style="color: #f8f8f2">});</span>
+
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">model</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">UserModel</span><span style="color: #f8f8f2">();</span>
+
+<span style="color: #a6e22e">model</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">fetch</span><span style="color: #f8f8f2">();</span>
+</pre></div>
+<div class="ac-caption">A Model fetching a user profile information from the server.</div>
+
+				<header>
+					<h4>Exercise 5</h4>
+				</header>
+
+				<p align="justify">
+					In order to accomplish the next exercise, you will nedd your <b>node</b> server running. To start your server, open a console prompt, navigate to the server root directory and type:
+				</p>
+
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">grunt</span> <span style="color: #a6e22e">serverExpress</span>
+</pre></div>
+<div class="ac-caption">Start your node server.</div>
+
+				<p align="justify">
+					Your node server will connect to a remote <b>mongoDB</b> database. For it to work properly you should not be behind a VPN.
+				</p>
+
+				<ul class="feature-icons">
+					<li class="fa-bolt" style="width: inherit">If you use Windows and your server crashes upon running, you may have to delete the <b>node_modules</b> dir and run <b>npm install</b> again.
+				</ul>
+
+				<p align="justify">
+					With your server running, go to the <b>/login.html</b> url. Create a login for you using your <b>FULL NAME</b> and an email that you have previously registered for an avatar picture on the site <b><a href="http://gravatar.com" target="_blank">gravatar.com</a></b>.
+				</p>
+
+				<p align="justify">
+					Login with your chosen email and password, then open <b>excercise5.html</b>. Open a new script tag at the end of the document and create a model there that will retrieve you user data using <b>/users/me</b> as <b>urlRoot</b>. Your model should listen to its own <b>sync</b> event. Do a model fetch() and use the console to log the model attributes on your model initialize method and on your sync listener.
+				</p>
+
+
 					<p align="justify">
 						So far we have created Models with <b>default attributes</b>, with <b>data validation</b>, with  <b>event listeners</b> and <b>data fetching</b> from the server. Before continuing, we are going to learn how to work this data received from the server.
 					</p>				
@@ -233,7 +304,7 @@
             <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">label</span> <span style="color: #66d9ef">for</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;email&quot;</span><span style="color: #f92672">&gt;</span><span style="color: #a6e22e">Email</span><span style="color: #f92672">:&lt;</span><span style="color: #960050; background-color: #1e0010">/label&gt;</span>
             <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">input</span> <span style="color: #a6e22e">id</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;email&quot;</span> <span style="color: #a6e22e">type</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;email&quot;</span> <span style="color: #66d9ef">class</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;form-control&quot;</span> <span style="color: #a6e22e">value</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;&quot;</span><span style="color: #f92672">&gt;</span>
           <span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/div&gt;</span>
-          <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">button</span> <span style="color: #a6e22e">type</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;button&quot;</span> <span style="color: #66d9ef">class</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;btn btn-default&quot;</span><span style="color: #f92672">&gt;</span><span style="color: #a6e22e">Submit</span><span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/button&gt;</span>
+          <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">button</span> <span style="color: #a6e22e">type</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;button&quot;</span> <span style="color: #66d9ef">class</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;btn btn-default&quot;</span><span style="color: #f92672">&gt;</span><span style="color: #a6e22e">Salvar</span><span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/button&gt;</span>
         <span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/form&gt;</span>
       <span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/div&gt;</span>
     <span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/div&gt;</span>
