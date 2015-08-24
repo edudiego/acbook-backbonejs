@@ -223,7 +223,6 @@
 						Uses <b>Backbone.sync</b> to persist the state of a collection to the server. Can be overridden for custom behavior.
 					</p>
 
-
 					<img src="./images/backbone-collection.png">
 					<div class="ac-caption">A Collection sync() method ilustrated.</div>
 
@@ -239,12 +238,45 @@
 					</p>
 
 					<ol>
-						<li>Copy the code from your previous exercise, so that your script already have the <b>ProfileView</b> and the <b>EditProfileView</b> running and working with the <b>Router</b>.</li>						
-						<li>Create a collection with the url property: <b>/users/available</b>. Issue a <b>fetch()</b> and log the results on the console.</li>
-						<li></li>
-						<li></li>
-						<li></li>
+						<li>
+							Copy the code from your previous exercise, so that your script already have the <b>ProfileView</b> and the <b>EditProfileView</b> running and working with the <b>Router</b>.
+						</li>
+						<li>
+							Create a <b>Collection</b> named <b>AvailableUsersList</b> with <b>url</b> attribute = <b>'/users/available'</b> and <b>model</b> = <b>UserModel</b>.
+						</li>
+						<li>
+							Create a method called <b>loadCollections()</b> on your <b>ProfileView</b>. Call it at the end of the <b>initialize</b> method.
+						</li>
+						<li>
+							Inside <b>loadCollections</b>, create a collection instance of <b>AvailableUsersList</b> named <b>users</b>. Set the View to <b>listenTo</b> the collection's <b>update</b> event. On the listener callback, log the fetched results.
+						</li>
+						<li>
+							We are using the <b>update</b> built-in event. So let's check the list of built-in events on this lecture <b>[Collections Events]</b> and see that it receives two parameters. Use these parameters to log:
+								<ol style="list-style-type: lower-alpha;">
+									<li>A custom parameter that we will pass on the <b>fetch</b> call: <b>{label:'Available Users Collection'}</b>.</li>
+									<li>The <b>collection.models</b>.</li>
+								</ol>
+						</li>
+						<li>
+							Create the three collections as listed below. Create instances of those collections on the same way you did for the <b>AvailableUsersList</b> on the <b>loadCollections()</b> method, fetch and log them accordingly with a custom label for each.
+						</li>
 					</ol>
+
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #75715e">//=============================[ COLLECTIONS ]==============================</span>
+
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">FriendsRequestsList</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Collection</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
+  <span style="color: #a6e22e">url</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;/friendships/requests&#39;</span>
+<span style="color: #f8f8f2">});</span>
+
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">FriendsRequestedList</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Collection</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
+  <span style="color: #a6e22e">url</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;/friendships/requested&#39;</span>
+<span style="color: #f8f8f2">});</span>
+
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">FriendsList</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Collection</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
+  <span style="color: #a6e22e">url</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;/friendships/me&#39;</span>
+<span style="color: #f8f8f2">});</span>
+</pre></div>
+					<div class="ac-caption">These collections will fetch the social network 'friendship' objects.</div>
 
 				</div>
 			</section>
@@ -267,7 +299,90 @@
 						This is far from optimized and the main reason for the creation of the <b>Marionette.js</b> library. Marionette main goal is to provide a better way for Backbone Views to render Collections and other composite data structures, besides avoiding memory leaks caused by <b>ghost views</b>.
 					</p>
 
+					<header>
+						<h4>Rendering Collections</h4>
+					</header>
 
+					<p align="justify">
+						On our social network we will have four kinds of user lists, as noted on the previous exercise:
+					</p>
+
+					<ul>
+						<li>A general user list, contains users that are not related to us.</li>
+						<li>A friendship list for the users we requested friendship.</li>
+						<li>A friendship list for the users that requested our friendship.</li>
+						<li>A friendship list for users we are already friends with.</li>
+					</ul>
+
+					<p align="justify">
+						All those Views will render <b>Collections</b>, which means they will <b>iterate</b> over a <b>list of models</b>, generate HTML for each model using a <b>template</b>, and then append this generated HTML into the View's element.
+					</p>
+
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">render</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">self</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">$el</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">html</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;&#39;</span><span style="color: #f8f8f2">);</span> <span style="color: #75715e">// clean before start</span>
+    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">collection</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">forEach</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">model</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">index</span><span style="color: #f8f8f2">){</span>     
+      <span style="color: #a6e22e">self</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">$el</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">append</span><span style="color: #f8f8f2">(</span> <span style="color: #a6e22e">self</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">template</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">model</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">attributes</span><span style="color: #f8f8f2">));</span>
+    <span style="color: #f8f8f2">});</span>
+<span style="color: #f8f8f2">},</span>
+</pre></div>
+<div class="ac-caption">A render method example for rendering a Collection.</div>
+
+					<header>
+						<h4>Extending Views</h4>
+					</header>
+
+					<p align="justify">
+						Every time we defined a View so far, we called the <b>Backbone.View.extend</b> method. So the Views inherited all the <b>Backbone.View</b> properties, <b>including the cabapility of being extended</b>. 
+					</p>
+					<p>
+						Now we are going to take advantage of that: we will create a common <b>CollectionView</b> that will host all the common features we want on our Collection Views.
+					</p>
+
+					<p align="justify">
+						First we need to determine which would be those common features. We already saw one above: the <b>render a collection</b> feature. Besides that we also want our Views to <b>listenTo</b> the collection <b>update</b> event and re-render themselves.
+					</p>
+
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">CollectionView</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">View</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
+    <span style="color: #a6e22e">initialize</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">listenTo</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">collection</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;update&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">render</span><span style="color: #f8f8f2">);</span>
+        <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">collection</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">fetch</span><span style="color: #f8f8f2">();</span>
+    <span style="color: #f8f8f2">},</span>
+    <span style="color: #a6e22e">render</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #f8f8f2">...</span>
+    <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">});</span>
+</pre></div>
+<div class="ac-caption">A common Collection View.</div>				
+
+					<p align="justify">
+						What the Collections cannot share, in our case, are their <b>events</b> and their <b>templates</b>. This is case-specific: in a differente application the Collections could share other features than those.
+					</p>
+
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">AvailableUsersView</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">CollectionView</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
+    <span style="color: #a6e22e">events</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #e6db74">&#39;click .inviteFriend&#39;</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;inviteFriend&#39;</span>
+    <span style="color: #f8f8f2">},</span>
+    <span style="color: #a6e22e">template</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">_</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">template</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">$</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;#userTemplate&#39;</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">html</span><span style="color: #f8f8f2">()),</span>
+    <span style="color: #a6e22e">inviteFriend</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">event</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #f8f8f2">...</span>
+    <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">});</span>
+</pre></div>
+<div class="ac-caption">Extending a View.</div>		
+
+					<header>
+						<h4>Exercise 10</h4>
+					</header>
+
+					<p align="justify">
+						Open the file <b>exercise10.html</b> and link your <b>socialnetwork.js</b> script into it. This file contains the needed templates for the new Views.
+					</p>
+
+					<ol>
+						<li>Create a <b>common CollectionView</b> and four specific views for the four Collections from <b>Exercise 9</b>.</li>
+						<li>Set up each <b>Collection</b> with its respective <b>template</b> and render them on the four <b>containers</b> already set on the page DOM.</li>
+					</ol>
 
 				</div>
 			</section>

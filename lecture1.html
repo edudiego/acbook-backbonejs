@@ -132,7 +132,7 @@
 						Then do a <b>git checkout</b> to the <b>Exercises</b> branch:
 					</p>
 
-<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">git</span> <span style="color: #a6e22e">checkout</span> <span style="color: #f92672">-</span><span style="color: #a6e22e">b</span> <span style="color: #a6e22e">Exercises</span>
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">git</span> <span style="color: #a6e22e">checkout</span> <span style="color: #a6e22e">Exercises</span>
 </pre></div>
 <div class="ac-caption">This will get the Exercises last updated files.</div>
 
@@ -523,7 +523,7 @@
 
 				<ol>
 					<li>
-						Copy the micro-template shown above and use it as the input for your template. User the <b>myContainer</b> element as the container for your View.
+						Copy the micro-template shown above and use it as the input for your template. Use the <b>myContainer</b> element as the container for your View.
 					</li>
 					<li>
 						Create a View as the one from the previous exercise. This time, use a jQuery selector on the <b>this.$el</b> to change the contents of the <b>'.panel-body'</b> element.
@@ -684,6 +684,10 @@
 					The Model <b>validate</b> method is not defined until we create it to fit our needs. By default <b>save</b> checks validate before setting any attributes but you may also tell <b>set</b> to validate the new attributes by passing <b>{validate: true}</b> as an option. 
 				</p>
 
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">model</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">set</span><span style="color: #f8f8f2">({</span><span style="color: #e6db74">&#39;name&#39;</span><span style="color: #f92672">:</span><span style="color: #e6db74">&#39;My Name&#39;</span><span style="color: #f8f8f2">},</span> <span style="color: #f8f8f2">{</span><span style="color: #a6e22e">validate</span><span style="color: #f92672">:</span><span style="color: #66d9ef">true</span><span style="color: #f8f8f2">});</span>
+</pre></div>
+<div class="ac-caption">Model validation on a <b>set</b> call.</div>				
+
 <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">UserModel</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Model</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
     <span style="color: #a6e22e">validate</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">attrs</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">options</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
         <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span> <span style="color: #a6e22e">attrs</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">name</span> <span style="color: #f92672">===</span> <span style="color: #e6db74">&#39;&#39;</span> <span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
@@ -716,7 +720,7 @@
 				<ol>
 					<li>Create a Model class with default attribute values such as <b>name</b> and <b>email</b>. Instance a model from that class, setting different values for one of the attributes. Use the debugger console to log your model instance's <b>attributes</b> property.</li>
 					<li>Make the model listen to its <b>change:name</b> event and log which value was changed. Use the model <b>changedAttributes</b> for checking that.</li>
-					<li>Inside your change listener, use the model <b>previous</b> method to get the old attribute and log both old and new values.</li>
+					<li>Check the <b>previous</b> method <a href="http://backbonejs.org/#Model-previous" target="_blank">documentation</a>. Inside your change listener, use the model <b>previous</b> method to get the old attribute and log both old and new values.</li>
 					<li>Create a validate function for your model that returns an error message. Try to <b>set</b> an invalid value for one of your model attributes and log the model attributes.</li>
 					<li>Make the Model listen to its <b>'invalid'</b> event. Create a method that will log an error message every time the validation fails.</li>
 					<li>Make this error message be the <b>validationError</b> attribute.</li>
