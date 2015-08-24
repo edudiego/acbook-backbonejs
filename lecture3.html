@@ -115,20 +115,19 @@
 						<li><b>set</b></li>
 						<li><b>get</b></li>
 						<li><b>reset</b></li>
+						<li><b>comparator</b></li>
 						<li><b>at</b></li>
 						<li><b>slice</b></li>
 						<li><b>parse</b></li>
-						<li><b>clone</b></li>
+						<li><b>where</b></li>
+						<li><b>pluck</b></li>
 						<li><b>push</b></li>
-						<li><b>pop</b></li>
-						<li><b>comparator</b></li>						
+						<li><b>pop</b></li>						
 					</ul>
 
 					<p align="justify">
 						We will see some of these methods in further detail on this lecture.
 					</p>
-
-
 
 					<header>
 						<h4>Collection Events</h4>
@@ -175,7 +174,82 @@
 						</li>
 					</ul>
 
+					<header>
+						<h4>The Collection models</h4>
+					</header>
+
+					<p align="justify">
+						The Collection <b>models</b> is a raw access to the JavaScript array of models inside the collection. Usually you will want to use <b>get</b> and <b>at</b> to get the model instances, or the <b>Underscore</b> methods to do so.
+					</p>
+
+					<header>
+						<h4>The Collection comparator() Method</h4>
+					</header>
+
+					<p align="justify">
+						By default there is no <b>comparator</b> for a collection. If you define a comparator, it will be used to maintain the collection in sorted order. This means that as models are added, they are inserted at the correct index in <b>collection.models</b>. 
+					</p>
+					<p align="justify">
+						A comparator can be defined as a <b>sortBy</b> (pass a function that takes a single argument), as a <b>sort</b> (pass a comparator function that expects two arguments), or as a string indicating the attribute to sort by.
+					</p>
+
+					<header>
+						<h4>The Collection url or url()</h4>
+					</header>
+
+					<p align="justify">
+						Set the <b>url</b> property (or function) on a collection to reference its location on the server. Models within the collection will use url to construct URLs of their own.	
+					</p>
+
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">Notes</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Collection</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
+    <span style="color: #a6e22e">url</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;/notes&#39;</span>
+<span style="color: #f8f8f2">});</span>
+
+<span style="color: #75715e">// Or, something more sophisticated:</span>
+
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">Notes</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Collection</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
+    <span style="color: #a6e22e">url</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #66d9ef">return</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.document.</span><span style="color: #a6e22e">url</span><span style="color: #f8f8f2">()</span> <span style="color: #f92672">+</span> <span style="color: #e6db74">&#39;/notes&#39;</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">});</span>
+</pre></div>
+					<div class="ac-caption">A Collection <b>url</b> can be either a string or a function.</div>
+
+					<header>
+						<h4>The Collection sync() Method</h4>
+					</header>
+
+					<p align="justify">
+						Uses <b>Backbone.sync</b> to persist the state of a collection to the server. Can be overridden for custom behavior.
+					</p>
+
+
 					<img src="./images/backbone-collection.png">
+					<div class="ac-caption">A Collection sync() method ilustrated.</div>
+
+				</div>
+			</section>
+			
+			<section id="two">
+				<div class="container">
+					<header class="major">
+						<h2>Views + Collections</h2>
+					</header>
+					
+					<p align="justify">
+						Backbone <b>Views</b> listens to the <b>Collections</b> events the same way it does for <b>Models</b>. They key difference between the combination Views + Collections and the View + Model is on the <b>render</b> method implementation.
+					</p>
+
+					<p align="justify">
+						Usually for rendering a Collection, the View will optionally <b>filter</b > the contents to be shown and then <b>iterate</b> on the selected elements from the collection and append them one by one on its DOM element.
+					</p>
+
+					<p align="justify">
+						This is far from optimized and the main reason for the creation of the <b>Marionette.js</b> library. Marionette main goal is to provide a better way for Backbone Views to render Collections and other composite data structures, besides avoiding memory leaks caused by <b>ghost views</b>.
+					</p>
+
+					
+
 				</div>
 			</section>
 		</div>
