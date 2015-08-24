@@ -129,6 +129,14 @@
 <div class="ac-caption">This will clone the git repository into the current folder.</div>
 
 					<p align="justify">
+						Then do a <b>git checkout</b> to the <b>Exercises</b> branch:
+					</p>
+
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">git</span> <span style="color: #a6e22e">checkout</span> <span style="color: #f92672">-</span><span style="color: #a6e22e">b</span> <span style="color: #a6e22e">Exercises</span>
+</pre></div>
+<div class="ac-caption">This will get the Exercises last updated files.</div>
+
+					<p align="justify">
 						After doing that, run the node package manager to install this project dependencies:
 					</p>
 
@@ -191,6 +199,14 @@
 					<p align="justify">
 						The <b>--save</b> option is used to store the name of the installed package on your <b>bower.json</b> file, so you can install all your packages in another project instance just running <b>bower install</b>.
 					</p>
+
+					<p align="justify">
+						After all this is set up, you should be able to start the server by running the command below:
+					</p>
+
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">grunt</span> <span style="color: #a6e22e">serverExpress</span>
+</pre></div>
+<div class="ac-caption">Start the Node.js server.</div>
 
 			</div>
 		</section>		
@@ -280,16 +296,14 @@
       <b>Model</b> provides a basic set of functionality for managing changes.
     </p>
 
-<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">Sidebar</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Model</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
-  <span style="color: #a6e22e">promptColor</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
-    <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">cssColor</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">prompt</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Please enter a CSS color:&quot;</span><span style="color: #f8f8f2">);</span>
-    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">set</span><span style="color: #f8f8f2">({</span><span style="color: #a6e22e">color</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">cssColor</span><span style="color: #f8f8f2">});</span>
-  <span style="color: #f8f8f2">}</span>
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">UserModel</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Model</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
+    <span style="color: #a6e22e">url</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;/users/me&#39;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">idAttribute</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;_id&#39;</span>
 <span style="color: #f8f8f2">});</span>
+
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">user</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">UserModel</span><span style="color: #f8f8f2">();</span>
 </pre></div>
-
-
-					<div class="ac-caption">A Backbone.js Model with a custom method.</div>
+<div class="ac-caption">A Backbone.js Model definition and instanciation.</div>
 
 			</div>
 		</section>		
@@ -390,7 +404,7 @@
 					<li>Create another instance from the previous View, but render it on another DOM element ("#anotherContainer").</li>
 					<li>Create another instance from the first View, but this time changing the className and tagName attributes.</li>
 					<li>Discover what happens when you point a view to an existing element and set its tagName and className values to differ from that element.</li>
-					<li>Discover what happens when you call a view's destroy() method.</li>
+					<li>Discover what happens when you call a view's remove() method.</li>
 				</ol>
 
 				<header>
@@ -601,7 +615,7 @@
 				</ul>				
 
 				<p align="justify">
-					Every time you call a Model's <b>fetch</b> or <b>save</b> methods, it will create a call to the <b>sync</b> method. So the <b>sync</b> method is the one to overwrite if you need to customize your model to match your server's API.
+					Every time you call a Model's <b>fetch</b> or <b>save</b> methods, it will create a call to the <b>sync</b> method. So the <b>sync</b> method can be overwritten if you need to customize your model to match your server's API.
 				</p>
 
 				<header>
