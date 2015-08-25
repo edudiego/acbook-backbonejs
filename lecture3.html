@@ -60,9 +60,10 @@
 			</header>
 			<nav id="nav">
 				<ul>
-					<li><a href="#one" class="active">Collections</a></li>
-					<li><a href="#two">Views + Collections</a></li>
-					<li><a href="#three">The Social Network</a></li>
+					<li><a href="#one" class="active">The Router</a></li>
+					<li><a href="#two">The History</a></li>
+					<li><a href="#three" class="active">Collections</a></li>
+					<li><a href="#four">Views + Collections</a></li>					
 				</ul>
 				<img src="http://www.avenuecode.com/wp-content/themes/ac-site/images/white-logo.png" alt="">
 			</nav>
@@ -79,6 +80,134 @@
 
 			<!-- One -->
 			<section id="one">
+				<div class="container">
+
+					<header class="major">
+						<h2>The Router</h2>
+					</header>					
+					
+					<p align="justify">
+						So far we have worked with a single View application. With the <b>Router</b>, it is possible to select which flow from our application to display based on the broser's url. This way we can separate the profile <b>displaying</b> from the profile <b>editing</b> functionalities.
+					</p>
+
+					<p align="justify">
+						The <b>Router</b> is also connected with the <b>Backbone.History</b> module for back/forward browser page history navigation.
+					</p>
+
+					<header>
+						<h4>Routes</h4>
+					</header>
+
+					<p align="justify">
+						The way the <b>Router</b> set its <b>routes</b> is very similar to the <b>Node.js</b> path configuring. The key difference is: while a Node.js path does not have to care about the others, when we switch routes on <b>Backbone.js</b> we have to care about <b>removing</b> the current displayed View from sight before showing the newly selected one.
+					</p>
+
+					<p align="justify">
+						The routes use <b>regular expressions</b> to filter the paths. In order to create a <b>catch-all</b> route, the <b>*</b> symbol can be used, but with some trailing characters like in <b>*splat</b>. Using a <b>*</b> alone will generate a parsing error.
+					</p>
+
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">Router</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Router</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
+  <span style="color: #a6e22e">routes</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #e6db74">&quot;&quot;</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;viewProfile&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;edit&quot;</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;editProfile&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;*splat&quot;</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;notFound&quot;</span>
+  <span style="color: #f8f8f2">},</span>
+  <span style="color: #a6e22e">viewProfile</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">userModel</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">UserModel</span><span style="color: #f8f8f2">(),</span>
+        <span style="color: #a6e22e">profileView</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">ProfileView</span><span style="color: #f8f8f2">({</span> <span style="color: #a6e22e">model</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">userModel</span> <span style="color: #f8f8f2">});</span>    
+    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">setView</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">profileView</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #f8f8f2">},</span>
+  <span style="color: #a6e22e">editProfile</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">userId</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">userModel</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">UserModel</span><span style="color: #f8f8f2">(),</span>
+        <span style="color: #a6e22e">editProfileView</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">EditProfileView</span><span style="color: #f8f8f2">({</span> <span style="color: #a6e22e">model</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">userModel</span> <span style="color: #f8f8f2">});</span>
+    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">setView</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">editProfileView</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #f8f8f2">},</span>
+  <span style="color: #a6e22e">notFound</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #f8f8f2">...</span>
+  <span style="color: #f8f8f2">},</span>
+  <span style="color: #a6e22e">setView</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span> <span style="color: #a6e22e">view</span> <span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #f8f8f2">...</span>
+  <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">});</span>
+</pre></div>
+
+<div class="ac-caption">A Backbone.js Router sample configuration.</div>	
+
+					<p align="justify">
+						The <b>Router</b> is commonly used as the <b>Backbone.js</b> central <b>App</b> object, but this configuration is not mandatory. In fact, a Backbone application can have multiple routers, as well as sub-routers that handle sub-paths.
+					</p>
+
+					<header>
+						<h4>The Router navigate() method</h4>
+					</header>
+
+					<p align="justify">
+						Whenever you reach a point in your application that you'd like to save as a URL, call <b>navigate</b> in order to update the URL. If you also wish to call the <b>route</b> function, set the <b>trigger</b> option to true. To update the URL without creating an entry in the browser's history, set the <b>replace</b> option to true.
+					</p>
+
+				</div>
+			</section>		
+
+			<section id="two">
+				<div class="container">
+
+					<header class="major">
+						<h2>The History</h2>
+					</header>
+
+					<p align="justify">
+						The <b>History</b> serves as a global <b>router</b> (per frame) to handle <b>hashchange</b> events or <b>pushState</b>, match the appropriate route, and trigger callbacks. You shouldn't ever have to create one of these yourself since <b>Backbone.history</b> already contains one.
+					</p>
+
+					<header>
+						<h4>The History start() method</h4>
+					</header>
+
+					<p align="justify">
+						When all of your <b>Routers</b> have been created, and all of the routes are set up properly, call <b>Backbone.history.start()</b> to begin monitoring hashchange events, and dispatching routes. 
+					</p>
+					<p align="justify">
+						Subsequent calls to Backbone.history.start() will throw an error, and <b>Backbone.History.started</b> is a boolean value indicating whether it has already been called.
+					</p>
+
+					<header>
+						<h4>History pushState</h4>
+					</header>
+
+					<p align="justify">
+						<b>pushState</b> support exists on a purely opt-in basis in Backbone. Older browsers that don't support pushState will continue to use hash-based URL fragments, and if a hash URL is visited by a pushState-capable browser, it will be transparently upgraded to the true URL. 
+					</p>
+					<p align="justify">
+						Note that using real URLs requires your web server to be able to correctly render those pages, so back-end changes are required as well. For example, if you have a route of /documents/100, your web server must be able to serve that page, if the browser visits that URL directly. 
+					</p>
+					<p align="justify">
+						For full search-engine crawlability, it's best to have the server generate the complete HTML for the page ... but if it's a web application, just rendering the same content you would have for the root URL, and filling in the rest with Backbone Views and JavaScript works fine.
+					</p>
+
+					<header>
+						<h4>Exercise 8</h4>
+					</header>
+
+					<p align="justify">
+						Open the <b>exercise8.html</b> file on the main project folder. At the bottom of the body, open a new script tag and:
+					</p>
+
+					<ol>
+						<li>Create two views similar to the one from Exercise 7, this time creating a <b>ProfileView</b> and a <b>EditProfileView</b>. The file <b>exercise8.html</b> provides one template for each View.</li>
+						<li>
+							Observe that the <b>save</b> event should be on the <b>EditProfileView</b>.
+						</li>
+						<li>Use the code provided above to create a router.</li>
+						<li>Add a <b>initialize</b> method to the Router, and call <b>Backbone.history.start()</b> inside it.</li>
+						<li>Implement the switching of the Views on the <b>setView</b> method.</li>	
+						<li>Instance your router, use the <b>edit profile</b> link to navigate and test the back/foward browser actions.</li>
+					</ol>
+			</div>
+		</section>		
+	
+
+
+			<section id="three">
 				<div class="container">
 
 					<header class="major">
@@ -253,7 +382,7 @@
 						<li>
 							We are using the <b>update</b> built-in event. So let's check the list of built-in events on this lecture <b>[Collections Events]</b> and see that it receives two parameters. Use these parameters to log:
 								<ol style="list-style-type: lower-alpha;">
-									<li>A custom parameter that we will pass on the <b>fetch</b> call: <b>{label:'Available Users Collection'}</b>.</li>
+									<li>A custom <b>options</b> parameter that we will pass on the <b>fetch</b> call: <b>{label:'Available Users Collection'}</b>.</li>
 									<li>The <b>collection.models</b>.</li>
 								</ol>
 						</li>
@@ -281,7 +410,7 @@
 				</div>
 			</section>
 			
-			<section id="two">
+			<section id="four">
 				<div class="container">
 					<header class="major">
 						<h2>Views + Collections</h2>
@@ -304,18 +433,7 @@
 					</header>
 
 					<p align="justify">
-						On our social network we will have four kinds of user lists, as noted on the previous exercise:
-					</p>
-
-					<ul>
-						<li>A general user list, contains users that are not related to us.</li>
-						<li>A friendship list for the users we requested friendship.</li>
-						<li>A friendship list for the users that requested our friendship.</li>
-						<li>A friendship list for users we are already friends with.</li>
-					</ul>
-
-					<p align="justify">
-						All those Views will render <b>Collections</b>, which means they will <b>iterate</b> over a <b>list of models</b>, generate HTML for each model using a <b>template</b>, and then append this generated HTML into the View's element.
+						It is a good practice on <b>Backbone.js</b> that a <b>View</b> could call the <b>render</b> method many times and still have a consistent display (and not to have something rendered more than once inside its element). Because of that, before <b>rendering a collection</b> it is wise to clean the <b>this.$el</b>.						
 					</p>
 
 <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">render</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
@@ -329,6 +447,42 @@
 <div class="ac-caption">A render method example for rendering a Collection.</div>
 
 					<header>
+						<h4>Exercise 10-a</h4>
+					</header>
+
+					<p align="justify">
+						Open the file <b>exercise10.html</b> and link your <b>socialnetwork.js</b> script into it. This file contains the needed templates for the new Views.
+					</p>
+
+					<ol>
+						<li>Create a new View called <b>AvailableUsersView</b>, <b>OUTSIDE OF THE ROUTER</b>, to render the <b>AvailableUsersList</b> collection. The <b>render</b> method should follow the example above.</li>	
+						<li>Don't forget to pass a <b>AvailableUsersList INSTANCE</b> as the <b>collection</b> parameter when you instanciate the View.</li>					
+						<li>Make the View listen to the <b>update</b> event of the Collection and pass the <b>this.render</b> as a callback.</li>
+						<li>Use the <b>#availableUsersTemplate</b> as the source script for the <b>AvailableUsersView</b> template.</li>
+						<li>Pass an <b>el</b> parameter to the View when you instanciate it (<b>#auxiliarContainer</b>), so that the render does not need to append it to the DOM.</li>
+						<li>Give it a try, you should be able to see a list of users at the bottom of the page.</li>
+					</ol>
+
+					<p align="justify">
+						Now that you have a working Collection View, let's make it render where it should be.
+					</p>
+
+					<ol>
+						<li>
+							Create a <b>loadChildrenViews</b> method on the <b>ProfileView</b> and create a <b>AvailableUsersView</b> inside it. Remove it from outside the router.
+						</li>
+						<li>
+							Pass <b>#availableUsersContainer</b> as the <b>el</b> for the collection view. 
+						</li>
+						<li>As that element (<b>#availableUsersContainer</b>) is part of the <b>ProfileView</b> template, you will only call <b>loadChildrenViews</b> after your <b>ProfileView</b> has rendered, inside its <b>render</b> method.
+						</li>
+					</ol>
+
+					<p align="justify">
+						If all went ok, you should now view a list of available friends to add on the <b>#availableUsersContainer</b> div.
+					</p>
+
+					<header>
 						<h4>Extending Views</h4>
 					</header>
 
@@ -340,7 +494,7 @@
 					</p>
 
 					<p align="justify">
-						First we need to determine which would be those common features. We already saw one above: the <b>render a collection</b> feature. Besides that we also want our Views to <b>listenTo</b> the collection <b>update</b> event and re-render themselves.
+						First we need to determine which would be those common features. We already saw a code example for one above: the <b>render a collection</b> feature. Besides that we also want our Views to <b>listenTo</b> the collections <b>update</b> event and re-render themselves.
 					</p>
 
 <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">CollectionView</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">View</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
@@ -353,7 +507,7 @@
     <span style="color: #f8f8f2">}</span>
 <span style="color: #f8f8f2">});</span>
 </pre></div>
-<div class="ac-caption">A common Collection View.</div>				
+<div class="ac-caption">A common CollectionView.</div>				
 
 					<p align="justify">
 						What the Collections cannot share, in our case, are their <b>events</b> and their <b>templates</b>. This is case-specific: in a differente application the Collections could share other features than those.
@@ -361,29 +515,38 @@
 
 <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">AvailableUsersView</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">CollectionView</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
     <span style="color: #a6e22e">events</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">{</span>
-        <span style="color: #e6db74">&#39;click .inviteFriend&#39;</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;inviteFriend&#39;</span>
-    <span style="color: #f8f8f2">},</span>
-    <span style="color: #a6e22e">template</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">_</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">template</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">$</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;#userTemplate&#39;</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">html</span><span style="color: #f8f8f2">()),</span>
-    <span style="color: #a6e22e">inviteFriend</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">event</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
         <span style="color: #f8f8f2">...</span>
-    <span style="color: #f8f8f2">}</span>
+    <span style="color: #f8f8f2">},</span>
+    <span style="color: #a6e22e">template</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">_</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">template</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">$</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;#userTemplate&#39;</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">html</span><span style="color: #f8f8f2">())</span>
 <span style="color: #f8f8f2">});</span>
 </pre></div>
-<div class="ac-caption">Extending a View.</div>		
+<div class="ac-caption">Extending a View.</div>
 
 					<header>
-						<h4>Exercise 10</h4>
+						<h4>Exercise 10-b</h4>
 					</header>
 
 					<p align="justify">
-						Open the file <b>exercise10.html</b> and link your <b>socialnetwork.js</b> script into it. This file contains the needed templates for the new Views.
+						We have other lists of users to render, so let's take advantage of the <b>extend</b> method and define a common <b>Collection View</b>.
 					</p>
 
 					<ol>
-						<li>Create a <b>common CollectionView</b> and four specific views for the four Collections from <b>Exercise 9</b>.</li>
-						<li>Set up each <b>Collection</b> with its respective <b>template</b> and render them on the four <b>containers</b> already set on the page DOM.</li>
+						<li>
+							Follow the two code snippets above and define your <b>AvailableUsersView</b> as an extention of the common <b>CollectionView</b>.
+						</li>
+						<li>
+							Create other 3 Views, one for each of the Collections we logged on the Exercise 9, also extending from the common <b>CollectionView</b>.
+						</li>
+						<li>
+							When you instanciate the Views, remember to pass the right <b>collection</b> and the right <b>el</b> for each View:
+							<ul>
+								<li><b>FriendsRequestsList: #friendRequestsContainer</b></li>
+								<li><b>FriendsRequestedList: #myRequestsContainer</b></li>
+								<li><b>FriendsList: #myFriendsContainer</b></li>
+							</ul>
+						</li>
 					</ol>
-
+					
 				</div>
 			</section>
 		</div>
