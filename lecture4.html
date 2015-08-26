@@ -61,7 +61,9 @@
 			<nav id="nav">
 				<ul>
 					<li><a href="#one" class="active">The Social API</a></li>
-					<li><a href="#two">Handlebars</a></li>					
+					<li><a href="#two">Messaging Between Views</a></li>
+					<li><a href="#three">Refactoring</a></li>
+					<li><a href="#four">Handlebars</a></li>
 				</ul>
 				<img src="http://www.avenuecode.com/wp-content/themes/ac-site/images/white-logo.png" alt="">
 			</nav>
@@ -82,7 +84,7 @@
 
 					<header class="major">
 						<h2>The Social API</h2>
-					</header>					
+					</header>
 					
 					<p align="justify">
 						On the previous lectures we worked with Views, Models, Collections and the Router, and worked on linking those features together to display the four kind of relationships we have.
@@ -116,421 +118,132 @@
 <div class="ac-caption">An object of the <b>Friendship</b> kind.</div>					
 
 					<p align="justify">
-						
+						The user listings we used on Exercise 10 are actually some backend work to select the users listend on these <b>friendships</b> objects.
+					</p>
+
+					<p align="justify">
+						Now lets take a look on the friendship <b>routes</b> provided by the backend. The word 'friendships' does not appear because it is appended by the route adding on <b>server.js</b>: <b>app.use('/friendships', friendship)</b>.
+					</p>
+
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">router</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">route</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/&#39;</span><span style="color: #f8f8f2">)</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">get</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">auth</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">isAuthenticated</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">friendshipController</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">listAllFriendships</span><span style="color: #f8f8f2">);</span>
+
+<span style="color: #a6e22e">router</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">route</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/me&#39;</span><span style="color: #f8f8f2">)</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">get</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">auth</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">isAuthenticated</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">friendshipController</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">listMyFriendships</span><span style="color: #f8f8f2">);</span>
+
+<span style="color: #a6e22e">router</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">route</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/requests&#39;</span><span style="color: #f8f8f2">)</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">get</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">auth</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">isAuthenticated</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">friendshipController</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">listFriendshipsRequests</span><span style="color: #f8f8f2">);</span>
+
+<span style="color: #a6e22e">router</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">route</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/requested&#39;</span><span style="color: #f8f8f2">)</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">get</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">auth</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">isAuthenticated</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">friendshipController</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">listFriendshipsRequested</span><span style="color: #f8f8f2">);</span>
+
+<span style="color: #a6e22e">router</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">route</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/:friendId&#39;</span><span style="color: #f8f8f2">)</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">get</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">auth</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">isAuthenticated</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">friendshipController</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">getFriendship</span><span style="color: #f8f8f2">)</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">post</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">auth</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">isAuthenticated</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">friendshipController</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">inviteFriend</span><span style="color: #f8f8f2">)</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">put</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">auth</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">isAuthenticated</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">friendshipController</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">acceptFriend</span><span style="color: #f8f8f2">)</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #66d9ef">delete</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">auth</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">isAuthenticated</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">friendshipController</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">rejectFriend</span><span style="color: #f8f8f2">);</span>
+ 
+<span style="color: #a6e22e">router</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">route</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/:friendId/vip&#39;</span><span style="color: #f8f8f2">)</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">post</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">auth</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">isAuthenticated</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">friendshipController</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">setVip</span><span style="color: #f8f8f2">)</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #66d9ef">delete</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">auth</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">isAuthenticated</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">friendshipController</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">unsetVip</span><span style="color: #f8f8f2">);</span>
+ 
+
+<span style="color: #a6e22e">router</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">route</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;/:friendId/block&#39;</span><span style="color: #f8f8f2">)</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">post</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">auth</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">isAuthenticated</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">friendshipController</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">setBlock</span><span style="color: #f8f8f2">)</span>
+  <span style="color: #f8f8f2">.</span><span style="color: #66d9ef">delete</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">auth</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">isAuthenticated</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">friendshipController</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">unsetBlock</span><span style="color: #f8f8f2">);</span>
+</pre></div>
+<div class="ac-caption">Backend friendship routes.</div>
+
+					<p align="justify">
+						We created some paths to allow the retrieve of <b>user</b> objects instead of the <b>friendships</b>, but the <b>friendships/:friendId</b> still responds for the friendship <b>CRUD</b> map.
+					</p>
+
+					<p align="justify">
+						You can test all the <b>get</b> routes by simply opening the <b>url</b> on your browser: try <b>/friendships</b> and <b>/friendships/me</b>.
 					</p>
 
 					<header>
-						<h4>The Router navigate() method</h4>
+						<h4>The Friendship Model</h4>
 					</header>
 
 					<p align="justify">
-						Whenever you reach a point in your application that you'd like to save as a URL, call <b>navigate</b> in order to update the URL. If you also wish to call the <b>route</b> function, set the <b>trigger</b> option to true. To update the URL without creating an entry in the browser's history, set the <b>replace</b> option to true.
+						Now that we have a backend path  listing, we will create a Model to interact with them.
 					</p>
 
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">FriendshipModel</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Model</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
+  <span style="color: #a6e22e">urlRoot</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;/friendships&#39;</span><span style="color: #f8f8f2">,</span>
+  <span style="color: #a6e22e">sync</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">method</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">model</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">options</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #a6e22e">options</span> <span style="color: #f92672">||</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">options</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{});</span>
+    <span style="color: #66d9ef">switch</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">method</span><span style="color: #f8f8f2">){</span>
+      <span style="color: #66d9ef">case</span> <span style="color: #e6db74">&#39;create&#39;</span><span style="color: #f92672">:</span>
+      <span style="color: #a6e22e">options</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">url</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">urlRoot</span> <span style="color: #f92672">+</span> <span style="color: #e6db74">&#39;/&#39;</span> <span style="color: #f92672">+</span> <span style="color: #a6e22e">model</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">attributes</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">friendID</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #66d9ef">break</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #f8f8f2">}</span>
+    <span style="color: #66d9ef">return</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">sync</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">method</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">model</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">options</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">});</span>
+</pre></div>
+<div class="ac-caption">The FriendshipModel.</div>
+
+					<p align="justify">
+						Notice that we customized the <b>sync</b> method to add some data (the <b>friendID</b>) when we are creating a new frienship. This is for matching our API, which requires the friend id for handling all the frienships actions.
+					</p>
+					<p>
+						By default, the Model does not add the <b>id</b> when creating an object. The <b>friendship</b> object is an exception because actually the id we are sending is not the one for the entity itself, but for informing which user we want to manage the friendship with.
+					</p>
+
+					<header>
+						<h4>Exercise 11</h4>
+					</header>
+
+					<p>
+						You can keep working on <b>exercise10.html</b> because now your work is on your <b>socialnetwork.js</b> file.
+					</p>
+
+					<ol>
+						<li>Add the <b>events</b> object to the <b>AvailableUsersView</b>. Make the <b>click</b> on the <b>.inviteFriend</b> link fire a method that creates a new friendship and saves it. 
+						</li>
+						<li>The friendship related collections now should use the FriendshipModel (for the special <b>sync</b> to be called).</li>
+						<li>Notice you will also have to set one property on the model before saving it for the <b>sync</b> method to work when creating a friendship.</li>
+						<li>Upon a succesful saving, issue a <b>fetch</b> on both <b>AvailableUsersView</b> for it to reflect the new friendship configuration.</li>
+						<li>Repeat the process with the <b>.acceptFriend</b> link on the  <b>FriendsRequestsView</b>.</li>
+				</ol>
+
 				</div>
-			</section>		
+			</section>
 
 			<section id="two">
 				<div class="container">
 
 					<header class="major">
-						<h2>The History</h2>
+						<h2>Messaging Between Views</h2>
 					</header>
-
-					<p align="justify">
-						The <b>History</b> serves as a global <b>router</b> (per frame) to handle <b>hashchange</b> events or <b>pushState</b>, match the appropriate route, and trigger callbacks. You shouldn't ever have to create one of these yourself since <b>Backbone.history</b> already contains one.
-					</p>
-
-					<header>
-						<h4>The History start() method</h4>
-					</header>
-
-					<p align="justify">
-						When all of your <b>Routers</b> have been created, and all of the routes are set up properly, call <b>Backbone.history.start()</b> to begin monitoring hashchange events, and dispatching routes. 
-					</p>
-					<p align="justify">
-						Subsequent calls to Backbone.history.start() will throw an error, and <b>Backbone.History.started</b> is a boolean value indicating whether it has already been called.
-					</p>
-
-					<header>
-						<h4>History pushState</h4>
-					</header>
-
-					<p align="justify">
-						<b>pushState</b> support exists on a purely opt-in basis in Backbone. Older browsers that don't support pushState will continue to use hash-based URL fragments, and if a hash URL is visited by a pushState-capable browser, it will be transparently upgraded to the true URL. 
-					</p>
-					<p align="justify">
-						Note that using real URLs requires your web server to be able to correctly render those pages, so back-end changes are required as well. For example, if you have a route of /documents/100, your web server must be able to serve that page, if the browser visits that URL directly. 
-					</p>
-					<p align="justify">
-						For full search-engine crawlability, it's best to have the server generate the complete HTML for the page ... but if it's a web application, just rendering the same content you would have for the root URL, and filling in the rest with Backbone Views and JavaScript works fine.
-					</p>
-
-					<header>
-						<h4>Exercise 8</h4>
-					</header>
-
-					<p align="justify">
-						Open the <b>exercise8.html</b> file on the main project folder. At the bottom of the body, open a new script tag and:
-					</p>
-
-					<ol>
-						<li>Create two views similar to the one from Exercise 7, this time creating a <b>ProfileView</b> and a <b>EditProfileView</b>. The file <b>exercise8.html</b> provides one template for each View.</li>
-						<li>
-							Observe that the <b>save</b> event should be on the <b>EditProfileView</b>.
-						</li>
-						<li>Use the code provided above to create a router.</li>
-						<li>Add a <b>initialize</b> method to the Router, and call <b>Backbone.history.start()</b> inside it.</li>
-						<li>Implement the switching of the Views on the <b>setView</b> method.</li>	
-						<li>Instance your router, use the <b>edit profile</b> link to navigate and test the back/foward browser actions.</li>
-					</ol>
-			</div>
-		</section>		
-	
-
+							
+				</div>
+			</section>
 
 			<section id="three">
 				<div class="container">
 
 					<header class="major">
-						<h2>Collections</h2>
+						<h2>Refactoring</h2>
 					</header>
-
-					<p align="justify">
-						Collections are <b>ordered sets of models</b>. You can bind <b>"change"</b> events to be notified when any model in the collection has been modified, listen for <b>"add"</b> and <b>"remove"</b> events, <b>fetch</b> the collection from the server, and use a full suite of Underscore.js methods.
-					</p>
-
-					<p align="justify">
-						Any event that is triggered on a model in a collection will also be triggered on the collection directly, for convenience. This allows you to listen for changes to specific attributes in any model in a collection, for example: <b>documents.on("change:selected", ...)</b>.
-					</p>
-
-					<img src="./images/backbone-events.png">
-					<div class="ac-caption">Some Models events reflect on the Collection it belongs to.</div>
-
-					<header>
-						<h4>Collection Methods</h4>
-					</header>
-
-					<p align="justify">
-						By its "array-like" nature, the <b>Collection</b> is compatible with the <b>Underscore.js</b> library and so inherits a total of 46 functional methods from it. You can see the whole list <a href="http://backbonejs.org/#Collection-Underscore-Methods">here</a>.
-					</p>
-
-					<p align="justify">
-						Apart from that methods, a few of the most commonly used <b>Collections</b> methods include:
-					</p>
-
-					<ul>
-						<li><b>add</b></li>
-						<li><b>create</b></li>
-						<li><b>remove</b></li>
-						<li><b>set</b></li>
-						<li><b>get</b></li>
-						<li><b>reset</b></li>
-						<li><b>comparator</b></li>
-						<li><b>at</b></li>
-						<li><b>slice</b></li>
-						<li><b>parse</b></li>
-						<li><b>where</b></li>
-						<li><b>pluck</b></li>
-						<li><b>push</b></li>
-						<li><b>pop</b></li>						
-					</ul>
-
-					<p align="justify">
-						We will see some of these methods in further detail on this lecture.
-					</p>
-
-					<header>
-						<h4>Collection Events</h4>
-					</header>
-
-					<p align="justify">
-						Collections share some of its <b>events</b> with the Models, but they also have some events that are exclusive to them. Below we have the list of built-in events that can be fired by Collections and sometimes also by Models:
-					</p>
-
-					<ul>
-						<li><b>"add"</b> (model, collection, options) — when a model is added to a collection.</li>
-						<li><b>"remove"</b> (model, collection, options) — when a model is removed from a collection.</li>
-						<li><b>"update"</b> (collection, options) — single event triggered after any number of models have been added or removed from a collection.</li>
-						<li><b>"reset"</b> (collection, options) — when the collection's entire contents have been replaced.</li>
-						<li><b>"sort"</b> (collection, options) — when the collection has been re-sorted.</li>
-						<li><b>"change"</b> (model, options) — when a model's attributes have changed.</li>
-						<li><b>"change:[attribute]"</b> (model, value, options) — when a specific attribute has been updated.</li>
-						<li><b>"destroy"</b> (model, collection, options) — when a model is <a href="#Model-destroy">destroyed</a>.</li>
-						<li><b>"request"</b> (model_or_collection, xhr, options) — when a model or collection has started a request to the server.</li>
-						<li><b>"sync"</b> (model_or_collection, resp, options) — when a model or collection has been successfully synced with the server.</li>
-						<li><b>"error"</b> (model_or_collection, resp, options) — when a model's or collection's request to the server has failed.</li>
-						<li><b>"invalid"</b> (model, error, options) — when a model's validation fails on the client.</li>
-						<li><b>"all"</b> — this special event fires for <i>any</i> triggered event, passing the event name as the first argument.</li>
-					</ul>
-
-					<header>
-						<h4>The Collection "model" attribute</h4>
-					</header>
-
-					<p align="justify">
-						The Collection <b>model</b> attribute specifies which kind of model the Collection will hold (don't you say?). When we determine this attribute, we can pass raw attributes objects (and arrays) to the Collection's <b>add</b>, <b>create</b> and <b>reset</b> methods and the attributes will be converted into a model of the proper type.
-					</p>
-
-<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">Library</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Collection</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
-    <span style="color: #a6e22e">model</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">Book</span>
-<span style="color: #f8f8f2">});</span>
-</pre></div>
-<div class="ac-caption">A Collection with a Model type definition.</div>
-
-
-					<ul class="feature-icons">
-						<li class="fa-bolt" style="width: inherit">
-							Notice how, diffferent from the <b>View</b> model, the <b>Collection</b> model refers to a Model <b>definition</b> rather than to a model <b>instance</b>.
-						</li>
-					</ul>
-
-					<header>
-						<h4>The Collection models</h4>
-					</header>
-
-					<p align="justify">
-						The Collection <b>models</b> is a raw access to the JavaScript array of models inside the collection. Usually you will want to use <b>get</b> and <b>at</b> to get the model instances, or the <b>Underscore</b> methods to do so.
-					</p>
-
-					<header>
-						<h4>The Collection comparator() Method</h4>
-					</header>
-
-					<p align="justify">
-						By default there is no <b>comparator</b> for a collection. If you define a comparator, it will be used to maintain the collection in sorted order. This means that as models are added, they are inserted at the correct index in <b>collection.models</b>. 
-					</p>
-					<p align="justify">
-						A comparator can be defined as a <b>sortBy</b> (pass a function that takes a single argument), as a <b>sort</b> (pass a comparator function that expects two arguments), or as a string indicating the attribute to sort by.
-					</p>
-
-					<header>
-						<h4>The Collection url or url()</h4>
-					</header>
-
-					<p align="justify">
-						Set the <b>url</b> property (or function) on a collection to reference its location on the server. Models within the collection will use url to construct URLs of their own.	
-					</p>
-
-<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">Notes</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Collection</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
-    <span style="color: #a6e22e">url</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;/notes&#39;</span>
-<span style="color: #f8f8f2">});</span>
-
-<span style="color: #75715e">// Or, something more sophisticated:</span>
-
-<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">Notes</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Collection</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
-    <span style="color: #a6e22e">url</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
-        <span style="color: #66d9ef">return</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.document.</span><span style="color: #a6e22e">url</span><span style="color: #f8f8f2">()</span> <span style="color: #f92672">+</span> <span style="color: #e6db74">&#39;/notes&#39;</span><span style="color: #f8f8f2">;</span>
-    <span style="color: #f8f8f2">}</span>
-<span style="color: #f8f8f2">});</span>
-</pre></div>
-					<div class="ac-caption">A Collection <b>url</b> can be either a string or a function.</div>
-
-					<header>
-						<h4>The Collection sync() Method</h4>
-					</header>
-
-					<p align="justify">
-						Uses <b>Backbone.sync</b> to persist the state of a collection to the server. Can be overridden for custom behavior.
-					</p>
-
-					<img src="./images/backbone-collection.png">
-					<div class="ac-caption">A Collection sync() method ilustrated.</div>
-
-					<header>
-						<h4>Exercise 9</h4>
-					</header>
-
-					<p align="justify">
-						Start your server by running <b>grunt serverExpress</b>. Login to the social network API going to <b>localthost:3000/login.html</b>. After logged in, open the <b>exercise9.html</b> file on the main project folder. 
-					</p>
-					<p align="justify">	
-						From now on as the code will grow larger, create a separate script file named <b>socialnetwork.js</b> and save it on the project's scripts folder (<b>public/assets/js</b>). Link the script file at the end of your document and follow the instructions below:
-					</p>
-
-					<ol>
-						<li>
-							Copy the code from your previous exercise, so that your script already have the <b>ProfileView</b> and the <b>EditProfileView</b> running and working with the <b>Router</b>.
-						</li>
-						<li>
-							Create a <b>Collection</b> named <b>AvailableUsersList</b> with <b>url</b> attribute = <b>'/users/available'</b> and <b>model</b> = <b>UserModel</b>.
-						</li>
-						<li>
-							Create a method called <b>loadCollections()</b> on your <b>ProfileView</b>. Call it at the end of the <b>initialize</b> method.
-						</li>
-						<li>
-							Inside <b>loadCollections</b>, create a collection instance of <b>AvailableUsersList</b> named <b>users</b>. Set the View to <b>listenTo</b> the collection's <b>update</b> event. On the listener callback, log the fetched results.
-						</li>
-						<li>
-							We are using the <b>update</b> built-in event. So let's check the list of built-in events on this lecture <b>[Collections Events]</b> and see that it receives two parameters. Use these parameters to log:
-								<ol style="list-style-type: lower-alpha;">
-									<li>A custom <b>options</b> parameter that we will pass on the <b>fetch</b> call: <b>{label:'Available Users Collection'}</b>.</li>
-									<li>The <b>collection.models</b>.</li>
-								</ol>
-						</li>
-						<li>
-							Create the three collections as listed below. Create instances of those collections on the same way you did for the <b>AvailableUsersList</b> on the <b>loadCollections()</b> method, fetch and log them accordingly with a custom label for each.
-						</li>
-					</ol>
-
-<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #75715e">//=============================[ COLLECTIONS ]==============================</span>
-
-<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">FriendsRequestsList</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Collection</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
-  <span style="color: #a6e22e">url</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;/friendships/requests&#39;</span>
-<span style="color: #f8f8f2">});</span>
-
-<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">FriendsRequestedList</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Collection</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
-  <span style="color: #a6e22e">url</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;/friendships/requested&#39;</span>
-<span style="color: #f8f8f2">});</span>
-
-<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">FriendsList</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Collection</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
-  <span style="color: #a6e22e">url</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;/friendships/me&#39;</span>
-<span style="color: #f8f8f2">});</span>
-</pre></div>
-					<div class="ac-caption">These collections will fetch the social network 'friendship' objects.</div>
-
+							
 				</div>
 			</section>
-			
+
 			<section id="four">
 				<div class="container">
+
 					<header class="major">
-						<h2>Views + Collections</h2>
+						<h2>Handlebars</h2>
 					</header>
-					
-					<p align="justify">
-						Backbone <b>Views</b> listens to the <b>Collections</b> events the same way it does for <b>Models</b>. They key difference between the combination Views + Collections and the View + Model is on the <b>render</b> method implementation.
-					</p>
-
-					<p align="justify">
-						Usually for rendering a Collection, the View will optionally <b>filter</b > the contents to be shown and then <b>iterate</b> on the selected elements from the collection and append them one by one on its DOM element.
-					</p>
-
-					<p align="justify">
-						This is far from optimized and the main reason for the creation of the <b>Marionette.js</b> library. Marionette main goal is to provide a better way for Backbone Views to render Collections and other composite data structures, besides avoiding memory leaks caused by <b>ghost views</b>.
-					</p>
-
-					<header>
-						<h4>Rendering Collections</h4>
-					</header>
-
-					<p align="justify">
-						It is a good practice on <b>Backbone.js</b> that a <b>View</b> could call the <b>render</b> method many times and still have a consistent display (and not to have something rendered more than once inside its element). Because of that, before <b>rendering a collection</b> it is wise to clean the <b>this.$el</b>.						
-					</p>
-
-<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">render</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
-    <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">self</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">;</span>
-    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">$el</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">html</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;&#39;</span><span style="color: #f8f8f2">);</span> <span style="color: #75715e">// clean before start</span>
-    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">collection</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">forEach</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">model</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">index</span><span style="color: #f8f8f2">){</span>     
-      <span style="color: #a6e22e">self</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">$el</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">append</span><span style="color: #f8f8f2">(</span> <span style="color: #a6e22e">self</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">template</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">model</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">attributes</span><span style="color: #f8f8f2">));</span>
-    <span style="color: #f8f8f2">});</span>
-<span style="color: #f8f8f2">},</span>
-</pre></div>
-<div class="ac-caption">A render method example for rendering a Collection.</div>
-
-					<header>
-						<h4>Exercise 10-a</h4>
-					</header>
-
-					<p align="justify">
-						Open the file <b>exercise10.html</b> and link your <b>socialnetwork.js</b> script into it. This file contains the needed templates for the new Views.
-					</p>
-
-					<ol>
-						<li>Create a new View called <b>AvailableUsersView</b>, <b>OUTSIDE OF THE ROUTER</b>, to render the <b>AvailableUsersList</b> collection. The <b>render</b> method should follow the example above.</li>	
-						<li>Don't forget to pass a <b>AvailableUsersList INSTANCE</b> as the <b>collection</b> parameter when you instanciate the View.</li>					
-						<li>Make the View listen to the <b>update</b> event of the Collection and pass the <b>this.render</b> as a callback.</li>
-						<li>Use the <b>#availableUsersTemplate</b> as the source script for the <b>AvailableUsersView</b> template.</li>
-						<li>Pass an <b>el</b> parameter to the View when you instanciate it (<b>#auxiliarContainer</b>), so that the render does not need to append it to the DOM.</li>
-						<li>Give it a try, you should be able to see a list of users at the bottom of the page.</li>
-					</ol>
-
-					<p align="justify">
-						Now that you have a working Collection View, let's make it render where it should be.
-					</p>
-
-					<ol>
-						<li>
-							Create a <b>loadChildrenViews</b> method on the <b>ProfileView</b> and create a <b>AvailableUsersView</b> inside it. Remove it from outside the router.
-						</li>
-						<li>
-							Pass <b>#availableUsersContainer</b> as the <b>el</b> for the collection view. 
-						</li>
-						<li>As that element (<b>#availableUsersContainer</b>) is part of the <b>ProfileView</b> template, you will only call <b>loadChildrenViews</b> after your <b>ProfileView</b> has rendered, inside its <b>render</b> method.
-						</li>
-					</ol>
-
-					<p align="justify">
-						If all went ok, you should now view a list of available friends to add on the <b>#availableUsersContainer</b> div.
-					</p>
-
-					<header>
-						<h4>Extending Views</h4>
-					</header>
-
-					<p align="justify">
-						Every time we defined a View so far, we called the <b>Backbone.View.extend</b> method. So the Views inherited all the <b>Backbone.View</b> properties, <b>including the cabapility of being extended</b>. 
-					</p>
-					<p>
-						Now we are going to take advantage of that: we will create a common <b>CollectionView</b> that will host all the common features we want on our Collection Views.
-					</p>
-
-					<p align="justify">
-						First we need to determine which would be those common features. We already saw a code example for one above: the <b>render a collection</b> feature. Besides that we also want our Views to <b>listenTo</b> the collections <b>update</b> event and re-render themselves.
-					</p>
-
-<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">CollectionView</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">View</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
-    <span style="color: #a6e22e">initialize</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
-        <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">listenTo</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">collection</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;update&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">render</span><span style="color: #f8f8f2">);</span>
-        <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">collection</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">fetch</span><span style="color: #f8f8f2">();</span>
-    <span style="color: #f8f8f2">},</span>
-    <span style="color: #a6e22e">render</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
-        <span style="color: #f8f8f2">...</span>
-    <span style="color: #f8f8f2">}</span>
-<span style="color: #f8f8f2">});</span>
-</pre></div>
-<div class="ac-caption">A common CollectionView.</div>				
-
-					<p align="justify">
-						What the Collections cannot share, in our case, are their <b>events</b> and their <b>templates</b>. This is case-specific: in a differente application the Collections could share other features than those.
-					</p>
-
-<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">AvailableUsersView</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">CollectionView</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
-    <span style="color: #a6e22e">events</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">{</span>
-        <span style="color: #f8f8f2">...</span>
-    <span style="color: #f8f8f2">},</span>
-    <span style="color: #a6e22e">template</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">_</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">template</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">$</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;#userTemplate&#39;</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">html</span><span style="color: #f8f8f2">())</span>
-<span style="color: #f8f8f2">});</span>
-</pre></div>
-<div class="ac-caption">Extending a View.</div>
-
-					<header>
-						<h4>Exercise 10-b</h4>
-					</header>
-
-					<p align="justify">
-						We have other lists of users to render, so let's take advantage of the <b>extend</b> method and define a common <b>Collection View</b>.
-					</p>
-
-					<ol>
-						<li>
-							Follow the two code snippets above and define your <b>AvailableUsersView</b> as an extention of the common <b>CollectionView</b>.
-						</li>
-						<li>
-							Create other 3 Views, one for each of the Collections we logged on the Exercise 9, also extending from the common <b>CollectionView</b>.
-						</li>
-						<li>
-							When you instanciate the Views, remember to pass the right <b>collection</b> and the right <b>el</b> for each View:
-							<ul>
-								<li><b>FriendsRequestsList: #friendRequestsContainer</b></li>
-								<li><b>FriendsRequestedList: #myRequestsContainer</b></li>
-								<li><b>FriendsList: #myFriendsContainer</b></li>
-							</ul>
-						</li>
-					</ol>
-					
+							
 				</div>
 			</section>
+
+
+		
 		</div>
 
 		<!-- Footer -->
