@@ -60,10 +60,10 @@
 			</header>
 			<nav id="nav">
 				<ul>
-					<li><a href="#one" class="active">The Social API</a></li>
-					<li><a href="#two">Messaging Between Views</a></li>
-					<li><a href="#three">Refactoring</a></li>
-					<li><a href="#four">Handlebars</a></li>
+					<li><a href="#zero" class="active">Syntax Review</a></li>
+					<li><a href="#one">The Social API</a></li>
+					<li><a href="#two">Messaging</a></li>
+          <li><a href="#three">Final Considerations</a></li>         
 				</ul>
 				<img src="http://www.avenuecode.com/wp-content/themes/ac-site/images/white-logo.png" alt="">
 			</nav>
@@ -78,7 +78,140 @@
 				<img class="logo-big" src="./images/backbone.png">
 			</div>
 
-			<!-- One -->
+			<section id="zero">
+				<div class="container">
+
+					<header class="major">
+						<h2>Syntax Review</h2>
+					</header>
+
+					<p align="justify">
+						Let's review what we have learned about <b>Backbone.js</b> on the past lessons and also remember some syntax rules for the next sections and exercises.
+					</p>
+
+					<header>
+						<h4>Views</h4>
+					</header>
+
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #75715e">// Declaring a View</span>
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">MyView</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">View</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
+    <span style="color: #a6e22e">events</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #e6db74">&#39;click .acceptFriend&#39;</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;acceptFriend&#39;</span>
+    <span style="color: #f8f8f2">},</span>
+    <span style="color: #a6e22e">el</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;#myDefaultContainer&#39;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">initialize</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">options</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">customValue</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">options</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">foo</span><span style="color: #f8f8f2">;</span>
+        <span style="color: #f8f8f2">...</span>        
+    <span style="color: #f8f8f2">},</span>
+    <span style="color: #a6e22e">render</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #f8f8f2">...</span>
+    <span style="color: #f8f8f2">},</span>
+    <span style="color: #a6e22e">acceptFriend</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">event</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #f8f8f2">...</span>
+    <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">});</span>
+
+<span style="color: #75715e">// Creating a View instance</span>
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">myViewInstance</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">MyView</span><span style="color: #f8f8f2">({</span>
+    <span style="color: #a6e22e">el</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;#overwriteTheContainer&#39;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">foo</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;arbitrary string&#39;</span>
+<span style="color: #f8f8f2">});</span>
+</pre></div>
+<div class="ac-caption">Views declaration and instanciation.</div>
+
+                    <header>
+                        <h4>Models</h4>
+                    </header>
+
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #75715e">// Declaring a Model</span>
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">UserModel</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Model</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
+    <span style="color: #a6e22e">urlRoot</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;/users/me&#39;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">parse</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #f8f8f2">...</span>
+    <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">});</span>
+
+<span style="color: #75715e">// Creating a Model instance</span>
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">myUser</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">UserModel</span><span style="color: #f8f8f2">();</span>
+</pre></div>
+<div class="ac-caption">Models declaration and instanciation.</div>
+
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #75715e">// Setting two model attribute values at a time</span>
+<span style="color: #a6e22e">myUser</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">set</span><span style="color: #f8f8f2">({</span> <span style="color: #a6e22e">name</span><span style="color: #f92672">:</span><span style="color: #e6db74">&quot;Name&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">email</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;name@email.com&quot;</span> <span style="color: #f8f8f2">});</span>
+
+<span style="color: #75715e">// Require the parsing of the model by passing a &#39;parse&#39; option</span>
+<span style="color: #a6e22e">myUser</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">set</span><span style="color: #f8f8f2">({</span> <span style="color: #a6e22e">name</span><span style="color: #f92672">:</span><span style="color: #e6db74">&quot;Name&quot;</span><span style="color: #f8f8f2">},</span> <span style="color: #f8f8f2">{</span><span style="color: #a6e22e">parse</span><span style="color: #f92672">:</span><span style="color: #66d9ef">true</span><span style="color: #f8f8f2">});</span>
+
+<span style="color: #75715e">// Sending two options when setting the data</span>
+<span style="color: #a6e22e">myUser</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">set</span><span style="color: #f8f8f2">({</span><span style="color: #a6e22e">email</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&quot;name@email.com&quot;</span> <span style="color: #f8f8f2">},</span> <span style="color: #f8f8f2">{</span><span style="color: #a6e22e">silent</span><span style="color: #f92672">:</span><span style="color: #66d9ef">true</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">parse</span><span style="color: #f92672">:</span><span style="color: #66d9ef">true</span><span style="color: #f8f8f2">});</span>
+
+<span style="color: #75715e">// Getting a value from the model</span>
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">name</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">myUser</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">get</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;name&#39;</span><span style="color: #f8f8f2">);</span>
+</pre></div>
+
+<div class="ac-caption">Model set method syntax.</div>
+
+                    <header>
+                        <h4>Collections</h4>
+                    </header>
+
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">AvailableUsersList</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Collection</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
+    <span style="color: #a6e22e">url</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;/users/available&#39;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">model</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">UserModel</span> <span style="color: #75715e">// Model definition, not instance</span>
+<span style="color: #f8f8f2">});</span>
+
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">users</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">AvailableUsersList</span><span style="color: #f8f8f2">();</span>
+</pre></div>
+
+<div class="ac-caption">A Collection definition and instance example.</div>
+
+
+                    <header>
+                        <h4>Views + Models, Views + Collections</h4>
+                    </header>
+
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #75715e">// Creating a Model instance</span>
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">myUser</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">UserModel</span><span style="color: #f8f8f2">();</span>
+
+<span style="color: #75715e">// Creating a View instance and passing a model instance</span>
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">myView</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">MyView</span><span style="color: #f8f8f2">({</span> <span style="color: #a6e22e">model</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">myUser</span> <span style="color: #f8f8f2">});</span>
+
+<span style="color: #75715e">// Alternative way of passing the model instance</span>
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">myView</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">MyView</span><span style="color: #f8f8f2">({</span> <span style="color: #a6e22e">model</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">UserModel</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">});</span>
+</pre></div>
+<div class="ac-caption">Passing the Model instance to the View instance.</div>
+
+
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #75715e">// View listens to model events</span>
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">MyView</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">View</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
+    <span style="color: #a6e22e">initialize</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">listenTo</span><span style="color: #f8f8f2">(</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">model</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;sync&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">render</span> <span style="color: #f8f8f2">);</span> <span style="color: #75715e">// listens to the sync</span>
+        <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">model</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">fetch</span><span style="color: #f8f8f2">();</span> <span style="color: #75715e">// issues a fetch that will generate the sync</span>
+    <span style="color: #f8f8f2">},</span>
+    <span style="color: #a6e22e">render</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #75715e">// render ignores the event passed parameters</span>
+        <span style="color: #f8f8f2">...</span>
+    <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">});</span>
+</pre></div>
+<div class="ac-caption">View binding a callback to a model event.</div>
+
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #75715e">// Listening to a collection&#39;s update event</span>
+<span style="color: #a6e22e">initialize</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">listenTo</span><span style="color: #f8f8f2">(</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">collection</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;update&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span> <span style="color: #f8f8f2">);</span> <span style="color: #75715e">// listens to update</span>
+    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">collection</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">fetch</span><span style="color: #f8f8f2">({</span><span style="color: #a6e22e">label</span><span style="color: #f92672">:</span><span style="color: #e6db74">&quot;CustomValue&quot;</span><span style="color: #f8f8f2">});</span>
+<span style="color: #f8f8f2">},</span>
+<span style="color: #a6e22e">log</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">collection</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">options</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">options</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">label</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">collection</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">models</span><span style="color: #f8f8f2">);</span>
+<span style="color: #f8f8f2">}</span>
+</pre></div>
+<div class="ac-caption">Binding to events and using the options parameter.</div>
+
+
+				</div>
+			</section>
+
+			<!-- One -->			
 			<section id="one">
 				<div class="container">
 
@@ -95,7 +228,7 @@
 					</p>
 
 					<header>
-						<h4>The FriendshipModel</h4>
+						<h4>The Friendship Database Entity</h4>
 					</header>
 
 					<p align="justify">
@@ -171,16 +304,12 @@
 					</p>
 
 <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">FriendshipModel</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Model</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
-  <span style="color: #a6e22e">urlRoot</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;/friendships&#39;</span><span style="color: #f8f8f2">,</span>
-  <span style="color: #a6e22e">sync</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">method</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">model</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">options</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
-    <span style="color: #a6e22e">options</span> <span style="color: #f92672">||</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">options</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{});</span>
-    <span style="color: #66d9ef">switch</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">method</span><span style="color: #f8f8f2">){</span>
-      <span style="color: #66d9ef">case</span> <span style="color: #e6db74">&#39;create&#39;</span><span style="color: #f92672">:</span>
-      <span style="color: #a6e22e">options</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">url</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">urlRoot</span> <span style="color: #f92672">+</span> <span style="color: #e6db74">&#39;/&#39;</span> <span style="color: #f92672">+</span> <span style="color: #a6e22e">model</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">attributes</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">friendID</span><span style="color: #f8f8f2">;</span>
-      <span style="color: #66d9ef">break</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #a6e22e">urlRoot</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;/friendships&#39;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">sync</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">method</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">model</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">options</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #a6e22e">options</span> <span style="color: #f92672">||</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">options</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{});</span>
+        <span style="color: #a6e22e">options</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">url</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">urlRoot</span> <span style="color: #f92672">+</span> <span style="color: #e6db74">&#39;/&#39;</span> <span style="color: #f92672">+</span> <span style="color: #a6e22e">model</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">attributes</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">friendID</span><span style="color: #f8f8f2">;</span>
+        <span style="color: #66d9ef">return</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">sync</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">method</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">model</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">options</span><span style="color: #f8f8f2">);</span>
     <span style="color: #f8f8f2">}</span>
-    <span style="color: #66d9ef">return</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">sync</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">method</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">model</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">options</span><span style="color: #f8f8f2">);</span>
-  <span style="color: #f8f8f2">}</span>
 <span style="color: #f8f8f2">});</span>
 </pre></div>
 <div class="ac-caption">The FriendshipModel.</div>
@@ -188,7 +317,7 @@
 					<p align="justify">
 						Notice that we customized the <b>sync</b> method to add some data (the <b>friendID</b>) when we are creating a new frienship. This is for matching our API, which requires the friend id for handling all the frienships actions.
 					</p>
-					<p>
+					<p align="justify">
 						By default, the Model does not add the <b>id</b> when creating an object. The <b>friendship</b> object is an exception because actually the id we are sending is not the one for the entity itself, but for informing which user we want to manage the friendship with.
 					</p>
 
@@ -196,18 +325,31 @@
 						<h4>Exercise 11</h4>
 					</header>
 
-					<p>
-						You can keep working on <b>exercise10.html</b> because now your work is on your <b>socialnetwork.js</b> file.
+					<p align="justify">
+						Continue working on <b>exercise10.html</b> because it already has all the templates we are going to use.
 					</p>
 
 					<ol>
-						<li>Add the <b>events</b> object to the <b>AvailableUsersView</b>. Make the <b>click</b> on the <b>.inviteFriend</b> link fire a method that creates a new friendship and saves it. 
+						<li>Add the <b>events</b> object to the <b>AvailableUsersView</b>. Make the <b>click</b> on the <b>.inviteFriend</b> link fire a method that creates a new FriendshipModel <b>instance</b> and <b>saves</b> it. 
 						</li>
-						<li>The friendship related collections now should use the FriendshipModel (for the special <b>sync</b> to be called).</li>
-						<li>Notice you will also have to set one property on the model before saving it for the <b>sync</b> method to work when creating a friendship.</li>
-						<li>Upon a succesful saving, issue a <b>fetch</b> on both <b>AvailableUsersView</b> for it to reflect the new friendship configuration.</li>
-						<li>Repeat the process with the <b>.acceptFriend</b> link on the  <b>FriendsRequestsView</b>.</li>
-				</ol>
+            <li>Recover the <b>index</b> of the model on the collection using this jQuery: <b>$(event.currentTarget).parents('.user-div').index()</b>.</li>
+            <li>Use the <b>index</b> to get the model from the collection using the collection <b>at</b> method. Then use the <b>get</b> method from the model to recover the model <b>_id</b> attribute.
+						<li>Notice you will have to set this <b>_id</b> as a <b>different</b> property on the <b>FriendshipModel</b> before saving it for the <b>sync</b> method to work when creating a friendship.</li>
+            <li>Listen to a <b>sync</b> event from the new <b>FriendshipModel</b>. User the <b>listenToOnce</b> method instead of <b>listenTo</b>.</li>
+            <li>Call the friendship <b>save</b> method. This should trigger the callback you set up before. Call this callback <b>update</b>.</li>
+            <li>On callback method, issue a <b>fetch</b> on the <b>AvailableUsersView collection</b> for it to reflect the new friendship configuration.</li>
+            <li>As you already listens to that event on the collection (on the initialize method), the View will re-render itself when it succeeds.</li>
+          </ol>
+
+          <p align="justify">
+            Now we are going to make a similar process for the <b>FriendsRequestsView</b>, but this time using the <b>acceptFriend</b> backend path. Notice that pat use the <b>put</b> method. For using it we can set an arbitrary <b>id</b> on the <b>FriendshipModel</b> instance.
+          </p>
+
+          <ol>
+            <li>Repeat the process used for the <b>.inviteFriend</b> with the <b>.acceptFriend</b> link on the <b>FriendsRequestsView</b>.</li>
+            <li>Notice you will have to change the <b>.get('_id')</b> to <b>.get('userRequester')._id</b> because the models structures are different!</li>
+            <li>Move the <b>common code</b> (the callback method) to the common <b>CollectionView</b> and remove it from the changed Views.</li>
+				  </ol>
 
 				</div>
 			</section>
@@ -216,33 +358,124 @@
 				<div class="container">
 
 					<header class="major">
-						<h2>Messaging Between Views</h2>
+						<h2>Messaging</h2>
 					</header>
-							
+				    
+                    <p align="justify">
+                      On the previous exercise we could re-render the View from where the FriendshipModel was saved, but for being able to see the user on another friend container we had to reload the page.
+                    </p>
+
+                    <p align="justify">
+                      Now we are going to learn how to pass messages between the Views, so you can trigger the fetch also on the View that should 'receive' the user.
+                    </p>
+
+                     <p align="justify">
+                      There are more than one way of doing that, and one of the best is to use a <b>PubSub</b> module, also known as <b>an observer implementation</b>. In such patterns we <b>publish</b> a specific event and the <b>subscribed</b> objects will fire a method in response if they have the method specified on the event or ignore it otherwise.
+                    </p>
+
+                    <p align="justify">
+                      For now we are going to stick with the simplest/quickest way for doing that, that is: listening to events on a <b>globally accessible</b> module and triggering them from other views. The global object that we are going to use the <b>Backbone</b> object itself.
+                    </p>
+
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">listenTo</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;inviteSent&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">update</span><span style="color: #f8f8f2">);</span>
+</pre></div>
+<div class="ac-caption">Put this event listener on the <b>FriendshipRequestedView</b> initialize method.</div>                    
+
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">listenTo</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;friendAccepted&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">update</span><span style="color: #f8f8f2">);</span>
+</pre></div>
+<div class="ac-caption">Put this event listener on the <b>FriendsView</b> initialize method.</div>
+
+                    <p align="justify">
+                      Now we are listening for these <b>custom events</b> that can be triggered on the <b>Backbone</b> object. How are we going to fire them on the source of the events?
+                    </p>                   
+
+                    <header>
+                      <h4>Exercise 12</h4>
+                    </header>
+
+                    <p align="justify">
+                      There are at least <b>two ways</b> of doing that, and probably some more. As we have two sources of events (inviteFriend and acceptFriend), we are going to do both for didatic reasons.
+                    </p>
+
+                    <ol>
+                      <li>
+                        On the <b>inviteFriend</b> method, add <b>custom options</b> to the <b>save</b> method. We already did that for logging a label for the colletions on Exercise 9 (<b>{label:'Available Users Collection'}</b>).
+                      </li>
+                      <li>
+                        Note that now we are passing the options to a <b>save</b> method, not a <b>fetch</b>. The method signatures for passing custom options is different and you should look on the documentation to discover how they differ.</li>
+                      <li>In case you are still in doubt, for <b>save</b> you have to pass the options as the second parameter, and you can pass <b>null</b> as the first.</li>
+                      <li>Check for that parameter on your <b>callback</b>. Observe that the <b>save</b> callback also have a different parameter signature (the options are the third parameter). The custom option could be <b>{trigger:'inviteSent'}</b>.</li>
+                      <li>Given that, on the callback method just test if any <b>trigger</b> value is set on the <b>options</b> parameter, and fire its value on the <b>Backbone</b> object:</li>
+                    </ol>
+
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">friendship</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">save</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">null</span><span style="color: #f8f8f2">,{</span><span style="color: #a6e22e">trigger</span><span style="color: #f92672">:</span><span style="color: #e6db74">&#39;inviteSent&#39;</span><span style="color: #f8f8f2">});</span>
+</pre></div>
+<div class="ac-caption">Send in a custom <b>trigger</b> option on the <b>save</b> method.</div>                 
+
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">if</span><span style="color: #f8f8f2">(</span> <span style="color: #a6e22e">options</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">trigger</span> <span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">trigger</span><span style="color: #f8f8f2">(</span> <span style="color: #a6e22e">options</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">trigger</span> <span style="color: #f8f8f2">);</span>
+<span style="color: #f8f8f2">}</span>
+</pre></div>
+<div class="ac-caption">Add this code to the common <b>update</b> method.</div>
+
+                    <p align="justify">
+                      Once your callback is part of the <b>CommonView</b> code, this means you could also use it on the <b>acceptFriend</b> method, but we still can learn a little something about the <b>save</b> method by doing it in a different way.
+                    </p>
+
+                    <ol>
+                      <li>We will also have to use the save method <b>options</b>, but this time we will use a standard option: the <b>success</b> callback.</li>
+                      <li>Use the code below to add another callback to your model instance <b>sync</b>, and inside that callback, trigger the <b>friendAccepted</b> event on the <b>Backbone</b> object:</li>
+                    </ol>
+
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">friendship</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">save</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">null</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #a6e22e">context</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">success</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">inviteSuccess</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">error</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">inviteError</span>
+<span style="color: #f8f8f2">});</span>
+</pre></div>
+<div class="ac-caption">Passing <b>null</b> as the first parameter will not erase your model data. Believe me, I tested.</div>
+
+            <p align="justify">
+              Inside the <b>inviteSuccess</b> callback this code will trigger the event:
+            </p>
+
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">trigger</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;friendAccepted&#39;</span><span style="color: #f8f8f2">);</span>
+</pre></div>
+<div class="ac-caption">The FriendsView should listen to it and call its <b>update</b> method.</div>
+
+            <p align="justify">
+              Inside the <b>inviteError</b> callback you can just log the parameters to see what went wrong. You can try to add a friend with an invalid <b>friendID</b> and see what happens.
+            </p>
+
+          <p align="justify">
+            Which way you think is better? The first one uses a <b>custom option</b> alternative and re-uses the common callback. The second one give us access to an <b>error</b> callback as well.
+          </p>
+
+
 				</div>
 			</section>
+			
+    <section id="three">
+      <div class="container">
+          <header class="major">
+            <h2>Final Considerations</h2>
+          </header>
 
-			<section id="three">
-				<div class="container">
+          <p align="justify">
+            <b>Backbone.js</b> is a very lightweight, very flexible JavaScript library, that gives the developer plenty of liberty and can get still better with the addition of many plugins and other layers of organization like <b>Marionette</b>, which unfortunately we did not have the time to cover on this introduction course.
+          </p>
 
-					<header class="major">
-						<h2>Refactoring</h2>
-					</header>
-							
-				</div>
-			</section>
+          <p align="justify">
+            There is plenty more to learn about <b>Backbone.js</b>, specially about good practices and code organization patterns. Please feel free to reach us in case you are interested on such study material.
+          </p>
 
-			<section id="four">
-				<div class="container">
-
-					<header class="major">
-						<h2>Handlebars</h2>
-					</header>
-							
-				</div>
-			</section>
+          <p align="justify">
+            We hope you have enjoyed the course and thank you for your interest, feedback and hard working on the classes, which we used to tune the course and will provide us with the means to give a better course to the next class. Which means that in comparison you got the worst course. Too bad! :(
+          </p>
 
 
+      </div>
+    </section>
 		
 		</div>
 
