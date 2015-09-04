@@ -143,6 +143,18 @@
 <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">npm</span> <span style="color: #a6e22e">install</span>
 </pre></div>
 <div class="ac-caption">This will install all the project local dependencies.</div>
+
+					<header>
+						<h4>Installing Grunt</h4>
+					</header>
+
+					<p align="justify">
+						<b>Grunt</b> is a JavaScript task runner, and it is necessary to run the <b>node.js</b> server.
+					</p>
+
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">npm</span> <span style="color: #a6e22e">install</span> <span style="color: #a6e22e">grunt</span>
+</pre></div>
+<div class="ac-caption">Install grunt locally on the project directory.</div>
 					
 					<header>
 						<h4>Installing Bower</h4>
@@ -154,7 +166,6 @@
 
 <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">npm</span> <span style="color: #a6e22e">install</span> <span style="color: #a6e22e">bower</span> <span style="color: #f92672">-</span><span style="color: #a6e22e">g</span>
 </pre></div>
-
 <div class="ac-caption">Unlike other project dependencies Bower should be installed globally (-g).</div>
 
 					<p align="justify">
@@ -318,15 +329,20 @@
 				Backbone views are used to reflect what your applications' data models look like. They are also used to listen to events and react accordingly.
 				</p>
 
-<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">MyProfileView</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">View</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">MyModel</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Model</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">();</span>
+
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">MyProfileView</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">View</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
   <span style="color: #a6e22e">initialize</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(){</span>
     <span style="color: #a6e22e">alert</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;My profile view has started.&quot;</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">model</span><span style="color: #f8f8f2">);</span>
   <span style="color: #f8f8f2">}</span>
 <span style="color: #f8f8f2">});</span>
 
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">modelInstance</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">MyModel</span><span style="color: #f8f8f2">();</span>
+
 <span style="color: #75715e">// The initialize function is always called when instantiating a Backbone View.</span>
 <span style="color: #75715e">// Consider it the constructor of the class.</span>
-<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">myProfileView</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">MyProfileView</span><span style="color: #f8f8f2">();</span>
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">myProfileView</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">MyProfileView</span><span style="color: #f8f8f2">({</span><span style="color: #a6e22e">model</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">modelInstance</span><span style="color: #f8f8f2">});</span>
 </pre></div>
 <div class="ac-caption">A Backbone.js View with a custom initialize method.</div>
 
@@ -389,6 +405,23 @@
 <span style="color: #f8f8f2">});</span>
 </pre></div>
 <div class="ac-caption">Hello World!</b>.</div>
+
+				<header>
+					<h4>Example for the upcoming exercise</h4>
+				</header>
+
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">MyView</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">View</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
+    <span style="color: #a6e22e">el</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;#someContainerID&#39;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">render</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #f8f8f2">...</span>
+    <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">});</span>
+
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">view</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">MyView</span> <span style="color: #f8f8f2">({</span>
+    <span style="color: #a6e22e">el</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;#anotherConainerID&#39;</span>
+<span style="color: #f8f8f2">});</span>
+</pre></div>
+<div class="ac-caption">Declaring a View, instancing a View</b>.</div>		
 
 				<header>
 					<h4>Exercise 1</h4>
@@ -593,7 +626,24 @@
 				</p>
 				<p align="justify">
 					The model's <b>&lt;key,value&gt;</b> pairs are stored on its <b>attributes</b> field.
-				</p>	
+				</p>
+
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">MyModel</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Model</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
+    <span style="color: #a6e22e">urlRoot</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;users/me&#39;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">defaults</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #a6e22e">name</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;Default Name&#39;</span><span style="color: #f8f8f2">,</span>
+        <span style="color: #a6e22e">email</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;default@email.com&#39;</span>
+    <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">});</span>
+
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">modelObj</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">MyModel</span> <span style="color: #f8f8f2">({</span>
+    <span style="color: #a6e22e">name</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;Instance Name&#39;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">foo</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;bar&#39;</span>
+<span style="color: #f8f8f2">});</span>
+
+<span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span> <span style="color: #a6e22e">modelObj</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">attributes</span> <span style="color: #f8f8f2">);</span>
+</pre></div>
+<div class="ac-caption">A sample Model declaration and instanciation.</div>
 
 				<header>
 					<h4>Model Methods</h4>
@@ -612,10 +662,27 @@
 					<li>destroy</li>
 					<li>validate</li>
 					<li>parse</li>
-				</ul>				
+				</ul>	
+
+
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span> <span style="color: #a6e22e">modelObj</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">get</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;name&#39;</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">);</span>
+
+<span style="color: #a6e22e">modelObj</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">set</span><span style="color: #f8f8f2">({</span><span style="color: #e6db74">&#39;name&#39;</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;Other Name&#39;</span><span style="color: #f8f8f2">});</span>
+
+<span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span> <span style="color: #a6e22e">modelObj</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">get</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;name&#39;</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">);</span>
+
+<span style="color: #a6e22e">modelObj</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">set</span><span style="color: #f8f8f2">({</span>
+    <span style="color: #e6db74">&#39;firstname&#39;</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;First&#39;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&#39;lastname&#39;</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;Last&#39;</span>
+<span style="color: #f8f8f2">});</span>
+
+<span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span> <span style="color: #a6e22e">modelObj</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">attributes</span> <span style="color: #f8f8f2">);</span>
+</pre></div>
+<div class="ac-caption">Setting and getting a value on the model using <b>set</b> and <b>get</b> methods.</div>
+
 
 				<p align="justify">
-					Every time you call a Model's <b>fetch</b> or <b>save</b> methods, it will create a call to the <b>sync</b> method. So the <b>sync</b> method can be overwritten if you need to customize your model to match your server's API.
+					Every time you call a Model's <b>fetch</b> or <b>save</b> methods, it will create a call to the <b>sync</b> method. So the <b>fetch</b>, <b>save</b> and <b>sync</b> method can be overwritten if you need to customize your model to match your server's API.
 				</p>
 
 				<header>
@@ -658,6 +725,23 @@
 				<p align="justify">
 					If we want to change a Model's attribute but not fire the <b>change</b> event, we can pass the option <b>{silence: true}</b> to the <b>set</b> method. Models can also listen to and fire <b>custom events</b>.
 				</p>
+
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">MyModel</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Model</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
+    <span style="color: #a6e22e">initialize</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">on</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;change&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">logChanges</span> <span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">},</span>
+    <span style="color: #a6e22e">logChanges</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #a6e22e">console</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">log</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Attributes:&#39;</span><span style="color: #f8f8f2">,</span>  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">attributes</span> <span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">});</span>
+
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">modelObj</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">MyModel</span><span style="color: #f8f8f2">();</span>
+
+<span style="color: #a6e22e">modelObj</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">set</span><span style="color: #f8f8f2">({</span><span style="color: #e6db74">&#39;name&#39;</span><span style="color: #f92672">:</span><span style="color: #e6db74">&#39;Loud Name&#39;</span><span style="color: #f8f8f2">});</span>
+
+<span style="color: #a6e22e">modelObj</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">set</span><span style="color: #f8f8f2">({</span><span style="color: #e6db74">&#39;name&#39;</span><span style="color: #f92672">:</span><span style="color: #e6db74">&#39;Silent Name&#39;</span><span style="color: #f8f8f2">},{</span><span style="color: #a6e22e">silent</span><span style="color: #f92672">:</span><span style="color: #66d9ef">true</span><span style="color: #f8f8f2">});</span>
+</pre></div>
+<div class="ac-caption">A Model logging the attributes upon change and not logging it (with <b>silent</b>).</div>						
 
 				<header>
 					<h4>Model Defaults</h4>

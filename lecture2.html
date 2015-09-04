@@ -228,7 +228,7 @@
 					</p>
 
 <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">UserModel</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">Backbone</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">Model</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extend</span><span style="color: #f8f8f2">({</span>
-    <span style="color: #a6e22e">url</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;/users/me&#39;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">urlRoot</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;/users/me&#39;</span><span style="color: #f8f8f2">,</span>
     <span style="color: #a6e22e">idAttribute</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;_id&#39;</span><span style="color: #f8f8f2">,</span>
     <span style="color: #f8f8f2">...</span>
 <span style="color: #f8f8f2">}</span>
@@ -341,7 +341,7 @@
 					<p align="justify">We are goint to create a <b>ProfileView</b>, in order to display and edit our user data on the page DOM. This View will use a micro-template for rendering. On the next section we will prepare our <b>exercise7.html</b> to render our profile contents.
 					</p>
 
-					<p align="justify">First, copy the line below into your source code:
+					<p align="justify">First, <b>localize</b> the line below on your source code:
 					</p>
 
 <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f92672">&lt;</span><span style="color: #a6e22e">script</span> <span style="color: #a6e22e">type</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;text/template&quot;</span> <span style="color: #a6e22e">id</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;profileTemplate&quot;</span><span style="color: #f92672">&gt;&lt;</span><span style="color: #960050; background-color: #1e0010">/script&gt;</span>
@@ -445,7 +445,7 @@
 
 					<ol>
 						<li>Add an event filter on the View <b>events</b> property to catch the form <b>submit</b> event.</li>
-						<li>On the callback function, get the <b>event</b> as the first parameter and call <b>event.prevendDefault</b>.</li>
+						<li>On the callback function, get the <b>event</b> as the first parameter and call <b>event.preventDefault</b>.</li>
 						<li>Update your model by using <b>set</b> with the form data.</li>
 						<li>Make sure the Model class has a <b>validate</b> method to check for the <b>name</b> and <b>email</b> attributes.</li>
 						<li>Display an error alert in case the validation fails.</li>
