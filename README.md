@@ -1,10 +1,10 @@
 # AC Book: Node.js
 
-This course consists of an Introduction to Node.Js and Express.
+This course consists of an Introduction to Backbone.JS.
 
-We cover the main features of both, and also develop a small Social Network project.
+We cover the main features Backbone presenting its features in a didatic, incremental way.
 
-Requirements: Basic JS Knowledge
+Requirements: Basic Javascritp knowledge.
 
 ### Lecture 1
 
