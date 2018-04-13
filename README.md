@@ -1,4 +1,4 @@
-# AC Book: Node.js
+# AC Book: Backbone.JS
 
 This course consists of an Introduction to Backbone.JS.
 
